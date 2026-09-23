@@ -10,6 +10,7 @@
             background-color: #0b0f19;
             color: #ffffff;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
         }
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
@@ -23,220 +24,206 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col justify-between selection:bg-red-600 selection:text-white">
 
-    <!-- BARRA SUPERIOR -->
-    <header class="bg-gray-900 border-b border-gray-800 px-4 py-3 flex justify-between items-center shadow-lg z-20">
-        <div class="flex items-center space-x-3">
-            <span class="text-red-600 font-black text-xl tracking-wider cursor-pointer" onclick="irAlInicio()">PANAXTREAMING</span>
-            <span class="hidden md:inline text-xs bg-red-950 text-red-400 border border-red-800 px-2 py-0.5 rounded font-semibold">ST3TLLA TV &amp; F1UJO TV</span>
+    <header class="w-full bg-[#0b0f19] border-b border-gray-800/60 px-4 sm:px-8 py-4 flex flex-wrap justify-between items-center shadow-lg z-20">
+        <div class="flex items-center space-x-3 mb-2 sm:mb-0">
+            <span class="text-red-600 font-black text-lg sm:text-xl tracking-wider cursor-pointer select-none" onclick="irAlInicio()">PANAXTREAMING</span>
+            <span class="hidden md:inline text-[10px] sm:text-xs bg-red-950/80 text-red-400 border border-red-800/60 px-2.5 py-0.5 rounded font-semibold tracking-wide">ST3TLLA TV &amp; F1UJO TV</span>
         </div>
-        <div class="flex items-center space-x-4">
-            <div id="topWalletDisplay" class="hidden items-center bg-gray-800 border border-gray-700 px-3 py-1.5 rounded-lg text-sm">
+        <div class="flex items-center space-x-3 sm:space-x-4">
+            <div id="topWalletDisplay" class="hidden items-center bg-gray-900 border border-gray-800 px-3 py-1.5 rounded-lg text-xs sm:text-sm">
                 <span class="text-green-400 font-bold mr-2" id="topSaldoUsd">Saldo: $0.00</span>
             </div>
-            <button id="btnSalirSesion" class="hidden bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded text-xs font-bold transition" onclick="cerrarSesion()">Salir</button>
-            <div id="topPublicBtns" class="flex space-x-2">
-                <button class="bg-gray-800 hover:bg-gray-700 text-white px-3 py-1.5 rounded text-xs font-bold transition border border-gray-700" onclick="mostrarPantalla('registerScreen')">Registrarse</button>
-                <button class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded text-xs font-bold transition" onclick="mostrarPantalla('loginScreen')">Iniciar Sesión</button>
+            <button id="btnSalirSesion" class="hidden bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded text-xs font-bold transition shadow" onclick="cerrarSesion()">Salir</button>
+            <div id="topPublicBtns" class="flex items-center space-x-2">
+                <button class="bg-transparent hover:bg-gray-800 text-white border border-gray-700/80 hover:border-gray-500 px-3 sm:px-4 py-1.5 rounded text-xs font-bold transition" onclick="mostrarPantalla('registerScreen')">Registrarse</button>
+                <button class="bg-red-600 hover:bg-red-700 text-white px-3 sm:px-4 py-1.5 rounded text-xs font-bold transition shadow" onclick="mostrarPantalla('loginScreen')">Iniciar Sesión</button>
             </div>
         </div>
     </header>
 
-    <!-- CONTENEDOR GENERAL -->
-    <main class="flex-1 flex flex-col">
+    <main class="flex-1 flex flex-col w-full relative">
 
-        <!-- 1. INICIO PÚBLICO -->
-        <div id="homeHero" class="flex-1 flex flex-col items-center justify-center text-center p-6 max-w-4xl mx-auto my-auto">
-            <h1 class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4 text-white drop-shadow-md">
+        <div id="homeHero" class="flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-6 py-12 max-w-5xl mx-auto my-auto w-full">
+            <h1 class="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight mb-4 text-white drop-shadow-lg leading-tight max-w-4xl">
                 Películas, series ilimitadas y TV en vivo, en un solo lugar
             </h1>
-            <p class="text-gray-400 text-sm md:text-base mb-8 max-w-xl">
+            <p class="text-gray-400 text-xs sm:text-sm md:text-base mb-8 max-w-xl leading-relaxed">
                 Disfruta de la mejor plataforma de entretenimiento con soporte garantizado, perfiles privados y recargas al instante.
             </p>
-            <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md justify-center">
-                <input type="email" id="heroEmail" placeholder="Correo electrónico para empezar" class="px-4 py-3 bg-gray-900 border border-gray-700 rounded text-sm text-white focus:outline-none focus:border-red-600 flex-1">
-                <button onclick="empezarRegistroHero()" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded font-black text-sm uppercase tracking-wider transition shadow-lg">Comenzar &gt;</button>
+            <div class="flex flex-col sm:flex-row gap-2.5 w-full max-w-md justify-center items-center">
+                <input type="email" id="heroEmail" placeholder="Correo electrónico para empezar" class="w-full sm:flex-1 px-4 py-3 bg-[#0f1423] border border-gray-700/80 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:border-red-600 transition shadow-inner">
+                <button onclick="empezarRegistroHero()" class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded font-black text-xs sm:text-sm uppercase tracking-wider transition shadow-lg whitespace-nowrap">Comenzar &gt;</button>
             </div>
-            <div class="mt-6">
-                <a href="javascript:void(0);" onclick="mostrarPantalla('adminLoginScreen')" class="text-gray-400 hover:text-white text-xs underline font-bold">🔐 Acceso Panel Administrador</a>
+            <div class="mt-8">
+                <a href="javascript:void(0);" onclick="mostrarPantalla('adminLoginScreen')" class="text-gray-400 hover:text-white text-xs underline font-bold tracking-wide transition">🔐 Acceso Panel Administrador</a>
             </div>
         </div>
 
-        <!-- 2. LOGIN DE ADMINISTRADOR -->
-        <div id="adminLoginScreen" class="hidden flex-1 flex items-center justify-center p-4">
-            <div class="bg-gray-900/95 border border-red-900/50 p-8 rounded-xl shadow-2xl max-w-md w-full text-center">
+        <div id="adminLoginScreen" class="hidden flex-1 flex items-center justify-center p-4 w-full">
+            <div class="bg-[#0f1423] border border-red-900/40 p-6 sm:p-8 rounded-xl shadow-2xl max-w-md w-full text-center">
                 <div class="text-3xl mb-2">🛡️</div>
                 <h2 class="text-xl font-bold uppercase mb-2 text-white">Acceso de Administrador</h2>
                 <p class="text-xs text-gray-400 mb-6">Ingresa tus credenciales de control</p>
                 
-                <input type="text" id="adminUser" placeholder="Usuario (admin)" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-4 text-white focus:border-red-600 outline-none">
-                <input type="password" id="adminPass" placeholder="Contraseña (adming1234)" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-6 text-white focus:border-red-600 outline-none">
+                <input type="text" id="adminUser" placeholder="Usuario (admin)" class="w-full bg-black/60 border border-gray-700 p-3 rounded text-sm mb-4 text-white placeholder-gray-500 focus:border-red-600 outline-none">
+                <input type="password" id="adminPass" placeholder="Contraseña (adming1234)" class="w-full bg-black/60 border border-gray-700 p-3 rounded text-sm mb-6 text-white placeholder-gray-500 focus:border-red-600 outline-none">
                 
                 <button onclick="verificarLoginAdmin()" class="w-full bg-red-600 hover:bg-red-700 text-white p-3 rounded font-black text-sm uppercase transition shadow-lg mb-3">Ingresar como Admin</button>
                 <button onclick="mostrarPantalla('homeHero')" class="text-xs text-gray-500 hover:text-gray-300 underline">Volver al inicio</button>
             </div>
         </div>
 
-        <!-- 3. PANTALLA DE REGISTRO CLIENTE -->
-        <div id="registerScreen" class="hidden flex-1 flex items-center justify-center p-4">
-            <div class="bg-gray-900/95 border border-red-900/50 p-8 rounded-xl shadow-2xl max-w-md w-full text-center">
+        <div id="registerScreen" class="hidden flex-1 flex items-center justify-center p-4 w-full">
+            <div class="bg-[#0f1423] border border-gray-800 p-6 sm:p-8 rounded-xl shadow-2xl max-w-md w-full text-center">
                 <h2 class="text-xl font-bold uppercase mb-2 text-white">Crear Cuenta</h2>
-                <input type="email" id="reg-email" placeholder="Correo electrónico" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-4 text-white focus:border-red-600 outline-none">
-                <input type="text" id="reg-cedula" placeholder="Cédula de Identidad" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-4 text-white focus:border-red-600 outline-none">
-                <input type="password" id="reg-pass" placeholder="Contraseña" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-6 text-white focus:border-red-600 outline-none">
+                <p class="text-xs text-gray-400 mb-6">Regístrate para gestionar tus servicios</p>
+                <input type="email" id="reg-email" placeholder="Correo electrónico" class="w-full bg-black/60 border border-gray-700 p-3 rounded text-sm mb-4 text-white placeholder-gray-500 focus:border-red-600 outline-none">
+                <input type="text" id="reg-cedula" placeholder="Cédula de Identidad" class="w-full bg-black/60 border border-gray-700 p-3 rounded text-sm mb-4 text-white placeholder-gray-500 focus:border-red-600 outline-none">
+                <input type="password" id="reg-pass" placeholder="Contraseña" class="w-full bg-black/60 border border-gray-700 p-3 rounded text-sm mb-6 text-white placeholder-gray-500 focus:border-red-600 outline-none">
                 <button onclick="registrarCliente()" class="w-full bg-red-600 hover:bg-red-700 text-white p-3 rounded font-black text-sm uppercase transition shadow-lg">Registrarse</button>
-                <p class="text-xs text-gray-400 mt-4">¿Ya tienes cuenta? <a href="javascript:void(0);" class="text-red-500 font-bold" onclick="mostrarPantalla('loginScreen')">Inicia sesión</a></p>
+                <p class="text-xs text-gray-400 mt-4">¿Ya tienes cuenta? <a href="javascript:void(0);" class="text-red-500 font-bold hover:underline" onclick="mostrarPantalla('loginScreen')">Inicia sesión</a></p>
             </div>
         </div>
 
-        <!-- 4. PANTALLA DE LOGIN CLIENTE -->
-        <div id="loginScreen" class="hidden flex-1 flex items-center justify-center p-4">
-            <div class="bg-gray-900/95 border border-red-900/50 p-8 rounded-xl shadow-2xl max-w-md w-full text-center">
+        <div id="loginScreen" class="hidden flex-1 flex items-center justify-center p-4 w-full">
+            <div class="bg-[#0f1423] border border-gray-800 p-6 sm:p-8 rounded-xl shadow-2xl max-w-md w-full text-center">
                 <h2 class="text-xl font-bold uppercase mb-2 text-white">Inicia Sesión</h2>
-                <input type="email" id="login-email" placeholder="Correo registrado" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-4 text-white focus:border-red-600 outline-none">
-                <input type="password" id="login-pass" placeholder="Contraseña" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-6 text-white focus:border-red-600 outline-none">
+                <p class="text-xs text-gray-400 mb-6">Accede a tu cuenta de PanaXtreaming</p>
+                <input type="email" id="login-email" placeholder="Correo registrado" class="w-full bg-black/60 border border-gray-700 p-3 rounded text-sm mb-4 text-white placeholder-gray-500 focus:border-red-600 outline-none">
+                <input type="password" id="login-pass" placeholder="Contraseña" class="w-full bg-black/60 border border-gray-700 p-3 rounded text-sm mb-6 text-white placeholder-gray-500 focus:border-red-600 outline-none">
                 <button onclick="iniciarSesionCliente()" class="w-full bg-red-600 hover:bg-red-700 text-white p-3 rounded font-black text-sm uppercase transition shadow-lg">Entrar</button>
-                <p class="text-xs text-gray-400 mt-4">¿No tienes cuenta? <a href="javascript:void(0);" class="text-red-500 font-bold" onclick="mostrarPantalla('registerScreen')">Regístrate</a></p>
+                <p class="text-xs text-gray-400 mt-4">¿No tienes cuenta? <a href="javascript:void(0);" class="text-red-500 font-bold hover:underline" onclick="mostrarPantalla('registerScreen')">Regístrate</a></p>
             </div>
         </div>
 
-        <!-- 5. PANEL DEL CLIENTE -->
-        <div id="clientPanel" class="hidden flex-1 flex flex-col md:flex-row w-full max-w-7xl mx-auto">
-            <aside class="w-full md:w-64 bg-gray-900 border-r border-gray-800 p-4 flex flex-col space-y-6">
+        <div id="clientPanel" class="hidden flex-1 flex flex-col lg:flex-row w-full max-w-7xl mx-auto">
+            <aside class="w-full lg:w-64 bg-[#0b0f19] lg:bg-[#0f1423] border-b lg:border-b-0 lg:border-r border-gray-800 p-4 flex flex-col space-y-4 lg:space-y-6">
                 <div>
-                    <p class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-3">Navegación</p>
-                    <nav class="space-y-1">
-                        <button onclick="cambiarSeccionCliente('resumen')" id="navResumen" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition"><span>🏠</span> <span>Resumen</span></button>
-                        <button onclick="cambiarSeccionCliente('catalogo')" id="navCatalogo" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition"><span>🛒</span> <span>Catálogo &amp; Compras</span></button>
-                        <button onclick="cambiarSeccionCliente('transacciones')" id="navTransacciones" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition"><span>📄</span> <span>Transacciones</span></button>
-                    </nav>
-                </div>
-                <div>
-                    <p class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-3">Recargas</p>
-                    <nav class="space-y-1">
-                        <button onclick="cambiarSeccionCliente('reportarPago')" id="navReportar" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition"><span>💳</span> <span>Reportar Pago Móvil</span></button>
-                    </nav>
-                </div>
-                <div>
-                    <p class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-3">Mi Cuenta</p>
-                    <nav class="space-y-1">
-                        <button onclick="cambiarSeccionCliente('miPerfil')" id="navPerfil" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition"><span>👤</span> <span>Mi Perfil</span></button>
+                    <p class="text-[10px] text-gray-500 uppercase tracking-wider font-bold mb-2 hidden lg:block">Navegación</p>
+                    <nav class="flex lg:flex-col flex-wrap gap-1">
+                        <button onclick="cambiarSeccionCliente('resumen')" id="navResumen" class="flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold bg-red-600 text-white transition"><span>🏠</span> <span>Resumen</span></button>
+                        <button onclick="cambiarSeccionCliente('catalogo')" id="navCatalogo" class="flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition"><span>🛒</span> <span>Catálogo</span></button>
+                        <button onclick="cambiarSeccionCliente('transacciones')" id="navTransacciones" class="flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition"><span>📄</span> <span>Movimientos</span></button>
+                        <button onclick="cambiarSeccionCliente('reportarPago')" id="navReportar" class="flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition"><span>💳</span> <span>Reportar Pago</span></button>
+                        <button onclick="cambiarSeccionCliente('miPerfil')" id="navPerfil" class="flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition"><span>👤</span> <span>Perfil</span></button>
                     </nav>
                 </div>
             </aside>
 
-            <div class="flex-1 p-4 md:p-8 overflow-y-auto">
-                <!-- Resumen -->
+            <div class="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto custom-scrollbar">
+                <!-- Resumen Sub-view -->
                 <div id="viewResumen" class="space-y-6">
-                    <div class="flex justify-between items-center bg-gray-900 border border-gray-800 p-6 rounded-xl flex-wrap gap-4">
+                    <div class="flex justify-between items-center bg-[#0f1423] border border-gray-800 p-5 sm:p-6 rounded-xl flex-wrap gap-4 shadow">
                         <div>
-                            <h2 class="text-2xl font-black text-white">¡Bienvenido, <span id="clientEmailHeader" class="text-red-500">Cliente</span>!</h2>
+                            <h2 class="text-xl sm:text-2xl font-black text-white">¡Bienvenido, <span id="clientEmailHeader" class="text-red-500">Cliente</span>!</h2>
                             <p class="text-xs text-gray-400 mt-1">Consulta tu saldo y estado de cuenta al instante.</p>
                         </div>
-                        <button onclick="cambiarSeccionCliente('reportarPago')" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-4 py-2.5 rounded shadow">RECARGA TU CUENTA</button>
+                        <button onclick="cambiarSeccionCliente('reportarPago')" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-4 py-2.5 rounded shadow transition">RECARGA TU CUENTA</button>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="bg-gray-900 border border-gray-800 p-5 rounded-xl border-l-4 border-l-green-500">
+                        <div class="bg-[#0f1423] border border-gray-800 p-5 rounded-xl border-l-4 border-l-green-500 shadow">
                             <p class="text-xs text-gray-400 uppercase font-semibold">Saldo actual disponible</p>
                             <h3 class="text-3xl font-black text-green-400 mt-2" id="clientActualSaldo">$0.00</h3>
                         </div>
                     </div>
-                    <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
+                    <div class="bg-[#0f1423] border border-gray-800 p-5 sm:p-6 rounded-xl shadow">
                         <h3 class="text-sm font-bold uppercase mb-4 text-gray-300">Movimientos Recientes</h3>
-                        <div id="clientHistoryList" class="space-y-2 max-h-60 overflow-y-auto pr-2"></div>
+                        <div id="clientHistoryList" class="space-y-2 max-h-60 overflow-y-auto pr-2 custom-scrollbar"></div>
                     </div>
                 </div>
 
-                <!-- Catálogo -->
+                <!-- Catálogo Sub-view -->
                 <div id="viewCatalogo" class="hidden space-y-6">
-                    <div class="flex justify-between items-center bg-gray-900 border border-gray-800 p-6 rounded-xl">
-                        <h2 class="text-xl font-bold text-white">Catálogo de Servicios</h2>
-                        <div class="bg-gray-800 border border-green-600 px-4 py-2 rounded-lg text-green-400 font-bold text-sm" id="catalogWalletBadge">Saldo: $0.00</div>
+                    <div class="flex justify-between items-center bg-[#0f1423] border border-gray-800 p-5 sm:p-6 rounded-xl flex-wrap gap-3">
+                        <h2 class="text-lg sm:text-xl font-bold text-white">Catálogo de Servicios</h2>
+                        <div class="bg-gray-900 border border-green-600/60 px-3 py-1.5 rounded-lg text-green-400 font-bold text-xs sm:text-sm" id="catalogWalletBadge">Saldo: $0.00</div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 flex flex-col justify-between">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-[#0f1423] border border-gray-800 rounded-xl p-5 flex flex-col justify-between shadow">
                             <div>
-                                <span class="text-xs bg-red-900 text-red-300 px-2 py-0.5 rounded font-bold">PanaXtreaming</span>
-                                <h4 class="font-bold text-lg text-white mt-2">Cuenta Completa</h4>
-                                <p class="text-xs text-gray-400 my-3">Acceso total con máxima estabilidad.</p>
+                                <span class="text-[10px] bg-red-950 text-red-300 px-2 py-0.5 rounded font-bold border border-red-800">PanaXtreaming</span>
+                                <h4 class="font-bold text-lg text-white mt-3">Cuenta Completa</h4>
+                                <p class="text-xs text-gray-400 my-3 leading-relaxed">Acceso total con máxima estabilidad y perfiles privados.</p>
                             </div>
-                            <div>
+                            <div class="mt-4 pt-4 border-t border-gray-800">
                                 <div class="text-xl font-black text-white mb-3">8$</div>
-                                <button onclick="comprarConSaldo('Cuenta Completa', 8)" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase py-2.5 rounded">Comprar</button>
+                                <button onclick="comprarConSaldo('Cuenta Completa', 8)" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase py-2.5 rounded transition shadow">Comprar</button>
                             </div>
                         </div>
-                        <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 flex flex-col justify-between">
+                        <div class="bg-[#0f1423] border border-gray-800 rounded-xl p-5 flex flex-col justify-between shadow">
                             <div>
-                                <span class="text-xs bg-red-900 text-red-300 px-2 py-0.5 rounded font-bold">ST3TLLA TV</span>
-                                <h4 class="font-bold text-lg text-white mt-2">ST3TLLA TV Completa</h4>
-                                <p class="text-xs text-gray-400 my-3">Programación en vivo en HD.</p>
+                                <span class="text-[10px] bg-red-950 text-red-300 px-2 py-0.5 rounded font-bold border border-red-800">ST3TLLA TV</span>
+                                <h4 class="font-bold text-lg text-white mt-3">ST3TLLA TV Completa</h4>
+                                <p class="text-xs text-gray-400 my-3 leading-relaxed">Programación completa en vivo en Alta Definición.</p>
                             </div>
-                            <div>
+                            <div class="mt-4 pt-4 border-t border-gray-800">
                                 <div class="text-xl font-black text-white mb-3">10$</div>
-                                <button onclick="comprarConSaldo('ST3TLLA TV Completa', 10)" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase py-2.5 rounded">Comprar</button>
+                                <button onclick="comprarConSaldo('ST3TLLA TV Completa', 10)" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase py-2.5 rounded transition shadow">Comprar</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Transacciones -->
+                <!-- Transacciones Sub-view -->
                 <div id="viewTransacciones" class="hidden space-y-6">
-                    <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
-                        <h2 class="text-xl font-bold text-white mb-4">Historial Completo</h2>
+                    <div class="bg-[#0f1423] border border-gray-800 p-5 sm:p-6 rounded-xl shadow">
+                        <h2 class="text-lg sm:text-xl font-bold text-white mb-4">Historial Completo</h2>
                         <div id="fullTransactionsList" class="space-y-3"></div>
                     </div>
                 </div>
 
-                <!-- Reportar Pago Móvil -->
+                <!-- Reportar Pago Móvil Sub-view -->
                 <div id="viewReportarPago" class="hidden space-y-6 max-w-xl mx-auto">
-                    <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
-                        <h2 class="text-xl font-bold text-white mb-2">Reportar Pago Móvil</h2>
-                        <div class="bg-black/40 border border-gray-800 p-4 rounded-lg text-xs space-y-1 mb-6 text-gray-300">
+                    <div class="bg-[#0f1423] border border-gray-800 p-5 sm:p-6 rounded-xl shadow">
+                        <h2 class="text-lg sm:text-xl font-bold text-white mb-2">Reportar Pago Móvil</h2>
+                        <p class="text-xs text-gray-400 mb-4">Realiza tu pago móvil a los datos bancarios y reporta la referencia.</p>
+                        <div class="bg-black/50 border border-gray-800 p-4 rounded-lg text-xs space-y-1.5 mb-6 text-gray-300">
                             <p><strong>Banco:</strong> Provincial</p>
                             <p><strong>Pago Móvil:</strong> 0412-2753916</p>
+                            <p><strong>Cédula:</strong> V-XXXXXXXX</p>
                         </div>
                         <div class="space-y-4">
                             <div>
                                 <label class="text-xs text-gray-400 block mb-1">Monto en $ a recargar:</label>
-                                <input type="number" id="reportMonto" placeholder="Ej: 10" class="w-full bg-black border border-gray-700 p-3 rounded text-sm text-white outline-none">
+                                <input type="number" id="reportMonto" placeholder="Ej: 10" class="w-full bg-black/60 border border-gray-700 p-3 rounded text-sm text-white placeholder-gray-500 outline-none focus:border-red-600">
                             </div>
                             <div>
                                 <label class="text-xs text-gray-400 block mb-1">Últimos 4 dígitos de la referencia:</label>
-                                <input type="text" id="reportRef" placeholder="Ej: 4125" class="w-full bg-black border border-gray-700 p-3 rounded text-sm text-white outline-none">
+                                <input type="text" id="reportRef" placeholder="Ej: 4125" class="w-full bg-black/60 border border-gray-700 p-3 rounded text-sm text-white placeholder-gray-500 outline-none focus:border-red-600">
                             </div>
                             <button onclick="enviarReportePago()" class="w-full bg-red-600 hover:bg-red-700 text-white font-black text-sm uppercase p-3 rounded transition shadow">Enviar Reporte al Administrador</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Mi Perfil -->
+                <!-- Mi Perfil Sub-view -->
                 <div id="viewMiPerfil" class="hidden space-y-6 max-w-xl mx-auto">
-                    <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
-                        <h2 class="text-xl font-bold text-white mb-4">Perfil de Usuario</h2>
-                        <p class="text-sm"><strong>Correo:</strong> <span id="perfilEmail" class="text-gray-300"></span></p>
+                    <div class="bg-[#0f1423] border border-gray-800 p-5 sm:p-6 rounded-xl shadow">
+                        <h2 class="text-lg sm:text-xl font-bold text-white mb-4">Perfil de Usuario</h2>
+                        <p class="text-sm"><strong>Correo Electrónico:</strong> <span id="perfilEmail" class="text-gray-300 ml-1"></span></p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 6. PANEL DE ADMINISTRADOR -->
-        <div id="adminPanel" class="hidden flex-1 p-6 max-w-6xl mx-auto w-full">
-            <div class="flex justify-between items-center mb-6 bg-gray-900 border border-gray-800 p-6 rounded-xl flex-wrap gap-4">
+        <div id="adminPanel" class="hidden flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full">
+            <div class="flex justify-between items-center mb-6 bg-[#0f1423] border border-gray-800 p-5 sm:p-6 rounded-xl flex-wrap gap-4 shadow">
                 <div>
-                    <h2 class="text-2xl font-black text-green-400">🛡️ Panel de Administración</h2>
-                    <p class="text-xs text-gray-400 mt-1">Aquí llegan los reportes de pago enviados por los usuarios para su aprobación.</p>
+                    <h2 class="text-xl sm:text-2xl font-black text-green-400">🛡️ Panel de Administración</h2>
+                    <p class="text-xs text-gray-400 mt-1">Gestión centralizada de reportes de pago y saldos de clientes.</p>
                 </div>
-                <button onclick="cerrarSesion()" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white text-xs font-bold px-4 py-2 rounded">Cerrar Sesión Admin</button>
+                <button onclick="cerrarSesion()" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white text-xs font-bold px-4 py-2 rounded transition">Cerrar Sesión Admin</button>
             </div>
 
             <!-- Solicitudes de pago pendientes -->
-            <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl mb-6">
+            <div class="bg-[#0f1423] border border-gray-800 p-5 sm:p-6 rounded-xl mb-6 shadow">
                 <h3 class="text-sm font-bold uppercase mb-4 text-yellow-400">🔔 Solicitudes y Reportes Pendientes</h3>
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs border-collapse">
+                    <table class="w-full text-left text-xs border-collapse min-w-[500px]">
                         <thead>
-                            <tr class="bg-gray-800 text-gray-300 border-b border-gray-700">
+                            <tr class="bg-gray-900 text-gray-300 border-b border-gray-800">
                                 <th class="p-3">Cliente</th>
                                 <th class="p-3">Monto</th>
                                 <th class="p-3">Referencia</th>
@@ -250,12 +237,12 @@
             </div>
 
             <!-- Clientes registrados -->
-            <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
+            <div class="bg-[#0f1423] border border-gray-800 p-5 sm:p-6 rounded-xl shadow">
                 <h3 class="text-sm font-bold uppercase mb-4 text-gray-300">👥 Clientes Registrados &amp; Saldos</h3>
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs border-collapse">
+                    <table class="w-full text-left text-xs border-collapse min-w-[400px]">
                         <thead>
-                            <tr class="bg-gray-800 text-gray-300 border-b border-gray-700">
+                            <tr class="bg-gray-900 text-gray-300 border-b border-gray-800">
                                 <th class="p-3">Correo</th>
                                 <th class="p-3">Saldo Actual</th>
                                 <th class="p-3">Asignar Saldo Manual</th>
@@ -269,7 +256,10 @@
 
     </main>
 
-    <!-- SCRIPT DE CONTROL UNIFICADO -->
+    <footer class="w-full text-center py-4 text-gray-600 text-[11px] border-t border-gray-900">
+        PanaXtreaming © 2026 - Todos los derechos reservados.
+    </footer>
+
     <script>
         let dbClientes = JSON.parse(localStorage.getItem('panax_db_clientes')) || [];
         let dbReportes = JSON.parse(localStorage.getItem('panax_db_reportes')) || [];
@@ -322,7 +312,7 @@
             }
         }
 
-        // --- VERIFICACIÓN DE CREDENCIALES ADMIN ---
+        // --- AUTENTICACIÓN ADMINISTRADOR ---
         function verificarLoginAdmin() {
             let u = document.getElementById('adminUser').value.trim();
             let p = document.getElementById('adminPass').value.trim();
@@ -349,19 +339,19 @@
             let pass = document.getElementById('reg-pass').value.trim();
 
             if(!email || !cedula || !pass) {
-                alert('Completa todos los campos.');
+                alert('Por favor completa todos los campos.');
                 return;
             }
 
             if(dbClientes.find(c => c.email === email)) {
-                alert('El correo ya está registrado.');
+                alert('Este correo electrónico ya se encuentra registrado.');
                 mostrarPantalla('loginScreen');
                 return;
             }
 
             dbClientes.push({ email, cedula, pass, saldo: 0, historial: [] });
             localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
-            alert('¡Registro exitoso! Inicia sesión.');
+            alert('¡Registro exitoso! Ya puedes iniciar sesión.');
             mostrarPantalla('loginScreen');
         }
 
@@ -371,7 +361,7 @@
 
             let cliente = dbClientes.find(c => c.email === email && c.pass === pass);
             if(!cliente) {
-                alert('Datos incorrectos.');
+                alert('Correo o contraseña incorrectos.');
                 return;
             }
 
@@ -408,13 +398,13 @@
             let htmlHist = '';
             if(cliente.historial && cliente.historial.length > 0) {
                 cliente.historial.slice().reverse().forEach(item => {
-                    htmlHist += `<div class="bg-black/40 border border-gray-800 p-3 rounded text-xs flex justify-between items-center">
+                    htmlHist += `<div class="bg-black/40 border border-gray-800/80 p-3 rounded text-xs flex justify-between items-center gap-2">
                         <div><p class="font-bold text-white">${item.concepto}</p><p class="text-gray-500 text-[10px]">${item.fecha}</p></div>
-                        <span class="font-bold ${item.tipo === 'recarga' ? 'text-green-400' : 'text-red-400'}">${item.tipo === 'recarga' ? '+' : '-'}$${item.monto.toFixed(2)}</span>
+                        <span class="font-bold whitespace-nowrap ${item.tipo === 'recarga' ? 'text-green-400' : 'text-red-400'}">${item.tipo === 'recarga' ? '+' : '-'}$${item.monto.toFixed(2)}</span>
                     </div>`;
                 });
             } else {
-                htmlHist = '<p class="text-xs text-gray-500">No hay movimientos recientes.</p>';
+                htmlHist = '<p class="text-xs text-gray-500">No hay movimientos recientes registrados.</p>';
             }
             document.getElementById('clientHistoryList').innerHTML = htmlHist;
             document.getElementById('fullTransactionsList').innerHTML = htmlHist;
@@ -427,24 +417,24 @@
                 document.getElementById(id).classList.add('hidden');
             });
             ['navResumen', 'navCatalogo', 'navTransacciones', 'navReportar', 'navPerfil'].forEach(id => {
-                document.getElementById(id).className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition";
+                document.getElementById(id).className = "flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition";
             });
 
             if(seccion === 'resumen') {
                 document.getElementById('viewResumen').classList.remove('hidden');
-                document.getElementById('navResumen').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition";
+                document.getElementById('navResumen').className = "flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold bg-red-600 text-white transition";
             } else if(seccion === 'catalogo') {
                 document.getElementById('viewCatalogo').classList.remove('hidden');
-                document.getElementById('navCatalogo').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition";
+                document.getElementById('navCatalogo').className = "flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold bg-red-600 text-white transition";
             } else if(seccion === 'transacciones') {
                 document.getElementById('viewTransacciones').classList.remove('hidden');
-                document.getElementById('navTransacciones').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition";
+                document.getElementById('navTransacciones').className = "flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold bg-red-600 text-white transition";
             } else if(seccion === 'reportarPago') {
                 document.getElementById('viewReportarPago').classList.remove('hidden');
-                document.getElementById('navReportar').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition";
+                document.getElementById('navReportar').className = "flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold bg-red-600 text-white transition";
             } else if(seccion === 'miPerfil') {
                 document.getElementById('viewMiPerfil').classList.remove('hidden');
-                document.getElementById('navPerfil').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition";
+                document.getElementById('navPerfil').className = "flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold bg-red-600 text-white transition";
             }
         }
 
@@ -452,7 +442,7 @@
             let cliente = dbClientes.find(c => c.email === sesionActiva);
             if(!cliente) return;
             if(cliente.saldo < precio) {
-                alert('Saldo insuficiente.');
+                alert('Saldo insuficiente para realizar esta compra.');
                 cambiarSeccionCliente('reportarPago');
                 return;
             }
@@ -468,14 +458,14 @@
             let ref = document.getElementById('reportRef').value.trim();
 
             if(!monto || !ref) {
-                alert('Ingresa el monto y la referencia.');
+                alert('Por favor ingresa el monto y los últimos 4 dígitos de la referencia.');
                 return;
             }
 
             dbReportes.push({ id: Date.now(), email: sesionActiva, monto, ref, fecha: new Date().toLocaleString() });
             localStorage.setItem('panax_db_reportes', JSON.stringify(dbReportes));
 
-            alert('¡Reporte enviado al administrador con éxito! En breve será verificado.');
+            alert('¡Reporte enviado al administrador con éxito! En breve será verificado y se reflejará tu saldo.');
             document.getElementById('reportMonto').value = '';
             document.getElementById('reportRef').value = '';
             cambiarSeccionCliente('resumen');
@@ -488,7 +478,6 @@
             document.getElementById('btnSalirSesion').style.display = 'block';
             document.getElementById('topPublicBtns').style.display = 'none';
 
-            // Cargar solicitudes pendientes
             let htmlOrders = '';
             if(dbReportes.length > 0) {
                 dbReportes.forEach((rep, index) => {
@@ -498,7 +487,7 @@
                         <td class="p-3 text-gray-300">${rep.ref}</td>
                         <td class="p-3 text-gray-400 text-[10px]">${rep.fecha}</td>
                         <td class="p-3">
-                            <button onclick="aprobarRecarga(${index})" class="bg-green-600 hover:bg-green-700 text-white font-bold px-3 py-1 rounded text-xs">Aprobar y Asignar Saldo</button>
+                            <button onclick="aprobarRecarga(${index})" class="bg-green-600 hover:bg-green-700 text-white font-bold px-3 py-1 rounded text-xs transition whitespace-nowrap">Aprobar y Asignar Saldo</button>
                         </td>
                     </tr>`;
                 });
@@ -507,7 +496,6 @@
             }
             document.getElementById('adminOrdersTableBody').innerHTML = htmlOrders;
 
-            // Cargar listado clientes
             let htmlClients = '';
             if(dbClientes.length > 0) {
                 dbClientes.forEach(cli => {
@@ -515,12 +503,12 @@
                         <td class="p-3 text-white">${cli.email}</td>
                         <td class="p-3 text-green-400 font-bold">$${cli.saldo.toFixed(2)}</td>
                         <td class="p-3">
-                            <button onclick="asignarSaldoDirecto('${cli.email}')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-3 py-1 rounded text-xs">+ Asignar Saldo</button>
+                            <button onclick="asignarSaldoDirecto('${cli.email}')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-3 py-1 rounded text-xs transition">+ Asignar Saldo</button>
                         </td>
                     </tr>`;
                 });
             } else {
-                htmlClients = `<tr><td colspan="3" class="p-4 text-center text-gray-500">No hay clientes registrados.</td></tr>`;
+                htmlClients = `<tr><td colspan="3" class="p-4 text-center text-gray-500">No hay clientes registrados en el sistema.</td></tr>`;
             }
             document.getElementById('adminClientsTableBody').innerHTML = htmlClients;
         }
