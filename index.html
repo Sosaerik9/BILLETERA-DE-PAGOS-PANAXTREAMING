@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PanaXtreaming - Checkout Multidivisa Automatizado</title>
+    <title>PanaXtreaming - Catálogo y Servicios Digitales</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -23,17 +23,19 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col custom-scrollbar">
 
     <!-- BARRA SUPERIOR -->
-    <header class="bg-gray-900 border-b border-gray-800 px-4 py-3 flex justify-between items-center shadow-lg z-20">
+    <header class="bg-gray-900 border-b border-gray-800 px-4 py-3 flex justify-between items-center shadow-lg z-20 sticky top-0">
         <div class="flex items-center space-x-3">
             <span class="text-red-600 font-black text-xl tracking-wider cursor-pointer" onclick="irAlInicio()">PANAXTREAMING</span>
             <span class="hidden md:inline text-xs bg-red-950 text-red-400 border border-red-800 px-2 py-0.5 rounded font-semibold">ST3TLLA TV &amp; F1UJO TV</span>
         </div>
         <div class="flex items-center space-x-4">
-            <div id="topWalletDisplay" class="hidden items-center bg-gray-800 border border-gray-700 px-3 py-1.5 rounded-lg text-sm">
+            <!-- Botón de saldo interactivo (superior) -->
+            <div id="topWalletDisplay" class="hidden items-center bg-gray-800 hover:bg-gray-700 border border-gray-700 px-3 py-1.5 rounded-lg text-sm cursor-pointer transition" onclick="cambiarSeccionCliente('reportarPago')" title="Haz clic para recargar saldo">
                 <span class="text-green-400 font-bold mr-2" id="topSaldoUsd">Saldo: $0.00</span>
+                <span class="text-xs bg-green-950 text-green-300 border border-green-800 px-1.5 py-0.5 rounded font-bold">+ Recargar</span>
             </div>
             <button id="btnSalirSesion" class="hidden bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded text-xs font-bold transition" onclick="cerrarSesion()">Salir</button>
             <div id="topPublicBtns" class="flex space-x-2">
@@ -69,10 +71,8 @@
                 <div class="text-3xl mb-2">🛡️</div>
                 <h2 class="text-xl font-bold uppercase mb-2 text-white">Acceso de Administrador</h2>
                 <p class="text-xs text-gray-400 mb-6">Ingresa tus credenciales de control</p>
-                
                 <input type="text" id="adminUser" placeholder="Usuario (admin)" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-4 text-white focus:border-red-600 outline-none">
                 <input type="password" id="adminPass" placeholder="Contraseña (adming1234)" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-6 text-white focus:border-red-600 outline-none">
-                
                 <button onclick="verificarLoginAdmin()" class="w-full bg-red-600 hover:bg-red-700 text-white p-3 rounded font-black text-sm uppercase transition shadow-lg mb-3">Ingresar como Admin</button>
                 <button onclick="mostrarPantalla('homeHero')" class="text-xs text-gray-500 hover:text-gray-300 underline">Volver al inicio</button>
             </div>
@@ -105,30 +105,30 @@
         <div id="clientPanel" class="hidden flex-1 flex flex-col md:flex-row w-full max-w-7xl mx-auto">
             <aside class="w-full md:w-64 bg-gray-900 border-r border-gray-800 p-4 flex flex-col space-y-6">
                 <div>
-                    <p class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-3">Navegación</p>
+                    <p class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-3">NAVEGACIÓN</p>
                     <nav class="space-y-1">
-                        <button onclick="cambiarSeccionCliente('resumen')" id="navResumen" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition"><span>🏠</span> <span>Resumen</span></button>
-                        <button onclick="cambiarSeccionCliente('catalogo')" id="navCatalogo" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition"><span>🛒</span> <span>Catálogo &amp; Compras</span></button>
-                        <button onclick="cambiarSeccionCliente('transacciones')" id="navTransacciones" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition"><span>📄</span> <span>Transacciones</span></button>
+                        <button onclick="cambiarSeccionCliente('resumen')" id="navResumen" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm"><span>🏠</span> <span>Resumen</span></button>
+                        <button onclick="cambiarSeccionCliente('catalogo')" id="navCatalogo" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm"><span>🛒</span> <span>Catálogo &amp; Compras</span></button>
+                        <button onclick="cambiarSeccionCliente('transacciones')" id="navTransacciones" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm"><span>📄</span> <span>Transacciones</span></button>
                     </nav>
                 </div>
                 <div>
-                    <p class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-3">Recargas</p>
+                    <p class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-3">RECARGAS</p>
                     <nav class="space-y-1">
-                        <button onclick="cambiarSeccionCliente('reportarPago')" id="navReportar" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition"><span>💳</span> <span>Reportar Pago Móvil</span></button>
+                        <button onclick="cambiarSeccionCliente('reportarPago')" id="navReportar" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition text-left leading-snug shadow-sm"><span>💳</span> <span class="text-xs font-bold">Reportar pago para recargar saldo en mi billetera</span></button>
                     </nav>
                 </div>
                 <div>
-                    <p class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-3">Mi Cuenta</p>
+                    <p class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-3">MI CUENTA</p>
                     <nav class="space-y-1">
-                        <button onclick="cambiarSeccionCliente('miPerfil')" id="navPerfil" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition"><span>👤</span> <span>Mi Perfil</span></button>
+                        <button onclick="cambiarSeccionCliente('miPerfil')" id="navPerfil" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm"><span>👤</span> <span>Mi Perfil</span></button>
                     </nav>
                 </div>
             </aside>
 
             <div class="flex-1 p-4 md:p-8 overflow-y-auto">
                 <!-- Resumen -->
-                <div id="viewResumen" class="space-y-6">
+                <div id="viewResumen" class="hidden space-y-6">
                     <div class="flex justify-between items-center bg-gray-900 border border-gray-800 p-6 rounded-xl flex-wrap gap-4">
                         <div>
                             <h2 class="text-2xl font-black text-white">¡Bienvenido, <span id="clientEmailHeader" class="text-red-500">Cliente</span>!</h2>
@@ -148,57 +148,60 @@
                     </div>
                 </div>
 
-                <!-- Catálogo Dinámico -->
+                <!-- Catálogo Dinámico con Carrito -->
                 <div id="viewCatalogo" class="hidden space-y-6">
                     <div class="flex justify-between items-center bg-gray-900 border border-gray-800 p-6 rounded-xl flex-wrap gap-4">
                         <div>
                             <h2 class="text-xl font-bold text-white">Catálogo de Servicios Digitales</h2>
-                            <p class="text-xs text-gray-400 mt-1">Selecciona el servicio para iniciar el checkout automatizado.</p>
+                            <p class="text-xs text-gray-400 mt-1">Selecciona los servicios para agregarlos al carrito o iniciar checkout directo.</p>
                         </div>
-                        <div class="bg-gray-800 border border-green-600 px-4 py-2 rounded-lg text-green-400 font-bold text-sm" id="catalogWalletBadge">Saldo: $0.00</div>
+                        <div class="flex items-center gap-3">
+                            <!-- Botón de saldo interactivo (en el catálogo) -->
+                            <div class="bg-gray-800 hover:bg-gray-700 border border-green-600 px-4 py-2 rounded-lg text-green-400 font-bold text-sm cursor-pointer transition flex items-center gap-2" id="catalogWalletBadgeContainer" onclick="cambiarSeccionCliente('reportarPago')" title="Haz clic para recargar saldo">
+                                <span id="catalogWalletBadge">Saldo: $0.00</span>
+                                <span class="text-[10px] bg-green-950 text-green-300 border border-green-800 px-1.5 py-0.5 rounded font-bold">+ Recargar</span>
+                            </div>
+                            <button onclick="abrirCheckoutCarrito()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase px-4 py-2.5 rounded-lg transition shadow flex items-center gap-2">
+                                🛒 Carrito (<span id="cartCount">0</span>)
+                            </button>
+                        </div>
                     </div>
                     <div id="catalogContainer" class="space-y-6"></div>
                 </div>
 
-                <!-- CHECKOUT UNIFICADO CON REQUISITOS REGLAMENTARIOS PARA TODOS LOS MÉTODOS -->
+                <!-- CHECKOUT UNIFICADO -->
                 <div id="viewCheckout" class="hidden space-y-6 max-w-6xl mx-auto">
-                    
-                    <!-- Barra de Progreso Superior -->
                     <div class="bg-gray-900 border border-gray-800 px-6 py-4 rounded-xl flex justify-between items-center max-w-xl mx-auto">
                         <div class="text-center">
-                            <span class="text-[10px] text-gray-400 block uppercase font-bold">1. Envío</span>
+                            <span class="text-[10px] text-gray-400 block uppercase font-bold">1. ENVÍO</span>
                             <span class="text-xs font-bold text-green-400">✓ Completado</span>
                         </div>
                         <div class="h-0.5 w-12 bg-green-600"></div>
                         <div class="text-center">
-                            <span class="text-[10px] text-gray-400 block uppercase font-bold">2. Datos</span>
+                            <span class="text-[10px] text-gray-400 block uppercase font-bold">2. DATOS</span>
                             <span class="text-xs font-bold text-green-400">✓ Verificados</span>
                         </div>
                         <div class="h-0.5 w-12 bg-red-600"></div>
                         <div class="text-center">
-                            <span class="text-[10px] text-gray-400 block uppercase font-bold">3. Pago &amp; Revisión</span>
+                            <span class="text-[10px] text-gray-400 block uppercase font-bold">3. PAGO &amp; REVISIÓN</span>
                             <span class="text-xs font-bold text-red-500">● En curso</span>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                        
-                        <!-- Columna Izquierda (7 Columnas): Métodos de Pago y Requisitos Reglamentarios -->
                         <div class="lg:col-span-7 space-y-6">
-                            
-                            <!-- Bloque 1: Información de Destino -->
                             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-4">
                                 <div class="flex justify-between items-center border-b border-gray-800 pb-3">
-                                    <h3 class="text-sm font-bold uppercase text-white tracking-wider">📦 Información de Entrega y Destino</h3>
+                                    <h3 class="text-sm font-bold uppercase text-white tracking-wider">📦 INFORMACIÓN DE ENTREGA Y DESTINO</h3>
                                     <button onclick="cambiarSeccionCliente('catalogo')" class="text-xs text-red-500 hover:text-red-400 font-bold underline">Cambiar servicio</button>
                                 </div>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                                     <div class="bg-black/40 border border-gray-800 p-3 rounded-lg">
-                                        <p class="text-gray-400 uppercase text-[10px] font-bold">Comprador</p>
+                                        <p class="text-gray-400 uppercase text-[10px] font-bold">COMPRADOR</p>
                                         <p class="font-bold text-white mt-1" id="chkResumenNombre">-</p>
                                     </div>
                                     <div class="bg-black/40 border border-gray-800 p-3 rounded-lg">
-                                        <p class="text-gray-400 uppercase text-[10px] font-bold">Correo de Destino</p>
+                                        <p class="text-gray-400 uppercase text-[10px] font-bold">CORREO DE DESTINO</p>
                                         <p class="font-bold text-white mt-1 truncate" id="chkResumenEmail">-</p>
                                     </div>
                                 </div>
@@ -208,14 +211,12 @@
                                 </div>
                             </div>
 
-                            <!-- Bloque 2: Selección de Métodos de Pago y Formularios Específicos -->
                             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-4">
-                                <h3 class="text-sm font-bold uppercase text-white tracking-wider border-b border-gray-800 pb-3">💳 Método de Pago y Requisitos</h3>
-                                
+                                <h3 class="text-sm font-bold uppercase text-white tracking-wider border-b border-gray-800 pb-3">💳 MÉTODO DE PAGO Y REQUISITOS</h3>
                                 <div class="space-y-3">
-                                    <!-- 1. Billetera PanaXtreaming -->
-                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition" onclick="seleccionarMetodoCheckout('saldo')">
-                                        <input type="radio" name="metodoPagoUnificado" value="saldo" checked class="accent-red-600 mt-1">
+                                    <!-- Opción 1: Saldo -->
+                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
+                                        <input type="radio" name="metodoPagoUnificado" value="saldo" checked onclick="toggleMetodoPago('saldo')" class="accent-red-600 mt-1">
                                         <div class="flex-1">
                                             <div class="flex justify-between items-center">
                                                 <span class="font-bold text-white text-sm">Billetera PanaXtreaming (Saldo Disponible)</span>
@@ -225,170 +226,130 @@
                                         </div>
                                     </label>
 
-                                    <!-- 2. Tarjeta de Crédito / Débito -->
-                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition" onclick="seleccionarMetodoCheckout('tarjeta')">
-                                        <input type="radio" name="metodoPagoUnificado" value="tarjeta" class="accent-red-600 mt-1">
+                                    <!-- Opción 2: Tarjeta -->
+                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
+                                        <input type="radio" name="metodoPagoUnificado" value="tarjeta" onclick="toggleMetodoPago('tarjeta')" class="accent-red-600 mt-1">
                                         <div class="flex-1">
                                             <div class="flex justify-between items-center">
                                                 <span class="font-bold text-white text-sm">Tarjeta de Crédito o Débito</span>
-                                                <div class="flex space-x-1 text-[10px] text-gray-400 font-bold"><span>VISA</span> • <span>MC</span> • <span>AMEX</span></div>
+                                                <span class="text-[10px] text-gray-400 font-bold">VISA • MC • AMEX</span>
                                             </div>
                                             <p class="text-xs text-gray-400 mt-0.5">Procesamiento seguro y cifrado en línea.</p>
                                         </div>
                                     </label>
-
                                     <!-- Formulario Tarjeta -->
-                                    <div id="formContainerTarjeta" class="hidden bg-black/80 border border-gray-700 p-5 rounded-xl space-y-4 ml-2 mr-2">
-                                        <div class="flex items-center justify-between">
-                                            <label class="text-xs font-bold text-white uppercase tracking-wider">🔒 Requisitos de Tarjeta (16 Dígitos)</label>
-                                            <span class="text-[10px] text-gray-400">Seguro SSL</span>
-                                        </div>
+                                    <div id="formContainer-tarjeta" class="hidden bg-black/40 border border-gray-800 p-4 rounded-xl space-y-3 mt-2">
+                                        <div class="flex justify-between items-center"><span class="text-xs font-bold text-yellow-500 uppercase">🔒 REQUISITOS DE TARJETA (16 DÍGITOS)</span><span class="text-[10px] text-gray-400">Seguro SSL</span></div>
                                         <div class="grid grid-cols-4 gap-2">
-                                            <input type="text" id="ccBlock1" maxlength="4" placeholder="1234" oninput="saltarBloqueTarjeta(this, 'ccBlock2')" class="bg-gray-900 border border-gray-700 text-center p-2.5 rounded text-sm font-mono text-white outline-none focus:border-red-600">
-                                            <input type="text" id="ccBlock2" maxlength="4" placeholder="5678" oninput="saltarBloqueTarjeta(this, 'ccBlock3')" class="bg-gray-900 border border-gray-700 text-center p-2.5 rounded text-sm font-mono text-white outline-none focus:border-red-600">
-                                            <input type="text" id="ccBlock3" maxlength="4" placeholder="9012" oninput="saltarBloqueTarjeta(this, 'ccBlock4')" class="bg-gray-900 border border-gray-700 text-center p-2.5 rounded text-sm font-mono text-white outline-none focus:border-red-600">
-                                            <input type="text" id="ccBlock4" maxlength="4" placeholder="3456" oninput="saltarBloqueTarjeta(this, 'ccTitular')" class="bg-gray-900 border border-gray-700 text-center p-2.5 rounded text-sm font-mono text-white outline-none focus:border-red-600">
+                                            <input type="text" maxlength="4" placeholder="1234" class="bg-black border border-gray-700 p-2 text-center rounded text-xs text-white outline-none">
+                                            <input type="text" maxlength="4" placeholder="5678" class="bg-black border border-gray-700 p-2 text-center rounded text-xs text-white outline-none">
+                                            <input type="text" maxlength="4" placeholder="9012" class="bg-black border border-gray-700 p-2 text-center rounded text-xs text-white outline-none">
+                                            <input type="text" maxlength="4" placeholder="3456" class="bg-black border border-gray-700 p-2 text-center rounded text-xs text-white outline-none">
                                         </div>
                                         <div>
-                                            <label class="text-[11px] text-gray-400 block mb-1">Nombre del Titular</label>
-                                            <input type="text" id="ccTitular" placeholder="EJ: CARLOS PEREZ" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white uppercase outline-none focus:border-red-600">
+                                            <label class="text-[10px] text-gray-400 block mb-1">Nombre del Titular</label>
+                                            <input type="text" placeholder="EJ: CARLOS PEREZ" class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white outline-none">
                                         </div>
-                                        <div class="grid grid-cols-2 gap-3">
+                                        <div class="grid grid-cols-2 gap-2">
                                             <div>
-                                                <label class="text-[11px] text-gray-400 block mb-1">Expiración (MM/AA)</label>
-                                                <input type="text" id="ccExp" placeholder="MM/AA" maxlength="5" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white text-center outline-none focus:border-red-600">
+                                                <label class="text-[10px] text-gray-400 block mb-1">Expiración (MM/AA)</label>
+                                                <input type="text" placeholder="MM/AA" class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white outline-none">
                                             </div>
                                             <div>
-                                                <label class="text-[11px] text-gray-400 block mb-1">CVV</label>
-                                                <input type="password" id="ccCvv" placeholder="123" maxlength="4" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white text-center outline-none focus:border-red-600">
+                                                <label class="text-[10px] text-gray-400 block mb-1">CVV</label>
+                                                <input type="password" maxlength="4" placeholder="123" class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white outline-none">
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- 3. PayPal -->
-                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition" onclick="seleccionarMetodoCheckout('paypal')">
-                                        <input type="radio" name="metodoPagoUnificado" value="paypal" class="accent-red-600 mt-1">
+                                    <!-- Opción 3: PayPal -->
+                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
+                                        <input type="radio" name="metodoPagoUnificado" value="paypal" onclick="toggleMetodoPago('paypal')" class="accent-red-600 mt-1">
                                         <div class="flex-1">
                                             <span class="font-bold text-white text-sm block">PayPal (Checkout Automático)</span>
                                             <p class="text-xs text-gray-400 mt-0.5">Paga de forma rápida y protegida con tu cuenta PayPal.</p>
                                         </div>
                                     </label>
-
-                                    <!-- Formulario Requisitos PayPal -->
-                                    <div id="formContainerPaypal" class="hidden bg-black/80 border border-gray-700 p-5 rounded-xl space-y-4 ml-2 mr-2">
-                                        <div class="flex items-center justify-between">
-                                            <label class="text-xs font-bold text-white uppercase tracking-wider">🅿️ Requisitos Reglamentarios PayPal</label>
-                                            <span class="text-[10px] text-blue-400 font-bold">Verificación API</span>
-                                        </div>
-                                        <p class="text-[11px] text-gray-400 leading-relaxed">Para procesar la orden y futuro cobro automático, ingrese los datos de su cuenta PayPal asociada:</p>
-                                        <div>
-                                            <label class="text-[11px] text-gray-400 block mb-1">Correo Electrónico Asociado a PayPal</label>
-                                            <input type="email" id="paypalEmail" placeholder="tucuenta@domain.com" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-blue-500">
-                                        </div>
-                                        <div>
-                                            <label class="text-[11px] text-gray-400 block mb-1">ID de Transacción o Comprobante (Opcional si es automático)</label>
-                                            <input type="text" id="paypalTxId" placeholder="Ej: 8X129384AB712" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-blue-500">
-                                        </div>
+                                    <!-- Formulario PayPal -->
+                                    <div id="formContainer-paypal" class="hidden bg-black/40 border border-gray-800 p-4 rounded-xl space-y-3 mt-2 text-center">
+                                        <p class="text-xs text-gray-300">Serás redirigido de manera segura a la pasarela oficial de PayPal para autorizar el cobro exacto.</p>
                                     </div>
 
-                                    <!-- 4. Binance Pay -->
-                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition" onclick="seleccionarMetodoCheckout('binance')">
-                                        <input type="radio" name="metodoPagoUnificado" value="binance" class="accent-red-600 mt-1">
+                                    <!-- Opción 4: Binance Pay -->
+                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
+                                        <input type="radio" name="metodoPagoUnificado" value="binance" onclick="toggleMetodoPago('binance')" class="accent-red-600 mt-1">
                                         <div class="flex-1">
                                             <span class="font-bold text-white text-sm block">Binance Pay (USDT / Cripto)</span>
                                             <p class="text-xs text-gray-400 mt-0.5">Pago instantáneo con QR o ID de Binance.</p>
                                         </div>
                                     </label>
-
-                                    <!-- Formulario Requisitos Binance Pay -->
-                                    <div id="formContainerBinance" class="hidden bg-black/80 border border-gray-700 p-5 rounded-xl space-y-4 ml-2 mr-2">
-                                        <div class="flex items-center justify-between">
-                                            <label class="text-xs font-bold text-white uppercase tracking-wider">🟡 Requisitos Reglamentarios Binance Pay</label>
-                                            <span class="text-[10px] text-yellow-400 font-bold">USDT / Web3</span>
-                                        </div>
-                                        <p class="text-[11px] text-gray-400 leading-relaxed">Ingrese su identificador oficial en Binance para validar la recepción de los fondos:</p>
-                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <!-- Formulario Binance -->
+                                    <div id="formContainer-binance" class="hidden bg-black/40 border border-gray-800 p-4 rounded-xl space-y-3 mt-2">
+                                        <div class="flex justify-between items-center"><span class="text-xs font-bold text-yellow-500 uppercase">🟡 REQUISITOS REGLAMENTARIOS BINANCE PAY</span><span class="text-[10px] text-gray-400">USDT / Web3</span></div>
+                                        <p class="text-[11px] text-gray-400">Ingrese su identificador oficial en Binance para validar la recepción de los fondos:</p>
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                             <div>
-                                                <label class="text-[11px] text-gray-400 block mb-1">Binance ID (UID de Usuario)</label>
-                                                <input type="text" id="binanceUid" placeholder="Ej: 128934751" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-yellow-500">
+                                                <label class="text-[10px] text-gray-400 block mb-1">Binance ID (UID de Usuario)</label>
+                                                <input type="text" placeholder="Ej: 128934751" class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white outline-none">
                                             </div>
                                             <div>
-                                                <label class="text-[11px] text-gray-400 block mb-1">Correo o Pay ID registrado</label>
-                                                <input type="text" id="binancePayId" placeholder="usuario@binance.com" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-yellow-500">
+                                                <label class="text-[10px] text-gray-400 block mb-1">Correo o Pay ID registrado</label>
+                                                <input type="text" placeholder="usuario@binance.com" class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white outline-none">
                                             </div>
                                         </div>
                                         <div>
-                                            <label class="text-[11px] text-gray-400 block mb-1">Número de Orden / Hash de Pago (Order ID)</label>
-                                            <input type="text" id="binanceHash" placeholder="Ej: BP20260924XXXXXXXX" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-yellow-500">
+                                            <label class="text-[10px] text-gray-400 block mb-1">Número de Orden / Hash de Pago (Order ID)</label>
+                                            <input type="text" placeholder="Ej: BP20260924XXXXXXXX" class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white outline-none">
                                         </div>
                                     </div>
 
-                                    <!-- 5. Zinli -->
-                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition" onclick="seleccionarMetodoCheckout('zinli')">
-                                        <input type="radio" name="metodoPagoUnificado" value="zinli" class="accent-red-600 mt-1">
+                                    <!-- Opción 5: Zinli -->
+                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
+                                        <input type="radio" name="metodoPagoUnificado" value="zinli" onclick="toggleMetodoPago('zinli')" class="accent-red-600 mt-1">
                                         <div class="flex-1">
                                             <span class="font-bold text-white text-sm block">Zinli (Billetera Internacional)</span>
                                             <p class="text-xs text-gray-400 mt-0.5">Débito automático procesado al instante.</p>
                                         </div>
                                     </label>
-
-                                    <!-- Formulario Requisitos Zinli -->
-                                    <div id="formContainerZinli" class="hidden bg-black/80 border border-gray-700 p-5 rounded-xl space-y-4 ml-2 mr-2">
-                                        <div class="flex items-center justify-between">
-                                            <label class="text-xs font-bold text-white uppercase tracking-wider">🟣 Requisitos Reglamentarios Zinli</label>
-                                            <span class="text-[10px] text-purple-400 font-bold">Billetera Internacional</span>
-                                        </div>
-                                        <p class="text-[11px] text-gray-400 leading-relaxed">Ingrese las coordenadas de su cuenta Zinli para el procesamiento y validación del cobro:</p>
+                                    <!-- Formulario Zinli -->
+                                    <div id="formContainer-zinli" class="hidden bg-black/40 border border-gray-800 p-4 rounded-xl space-y-3 mt-2">
+                                        <div class="flex justify-between items-center"><span class="text-xs font-bold text-purple-400 uppercase">🟣 REQUISITOS REGLAMENTARIOS ZINLI</span><span class="text-[10px] text-gray-400">Billetera Internacional</span></div>
+                                        <p class="text-[11px] text-gray-400">Ingrese las coordenadas de su cuenta Zinli para el procesamiento y validación del cobro:</p>
                                         <div>
-                                            <label class="text-[11px] text-gray-400 block mb-1">Correo Electrónico Registrado en Zinli</label>
-                                            <input type="email" id="zinliEmail" placeholder="correo.zinli@domain.com" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-purple-500">
+                                            <label class="text-[10px] text-gray-400 block mb-1">Correo Electrónico Registrado en Zinli</label>
+                                            <input type="text" placeholder="correo.zinli@domain.com" class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white outline-none">
                                         </div>
-                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                        <div class="grid grid-cols-2 gap-2">
                                             <div>
-                                                <label class="text-[11px] text-gray-400 block mb-1">Número Teléfono Zinli</label>
-                                                <input type="text" id="zinliPhone" placeholder="+58 412..." class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-purple-500">
+                                                <label class="text-[10px] text-gray-400 block mb-1">Número Teléfono Zinli</label>
+                                                <input type="text" placeholder="+58 412..." class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white outline-none">
                                             </div>
                                             <div>
-                                                <label class="text-[11px] text-gray-400 block mb-1">Referencia de Transferencia Zinli</label>
-                                                <input type="text" id="zinliRef" placeholder="Ej: 98765432" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white text-center outline-none focus:border-purple-500">
+                                                <label class="text-[10px] text-gray-400 block mb-1">Referencia de Transferencia Zinli</label>
+                                                <input type="text" placeholder="Ej: 98765432" class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white outline-none">
                                             </div>
                                         </div>
                                     </div>
 
                                 </div>
 
-                                <!-- Políticas y Aviso Legal -->
-                                <p class="text-[11px] text-gray-500 leading-relaxed pt-2 border-t border-gray-800">
+                                <p class="text-[11px] text-gray-400 leading-relaxed mt-2">
                                     Al hacer clic en el botón de pago, confirmo que he leído y acepto los términos de servicio, políticas de privacidad y autorizo el procesamiento inmediato del pago para la activación de mi servicio digital en PanaXtreaming.
                                 </p>
 
                                 <button onclick="procesarCompraAutomatizadaFinal()" class="w-full bg-red-600 hover:bg-red-700 text-white font-black text-sm uppercase p-4 rounded-xl transition shadow-xl tracking-wider mt-2">
-                                    Review &amp; Pay / Autorizar Pago Instantáneo
+                                    REVIEW &amp; PAY / AUTORIZAR PAGO INSTANTÁNEO
                                 </button>
                             </div>
-
                         </div>
 
-                        <!-- Columna Derecha (5 Columnas): Resumen Detallado de la Orden -->
                         <div class="lg:col-span-5">
-                            <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl sticky top-4 space-y-4">
+                            <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl sticky top-20 space-y-4">
                                 <h4 class="font-bold text-sm text-white uppercase tracking-wider border-b border-gray-800 pb-3 flex justify-between items-center">
-                                    <span>Tu Orden</span>
-                                    <span class="text-xs text-red-500 font-normal">1 Artículo</span>
+                                    <span>TU ORDEN</span>
+                                    <span class="text-xs text-red-500 font-normal" id="summaryItemsCount">1 Artículo</span>
                                 </h4>
-                                
-                                <div class="flex items-start space-x-3 bg-black/40 border border-gray-800 p-3 rounded-xl">
-                                    <div class="bg-red-950 text-red-400 px-3 py-2 rounded font-black text-xs h-fit" id="summaryBadge">SERV</div>
-                                    <div class="flex-1">
-                                        <h5 class="font-bold text-sm text-white" id="summaryItemName">Selecciona un servicio</h5>
-                                        <p class="text-[11px] text-gray-400 mt-0.5" id="summaryItemDesc">Servicio digital garantizado</p>
-                                        <div class="flex justify-between items-center mt-3">
-                                            <span class="text-xs text-gray-400 font-bold">Qty: 1</span>
-                                            <span class="font-black text-white text-sm" id="summarySubtotalItem">$0.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                <div id="cartItemsSummaryList" class="space-y-3 max-h-60 overflow-y-auto pr-1"></div>
                                 <div class="border-t border-gray-800 pt-3 space-y-2 text-xs text-gray-300">
                                     <div class="flex justify-between"><span>Subtotal de Productos</span><span id="summarySubtotal" class="font-bold text-white">$0.00</span></div>
                                     <div class="flex justify-between"><span>Procesamiento Automatizado</span><span class="text-green-400 font-bold">Gratis</span></div>
@@ -397,14 +358,12 @@
                                         <span class="text-green-400 text-xl" id="summaryTotal">$0.00</span>
                                     </div>
                                 </div>
-
-                                <div class="bg-black/60 border border-gray-800 p-3 rounded-lg flex items-center space-x-3 text-xs text-gray-400">
-                                    <span class="text-xl">🔒</span>
+                                <div class="bg-black/40 border border-gray-800 p-3 rounded-lg text-xs text-gray-400 flex items-start gap-2">
+                                    <span>🔒</span>
                                     <p>Tus datos están protegidos con cifrado de extremo a extremo y procesamiento seguro antifraude.</p>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
@@ -419,7 +378,7 @@
                 <!-- Reportar Pago Móvil -->
                 <div id="viewReportarPago" class="hidden space-y-6 max-w-xl mx-auto">
                     <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
-                        <h2 class="text-xl font-bold text-white mb-2">Reportar Pago Móvil Nacional</h2>
+                        <h2 class="text-xl font-bold text-white mb-2">Reportar pago para recargar saldo en mi billetera</h2>
                         <div class="bg-black/40 border border-gray-800 p-4 rounded-lg text-xs space-y-1 mb-6 text-gray-300">
                             <p><strong>Banco:</strong> Provincial</p>
                             <p><strong>Pago Móvil:</strong> 0412-2753916</p>
@@ -458,13 +417,11 @@
                 <button onclick="cerrarSesion()" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white text-xs font-bold px-4 py-2 rounded">Cerrar Sesión Admin</button>
             </div>
 
-            <!-- GESTIÓN DE SERVICIOS -->
             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
                 <h3 class="text-sm font-bold uppercase mb-2 text-cyan-400">⚙️ Estado de Servicios (Activar / Desactivar)</h3>
                 <div id="adminServicesConfig" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3"></div>
             </div>
 
-            <!-- Reportes de pago móvil pendientes -->
             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
                 <h3 class="text-sm font-bold uppercase mb-4 text-yellow-400">🔔 Reportes de Pago Móvil Pendientes</h3>
                 <div class="overflow-x-auto">
@@ -483,7 +440,6 @@
                 </div>
             </div>
 
-            <!-- Clientes y Saldos -->
             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
                 <h3 class="text-sm font-bold uppercase mb-4 text-gray-300">👥 Clientes Registrados &amp; Saldos</h3>
                 <div class="overflow-x-auto">
@@ -522,10 +478,9 @@
 
         let dbClientes = JSON.parse(localStorage.getItem('panax_db_clientes')) || [];
         let dbReportes = JSON.parse(localStorage.getItem('panax_db_reportes')) || [];
+        let carrito = [];
         let sesionActiva = localStorage.getItem('panax_sesion_activa') || null;
         let adminActivo = localStorage.getItem('panax_admin_activo') === 'true';
-
-        let itemCheckoutActual = { nombre: '', precio: 0, desc: '', badge: '' };
 
         window.onload = function() {
             actualizarEstadoUI();
@@ -576,7 +531,6 @@
         function verificarLoginAdmin() {
             let u = document.getElementById('adminUser').value.trim();
             let p = document.getElementById('adminPass').value.trim();
-
             if(u === 'admin' && p === 'adming1234') {
                 adminActivo = true;
                 localStorage.setItem('panax_admin_activo', 'true');
@@ -617,13 +571,11 @@
         function iniciarSesionCliente() {
             let email = document.getElementById('login-email').value.trim().toLowerCase();
             let pass = document.getElementById('login-pass').value.trim();
-
             let cliente = dbClientes.find(c => c.email === email && c.pass === pass);
             if(!cliente) {
                 alert('Datos incorrectos.');
                 return;
             }
-
             sesionActiva = email;
             localStorage.setItem('panax_sesion_activa', email);
             abrirPanelCliente();
@@ -697,7 +649,10 @@
                             </div>
                             <div>
                                 <div class="text-xl font-black text-white mb-3">$${srv.precio}</div>
-                                <button onclick='iniciarCheckout("${srv.nombre}", ${srv.precio}, "${srv.desc}", "${srv.badge}")' class="w-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase py-2.5 rounded transition">Comprar Servicio</button>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick='agregarAlCarrito("${srv.nombre}", ${srv.precio}, "${srv.badge}")' class="bg-gray-800 hover:bg-gray-700 text-white font-bold text-xs uppercase py-2.5 rounded transition border border-gray-700">+ Carrito</button>
+                                    <button onclick='comprarDirecto("${srv.nombre}", ${srv.precio}, "${srv.desc}", "${srv.badge}")' class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase py-2.5 rounded transition">Comprar</button>
+                                </div>
                             </div>
                         </div>`;
                     } else {
@@ -707,7 +662,7 @@
                                 <h4 class="font-bold text-lg text-gray-300 mt-2">${srv.nombre}</h4>
                                 <p class="text-xs text-gray-500 my-2">${srv.desc}</p>
                                 <div class="bg-yellow-950/40 border border-yellow-900/40 p-2.5 rounded text-[11px] text-yellow-200/90 leading-relaxed mt-2 mb-3">
-                                    ⚠️ No disponible por el momento. Próximamente. Le ofrecemos disculpas por las molestias ocasionadas, le invitamos a estar atentos.
+                                    ⚠️ No disponible por el momento. Próximamente. Le ofrecemos disculpas.
                                 </div>
                             </div>
                             <div>
@@ -722,53 +677,63 @@
             document.getElementById('catalogContainer').innerHTML = htmlCat;
         }
 
-        function iniciarCheckout(nombre, precio, desc, badge) {
-            itemCheckoutActual = { nombre, precio, desc, badge };
-            let cliente = dbClientes.find(c => c.email === sesionActiva);
+        function agregarAlCarrito(nombre, precio, badge) {
+            carrito.push({ nombre, precio, badge });
+            document.getElementById('cartCount').innerText = carrito.length;
+            alert(`¡"${nombre}" agregado al carrito con éxito!`);
+        }
 
-            document.getElementById('chkResumenNombre').innerText = cliente ? cliente.email.split('@')[0].toUpperCase() : 'Cliente PanaXtreaming';
+        function comprarDirecto(nombre, precio, desc, badge) {
+            carrito = [{ nombre, precio, badge }];
+            document.getElementById('cartCount').innerText = carrito.length;
+            prepararCheckout();
+        }
+
+        function abrirCheckoutCarrito() {
+            if(carrito.length === 0) {
+                alert('Tu carrito está vacío. Agrega al menos un servicio.');
+                return;
+            }
+            prepararCheckout();
+        }
+
+        function prepararCheckout() {
+            let cliente = dbClientes.find(c => c.email === sesionActiva);
+            let nombreCliente = cliente ? cliente.email.split('@')[0].toUpperCase() : 'SOSAERIK9';
+            document.getElementById('chkResumenNombre').innerText = nombreCliente;
             document.getElementById('chkResumenEmail').innerText = sesionActiva;
             document.getElementById('chkTelefono').value = '';
 
-            document.getElementById('summaryItemName').innerText = nombre;
-            document.getElementById('summaryItemDesc').innerText = desc;
-            document.getElementById('summaryBadge').innerText = badge;
-            document.getElementById('summarySubtotalItem').innerText = `$${precio.toFixed(2)}`;
-            document.getElementById('summarySubtotal').innerText = `$${precio.toFixed(2)}`;
-            document.getElementById('summaryTotal').innerText = `$${precio.toFixed(2)}`;
+            let total = 0;
+            let htmlItems = '';
+            carrito.forEach(item => {
+                total += item.precio;
+                htmlItems += `<div class="flex justify-between items-center bg-black/40 border border-gray-800 p-2.5 rounded text-xs">
+                    <div><span class="text-white font-bold">${item.nombre}</span></div>
+                    <span class="text-white font-black">$${item.precio.toFixed(2)}</span>
+                </div>`;
+            });
+
+            document.getElementById('cartItemsSummaryList').innerHTML = htmlItems;
+            document.getElementById('summaryItemsCount').innerText = `${carrito.length} Artículo(s)`;
+            document.getElementById('summarySubtotal').innerText = `$${total.toFixed(2)}`;
+            document.getElementById('summaryTotal').innerText = `$${total.toFixed(2)}`;
 
             if(cliente) {
                 document.getElementById('checkoutSaldoDisponiblesLabel').innerText = `$${cliente.saldo.toFixed(2)}`;
             }
 
+            toggleMetodoPago('saldo');
             cambiarSeccionCliente('checkout');
-            seleccionarMetodoCheckout('saldo');
         }
 
-        function seleccionarMetodoCheckout(tipo) {
-            // Ocultar todos los formularios adicionales primero
-            document.getElementById('formContainerTarjeta').classList.add('hidden');
-            document.getElementById('formContainerPaypal').classList.add('hidden');
-            document.getElementById('formContainerBinance').classList.add('hidden');
-            document.getElementById('formContainerZinli').classList.add('hidden');
-
-            if(tipo === 'tarjeta') {
-                document.getElementById('formContainerTarjeta').classList.remove('hidden');
-            } else if(tipo === 'paypal') {
-                document.getElementById('formContainerPaypal').classList.remove('hidden');
-            } else if(tipo === 'binance') {
-                document.getElementById('formContainerBinance').classList.remove('hidden');
-            } else if(tipo === 'zinli') {
-                document.getElementById('formContainerZinli').classList.remove('hidden');
-            }
-        }
-
-        // Salto automático entre bloques de dígitos de tarjeta
-        function saltarBloqueTarjeta(actual, siguienteId) {
-            if (actual.value.length >= 4) {
-                let sig = document.getElementById(siguienteId);
-                if (sig) sig.focus();
-            }
+        function toggleMetodoPago(metodo) {
+            ['tarjeta', 'paypal', 'binance', 'zinli'].forEach(m => {
+                let elem = document.getElementById(`formContainer-${m}`);
+                if(elem) elem.classList.add('hidden');
+            });
+            let seleccionado = document.getElementById(`formContainer-${metodo}`);
+            if(seleccionado) seleccionado.classList.remove('hidden');
         }
 
         function procesarCompraAutomatizadaFinal() {
@@ -776,67 +741,34 @@
             if(!cliente) return;
 
             let metodoRadio = document.querySelector('input[name="metodoPagoUnificado"]:checked');
-            if(!metodoRadio) {
-                alert('Por favor selecciona un método de pago.');
-                return;
-            }
-
-            let metodo = metodoRadio.value;
-
-            // Validaciones reglamentarias según el método seleccionado
-            if(metodo === 'tarjeta') {
-                let b1 = document.getElementById('ccBlock1').value.trim();
-                let b2 = document.getElementById('ccBlock2').value.trim();
-                let b3 = document.getElementById('ccBlock3').value.trim();
-                let b4 = document.getElementById('ccBlock4').value.trim();
-                let tit = document.getElementById('ccTitular').value.trim();
-                let exp = document.getElementById('ccExp').value.trim();
-                let cvv = document.getElementById('ccCvv').value.trim();
-
-                if(b1.length < 4 || b2.length < 4 || b3.length < 4 || b4.length < 4 || !tit || !exp || !cvv) {
-                    alert('Por favor complete todos los campos y los 16 dígitos requeridos de la tarjeta.');
-                    return;
-                }
-            } else if(metodo === 'paypal') {
-                let ppEmail = document.getElementById('paypalEmail').value.trim();
-                if(!ppEmail || !ppEmail.includes('@')) {
-                    alert('Por favor ingrese el correo electrónico válido asociado a su cuenta PayPal.');
-                    return;
-                }
-            } else if(metodo === 'binance') {
-                let bUid = document.getElementById('binanceUid').value.trim();
-                let bHash = document.getElementById('binanceHash').value.trim();
-                if(!bUid || !bHash) {
-                    alert('Por favor ingrese su Binance ID (UID) y el número de orden o hash correspondiente.');
-                    return;
-                }
-            } else if(metodo === 'zinli') {
-                let zEmail = document.getElementById('zinliEmail').value.trim();
-                let zRef = document.getElementById('zinliRef').value.trim();
-                if(!zEmail || !zRef) {
-                    alert('Por favor ingrese el correo y la referencia de su cuenta Zinli.');
-                    return;
-                }
-            }
+            let metodo = metodoRadio ? metodoRadio.value : 'saldo';
+            let total = carrito.reduce((acc, item) => acc + item.precio, 0);
+            let nombresServicios = carrito.map(i => i.nombre).join(', ');
 
             if(metodo === 'saldo') {
-                if(cliente.saldo < itemCheckoutActual.precio) {
+                if(cliente.saldo < total) {
                     alert('Saldo insuficiente en tu billetera. Por favor recarga o selecciona otro método de pago.');
                     cambiarSeccionCliente('reportarPago');
                     return;
                 }
-                cliente.saldo -= itemCheckoutActual.precio;
+                cliente.saldo -= total;
+            } else if(metodo === 'tarjeta' || metodo === 'paypal' || metodo === 'binance' || metodo === 'zinli') {
+                let telefonoAdmin = "584247010826";
+                let msg = `¡Hola PanaXtreaming! 🚀 Deseo notificar mi pago por *${metodo.toUpperCase()}*:\n\n*Servicios:* ${nombresServicios}\n*Total:* $${total.toFixed(2)}\n*Cliente:* ${sesionActiva}`;
+                window.open(`https://wa.me/${telefonoAdmin}?text=${encodeURIComponent(msg)}`, '_blank');
             }
 
             cliente.historial.push({ 
-                concepto: `Compra Automática (${metodo.toUpperCase()}): ${itemCheckoutActual.nombre}`, 
-                monto: itemCheckoutActual.precio, 
+                concepto: `Compra (${metodo.toUpperCase()}) de: ${nombresServicios}`, 
+                monto: total, 
                 tipo: 'compra', 
                 fecha: new Date().toLocaleString() 
             });
 
             localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
-            alert(`¡Pago procesado con éxito y afiliación completada! El servicio "${itemCheckoutActual.nombre}" ha sido activado en tu cuenta.`);
+            carrito = [];
+            document.getElementById('cartCount').innerText = '0';
+            alert(`¡Orden procesada con éxito a través de ${metodo.toUpperCase()}! Gracias por confiar en PanaXtreaming.`);
             abrirPanelCliente();
         }
 
@@ -844,28 +776,31 @@
             ['viewResumen', 'viewCatalogo', 'viewCheckout', 'viewTransacciones', 'viewReportarPago', 'viewMiPerfil'].forEach(id => {
                 document.getElementById(id).classList.add('hidden');
             });
+            
+            // Todos los botones del menú inician con fondo blanco y letras negras por defecto
             ['navResumen', 'navCatalogo', 'navTransacciones', 'navReportar', 'navPerfil'].forEach(id => {
-                document.getElementById(id).className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition";
+                document.getElementById(id).className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm";
             });
 
+            // El botón seleccionado cambia a rojo con letras blancas
             if(seccion === 'resumen') {
                 document.getElementById('viewResumen').classList.remove('hidden');
-                document.getElementById('navResumen').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition";
+                document.getElementById('navResumen').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md";
             } else if(seccion === 'catalogo') {
                 document.getElementById('viewCatalogo').classList.remove('hidden');
-                document.getElementById('navCatalogo').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition";
+                document.getElementById('navCatalogo').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md";
             } else if(seccion === 'checkout') {
                 document.getElementById('viewCheckout').classList.remove('hidden');
-                document.getElementById('navCatalogo').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition";
+                document.getElementById('navCatalogo').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md";
             } else if(seccion === 'transacciones') {
                 document.getElementById('viewTransacciones').classList.remove('hidden');
-                document.getElementById('navTransacciones').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition";
+                document.getElementById('navTransacciones').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md";
             } else if(seccion === 'reportarPago') {
                 document.getElementById('viewReportarPago').classList.remove('hidden');
-                document.getElementById('navReportar').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition";
+                document.getElementById('navReportar').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md";
             } else if(seccion === 'miPerfil') {
                 document.getElementById('viewMiPerfil').classList.remove('hidden');
-                document.getElementById('navPerfil').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition";
+                document.getElementById('navPerfil').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md";
             }
         }
 
