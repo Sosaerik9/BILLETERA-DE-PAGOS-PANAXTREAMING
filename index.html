@@ -25,22 +25,29 @@
 </head>
 <body class="min-h-screen flex flex-col custom-scrollbar">
 
-    <!-- BARRA SUPERIOR -->
-    <header class="bg-gray-900 border-b border-gray-800 px-4 py-3 flex justify-between items-center shadow-lg z-20 sticky top-0">
-        <div class="flex items-center space-x-3">
-            <span class="text-red-600 font-black text-xl tracking-wider cursor-pointer" onclick="irAlInicio()">PANAXTREAMING</span>
-            <span class="hidden md:inline text-xs bg-red-950 text-red-400 border border-red-800 px-2 py-0.5 rounded font-semibold">ST3TLLA TV &amp; F1UJO TV</span>
+    <!-- BARRA SUPERIOR EN COLOR ROJO -->
+    <header class="bg-red-600 text-white px-6 py-3.5 flex justify-between items-center shadow-lg z-20 sticky top-0">
+        <div class="flex items-center space-x-6">
+            <span class="font-black text-xl tracking-wider cursor-pointer flex items-center gap-1.5" onclick="irAlInicio()">
+                <span class="bg-black text-red-500 px-2 py-0.5 rounded text-lg">⚡</span> PANAXTREAMING
+            </span>
+            <nav class="hidden lg:flex items-center space-x-6 text-xs font-bold uppercase tracking-wide">
+                <a href="javascript:void(0);" onclick="irAlInicio()" class="hover:underline">Para usuarios</a>
+                <a href="javascript:void(0);" onclick="mostrarPantalla('registerScreen')" class="hover:underline">¿Cómo comprar con PANA?</a>
+                <a href="javascript:void(0);" onclick="mostrarPantalla('adminLoginScreen')" class="hover:underline">Comercios Aliados</a>
+                <a href="javascript:void(0);" onclick="cambiarSeccionCliente('clubNivel')" class="hover:underline">Mi Nivel PANA</a>
+            </nav>
         </div>
-        <div class="flex items-center space-x-4">
-            <!-- Botón de saldo interactivo (superior) -->
-            <div id="topWalletDisplay" class="hidden items-center bg-gray-800 hover:bg-gray-700 border border-gray-700 px-3 py-1.5 rounded-lg text-sm cursor-pointer transition" onclick="cambiarSeccionCliente('reportarPago')" title="Haz clic para recargar saldo">
-                <span class="text-green-400 font-bold mr-2" id="topSaldoUsd">Saldo: $0.00</span>
-                <span class="text-xs bg-green-950 text-green-300 border border-green-800 px-1.5 py-0.5 rounded font-bold">+ Recargar</span>
+
+        <div class="flex items-center space-x-3">
+            <div id="topWalletDisplay" class="hidden items-center bg-black/20 hover:bg-black/30 border border-white/20 px-3 py-1.5 rounded-lg text-xs cursor-pointer transition font-bold" onclick="cambiarSeccionCliente('reportarPago')" title="Haz clic para recargar saldo">
+                <span class="text-white mr-2" id="topSaldoUsd">Saldo: $0.00</span>
+                <span class="bg-black text-red-400 px-1.5 py-0.5 rounded text-[10px]">+ Recargar</span>
             </div>
-            <button id="btnSalirSesion" class="hidden bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded text-xs font-bold transition" onclick="cerrarSesion()">Salir</button>
+            <button id="btnSalirSesion" class="hidden bg-black hover:bg-gray-800 text-red-400 px-3 py-1.5 rounded text-xs font-bold transition shadow" onclick="cerrarSesion()">Salir</button>
             <div id="topPublicBtns" class="flex space-x-2">
-                <button class="bg-gray-800 hover:bg-gray-700 text-white px-3 py-1.5 rounded text-xs font-bold transition border border-gray-700" onclick="mostrarPantalla('registerScreen')">Registrarse</button>
-                <button class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded text-xs font-bold transition" onclick="mostrarPantalla('loginScreen')">Iniciar Sesión</button>
+                <button class="bg-black/20 hover:bg-black/30 text-white px-3 py-1.5 rounded text-xs font-bold transition border border-white/20" onclick="mostrarPantalla('registerScreen')">Regístrate</button>
+                <button class="bg-black hover:bg-gray-800 text-red-400 px-4 py-1.5 rounded text-xs font-bold transition shadow" onclick="mostrarPantalla('loginScreen')">Iniciar Sesión</button>
             </div>
         </div>
     </header>
@@ -50,11 +57,12 @@
 
         <!-- 1. INICIO PÚBLICO -->
         <div id="homeHero" class="flex-1 flex flex-col items-center justify-center text-center p-6 max-w-4xl mx-auto my-auto">
+            <span class="bg-red-600 text-white font-black text-xs px-3 py-1 rounded-full uppercase tracking-widest mb-4">¡Compra hoy tus servicios y paga al contado o con PANA!</span>
             <h1 class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4 text-white drop-shadow-md">
-                Películas, series ilimitadas y TV en vivo, en un solo lugar
+                Disfruta tus plataformas de streaming con el modelo flexible PANA
             </h1>
             <p class="text-gray-400 text-sm md:text-base mb-8 max-w-xl">
-                Disfruta de la mejor plataforma de entretenimiento con soporte garantizado, perfiles privados y pagos automatizados.
+                Alcanza el entretenimiento que quieres pagando solo un inicial y el resto en cuotas quincenales sin intereses ocultos.
             </p>
             <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md justify-center">
                 <input type="email" id="heroEmail" placeholder="Correo electrónico para empezar" class="px-4 py-3 bg-gray-900 border border-gray-700 rounded text-sm text-white focus:outline-none focus:border-red-600 flex-1">
@@ -65,12 +73,11 @@
             </div>
         </div>
 
-        <!-- 2. LOGIN DE ADMINISTRADOR -->
+        <!-- 2. LOGIN ADMIN -->
         <div id="adminLoginScreen" class="hidden flex-1 flex items-center justify-center p-4">
             <div class="bg-gray-900/95 border border-red-900/50 p-8 rounded-xl shadow-2xl max-w-md w-full text-center">
                 <div class="text-3xl mb-2">🛡️</div>
                 <h2 class="text-xl font-bold uppercase mb-2 text-white">Acceso de Administrador</h2>
-                <p class="text-xs text-gray-400 mb-6">Ingresa tus credenciales de control</p>
                 <input type="text" id="adminUser" placeholder="Usuario (admin)" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-4 text-white focus:border-red-600 outline-none">
                 <input type="password" id="adminPass" placeholder="Contraseña (adming1234)" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-6 text-white focus:border-red-600 outline-none">
                 <button onclick="verificarLoginAdmin()" class="w-full bg-red-600 hover:bg-red-700 text-white p-3 rounded font-black text-sm uppercase transition shadow-lg mb-3">Ingresar como Admin</button>
@@ -78,10 +85,10 @@
             </div>
         </div>
 
-        <!-- 3. PANTALLA DE REGISTRO CLIENTE -->
+        <!-- 3. REGISTRO CLIENTE -->
         <div id="registerScreen" class="hidden flex-1 flex items-center justify-center p-4">
             <div class="bg-gray-900/95 border border-red-900/50 p-8 rounded-xl shadow-2xl max-w-md w-full text-center">
-                <h2 class="text-xl font-bold uppercase mb-2 text-white">Crear Cuenta</h2>
+                <h2 class="text-xl font-bold uppercase mb-2 text-white">Crear Cuenta PANA</h2>
                 <input type="email" id="reg-email" placeholder="Correo electrónico" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-4 text-white focus:border-red-600 outline-none">
                 <input type="text" id="reg-cedula" placeholder="Cédula de Identidad" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-4 text-white focus:border-red-600 outline-none">
                 <input type="password" id="reg-pass" placeholder="Contraseña" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-6 text-white focus:border-red-600 outline-none">
@@ -90,7 +97,7 @@
             </div>
         </div>
 
-        <!-- 4. PANTALLA DE LOGIN CLIENTE -->
+        <!-- 4. LOGIN CLIENTE -->
         <div id="loginScreen" class="hidden flex-1 flex items-center justify-center p-4">
             <div class="bg-gray-900/95 border border-red-900/50 p-8 rounded-xl shadow-2xl max-w-md w-full text-center">
                 <h2 class="text-xl font-bold uppercase mb-2 text-white">Inicia Sesión</h2>
@@ -101,26 +108,39 @@
             </div>
         </div>
 
-        <!-- 5. PANEL DEL CLIENTE -->
+        <!-- 5. PANEL DEL CLIENTE CON DETALLES EN ROJO -->
         <div id="clientPanel" class="hidden flex-1 flex flex-col md:flex-row w-full max-w-7xl mx-auto">
-            <aside class="w-full md:w-64 bg-gray-900 border-r border-gray-800 p-4 flex flex-col space-y-6">
+            <aside class="w-full md:w-72 bg-gray-900 border-r border-gray-800 p-4 flex flex-col space-y-6">
+                
+                <!-- MODELO PANA -->
                 <div>
-                    <p class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-3">NAVEGACIÓN</p>
-                    <nav class="space-y-1">
-                        <button onclick="cambiarSeccionCliente('resumen')" id="navResumen" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm"><span>🏠</span> <span>Resumen</span></button>
-                        <button onclick="cambiarSeccionCliente('catalogo')" id="navCatalogo" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm"><span>🛒</span> <span>Catálogo &amp; Compras</span></button>
-                        <button onclick="cambiarSeccionCliente('transacciones')" id="navTransacciones" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm"><span>📄</span> <span>Transacciones</span></button>
+                    <p class="text-xs text-red-500 uppercase tracking-wider font-bold mb-3 flex items-center gap-1"><span>⚡</span> MODELO FLEXIBLE PANA</p>
+                    <nav class="space-y-1.5">
+                        <button onclick="cambiarSeccionCliente('clubNivel')" id="navClubNivel" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-gray-800 hover:bg-gray-700 text-red-400 border border-red-600/30 transition shadow-sm text-left"><span>🎖️</span> <span class="text-xs font-bold">Mi Nivel &amp; Línea PANA</span></button>
+                        <button onclick="cambiarSeccionCliente('cuotasPendientes')" id="navCuotas" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm text-left"><span>⏱️</span> <span class="text-xs font-bold">Pagar Cuotas / Inicial</span></button>
+                        <button onclick="cambiarSeccionCliente('comerciosAliados')" id="navAliados" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm text-left"><span>🏢</span> <span class="text-xs font-bold">Comercios Aliados</span></button>
+                        <button onclick="cambiarSeccionCliente('impulsoReferidos')" id="navImpulso" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm text-left"><span>🚀</span> <span class="text-xs font-bold">Invita y Gana Saldo</span></button>
                     </nav>
                 </div>
+
                 <div>
-                    <p class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-3">RECARGAS</p>
-                    <nav class="space-y-1">
-                        <button onclick="cambiarSeccionCliente('reportarPago')" id="navReportar" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition text-left leading-snug shadow-sm"><span>💳</span> <span class="text-xs font-bold">Reportar pago para recargar saldo en mi billetera</span></button>
+                    <p class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-3">NAVEGACIÓN GENERAL</p>
+                    <nav class="space-y-1.5">
+                        <button onclick="cambiarSeccionCliente('resumen')" id="navResumen" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm"><span>🏠</span> <span>Resumen</span></button>
+                        <button onclick="cambiarSeccionCliente('catalogo')" id="navCatalogo" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm"><span>🛒</span> <span>Catálogo a Cuotas / Contado</span></button>
+                        <button onclick="cambiarSeccionCliente('transacciones')" id="navTransacciones" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm"><span>📄</span> <span>Historial de Órdenes</span></button>
+                    </nav>
+                </div>
+
+                <div>
+                    <p class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-3">SALDO &amp; RECARGAS</p>
+                    <nav class="space-y-1.5">
+                        <button onclick="cambiarSeccionCliente('reportarPago')" id="navReportar" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition text-left leading-snug shadow-sm"><span>💳</span> <span class="text-xs font-bold">Reportar Pago Móvil / Recarga</span></button>
                     </nav>
                 </div>
                 <div>
                     <p class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-3">MI CUENTA</p>
-                    <nav class="space-y-1">
+                    <nav class="space-y-1.5">
                         <button onclick="cambiarSeccionCliente('miPerfil')" id="navPerfil" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm"><span>👤</span> <span>Mi Perfil</span></button>
                     </nav>
                 </div>
@@ -131,15 +151,20 @@
                 <div id="viewResumen" class="hidden space-y-6">
                     <div class="flex justify-between items-center bg-gray-900 border border-gray-800 p-6 rounded-xl flex-wrap gap-4">
                         <div>
-                            <h2 class="text-2xl font-black text-white">¡Bienvenido, <span id="clientEmailHeader" class="text-red-500">Cliente</span>!</h2>
-                            <p class="text-xs text-gray-400 mt-1">Consulta tu saldo y estado de cuenta al instante.</p>
+                            <h2 class="text-2xl font-black text-white">¡Hola, <span id="clientEmailHeader" class="text-red-500">Cliente</span>!</h2>
+                            <p class="text-xs text-gray-400 mt-1">Tu nivel PANA actual te permite comprar con cuotas sin interés.</p>
                         </div>
-                        <button onclick="cambiarSeccionCliente('reportarPago')" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-4 py-2.5 rounded shadow">RECARGA TU CUENTA</button>
+                        <button onclick="cambiarSeccionCliente('reportarPago')" class="bg-red-600 hover:bg-red-700 text-white text-xs font-black px-4 py-2.5 rounded shadow">RECARGAR BILLETERA</button>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="bg-gray-900 border border-gray-800 p-5 rounded-xl border-l-4 border-l-green-500">
-                            <p class="text-xs text-gray-400 uppercase font-semibold">Saldo actual disponible</p>
+                            <p class="text-xs text-gray-400 uppercase font-semibold">Saldo disponible</p>
                             <h3 class="text-3xl font-black text-green-400 mt-2" id="clientActualSaldo">$0.00</h3>
+                        </div>
+                        <div class="bg-gray-900 border border-red-600/30 p-5 rounded-xl border-l-4 border-l-red-600 cursor-pointer hover:bg-gray-800/50 transition" onclick="cambiarSeccionCliente('clubNivel')">
+                            <p class="text-xs text-red-500 uppercase font-bold flex items-center gap-1"><span>🎖️</span> Estatus PANA / Nivel</p>
+                            <h3 class="text-xl font-black text-white mt-2">Nivel 2 Plus (Activo)</h3>
+                            <p class="text-[11px] text-gray-400 mt-1">Línea de compra PANA de $35.00 habilitada &gt;</p>
                         </div>
                     </div>
                     <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
@@ -148,15 +173,109 @@
                     </div>
                 </div>
 
+                <!-- 🎖️ SECCIÓN: MI NIVEL & LÍNEA DE COMPRA -->
+                <div id="viewClubNivel" class="hidden space-y-6 max-w-3xl mx-auto">
+                    <div class="bg-gradient-to-r from-red-600/20 via-gray-900 to-gray-900 border border-red-600/40 p-6 rounded-2xl shadow-xl space-y-4">
+                        <div class="flex justify-between items-start flex-wrap gap-4">
+                            <div>
+                                <span class="bg-red-600 text-white px-2.5 py-1 rounded text-xs font-black uppercase">Modelo Flexible PANA</span>
+                                <h2 class="text-2xl font-black text-white mt-2">Nivel 2 Plus</h2>
+                                <p class="text-xs text-gray-300 mt-1">Paga una inicial reducida y divide el resto en cuotas quincenales.</p>
+                            </div>
+                            <div class="bg-black/50 border border-red-600/30 p-4 rounded-xl text-right">
+                                <span class="text-[10px] text-red-400 uppercase font-bold block">Línea PANA Autorizada</span>
+                                <span class="text-2xl font-black text-green-400">$35.00</span>
+                            </div>
+                        </div>
+                        <div class="border-t border-gray-800 pt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                            <div class="bg-black/40 p-3 rounded-lg border border-gray-800">
+                                <p class="text-gray-400">Pago Inicial (Cuota 1)</p>
+                                <p class="font-bold text-white text-base mt-1">40% Hoy</p>
+                            </div>
+                            <div class="bg-black/40 p-3 rounded-lg border border-gray-800">
+                                <p class="text-gray-400">Cuotas Restantes</p>
+                                <p class="font-bold text-white text-base mt-1">2 Cuotas Quincenales</p>
+                            </div>
+                            <div class="bg-black/40 p-3 rounded-lg border border-gray-800">
+                                <p class="text-gray-400">Beneficio por Adelantar</p>
+                                <p class="font-bold text-green-400 text-base mt-1">+ Límite Extra</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3 pt-2">
+                            <button onclick="cambiarSeccionCliente('catalogo')" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-black text-xs uppercase py-3 rounded-xl transition shadow">Usar mi línea PANA en el Catálogo</button>
+                            <button onclick="cambiarSeccionCliente('cuotasPendientes')" class="bg-gray-800 hover:bg-gray-700 text-white font-bold text-xs uppercase px-4 py-3 rounded-xl transition border border-gray-700">Ver mis cuotas</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ⏱️ SECCIÓN: PAGAR CUOTAS / INICIAL -->
+                <div id="viewCuotasPendientes" class="hidden space-y-6 max-w-3xl mx-auto">
+                    <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-4">
+                        <h2 class="text-xl font-bold text-white flex items-center gap-2"><span>⏱️</span> Mis Cuotas y Pagos Pendientes PANA</h2>
+                        <p class="text-xs text-gray-400">Aquí puedes ver si tienes cuotas por pagar de tus servicios de streaming o adelantar pagos para subir de nivel en PANA.</p>
+                        
+                        <div class="bg-black/40 border border-gray-800 p-4 rounded-xl space-y-3">
+                            <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+                                <div>
+                                    <span class="text-xs text-red-400 font-bold block">Orden #1042 - Cuenta Completa Netflix</span>
+                                    <span class="text-[10px] text-gray-400">Cuota 2 de 2 (Vence en 5 días)</span>
+                                </div>
+                                <span class="font-black text-white text-sm">$2.00</span>
+                            </div>
+                            <button onclick="alert('Funcionalidad de pago de cuota conectada con tu saldo disponible o reporte móvil.')" class="w-full bg-red-600 hover:bg-red-700 text-white font-black text-xs uppercase py-2.5 rounded-lg transition">Pagar Cuota PANA Ahora</button>
+                        </div>
+
+                        <div class="bg-green-950/30 border border-green-800/40 p-4 rounded-xl text-center text-xs text-green-300">
+                            ✨ ¡Estás al día con todos tus pagos! No tienes cuotas vencidas en este momento.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 🏢 SECCIÓN: COMERCIOS ALIADOS -->
+                <div id="viewComerciosAliados" class="hidden space-y-6 max-w-4xl mx-auto">
+                    <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-4">
+                        <h2 class="text-xl font-bold text-white">Red de Comercios Aliados PANA</h2>
+                        <p class="text-xs text-gray-400">Usa tu línea de crédito flexible PANA en nuestra red de servicios verificados.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div class="bg-black/40 border border-gray-800 p-4 rounded-xl flex items-center gap-3">
+                                <span class="text-2xl">⚡</span>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">PanaXtreaming Oficial</h4>
+                                    <p class="text-xs text-gray-400">Streaming y cuentas completas.</p>
+                                </div>
+                            </div>
+                            <div class="bg-black/40 border border-gray-800 p-4 rounded-xl flex items-center gap-3">
+                                <span class="text-2xl">📺</span>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">ST3TLLA TV Network</h4>
+                                    <p class="text-xs text-gray-400">Televisión y canales en vivo.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 🚀 SECCIÓN: INVITA Y GANA SALDO -->
+                <div id="viewImpulsoReferidos" class="hidden space-y-6 max-w-3xl mx-auto">
+                    <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-4 text-center">
+                        <div class="text-3xl">🚀</div>
+                        <h2 class="text-xl font-bold text-white">Invita Amigos y Gana Saldo PANA</h2>
+                        <p class="text-xs text-gray-400 max-w-lg mx-auto">Comparte tu enlace de afiliado. Cuando tus amigos se registren y compren su primera suscripción con PANA, ambos ganan saldo en su billetera.</p>
+                        <div class="bg-black/60 border border-gray-800 p-3 rounded-xl max-w-md mx-auto flex items-center justify-between">
+                            <span class="text-xs text-gray-300 font-mono">https://ash.infinityfreeapp.com/?ref=sosa</span>
+                            <button onclick="alert('¡Enlace copiado al portapapeles!')" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-3 py-1.5 rounded">Copiar</button>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Catálogo Dinámico con Carrito -->
                 <div id="viewCatalogo" class="hidden space-y-6">
                     <div class="flex justify-between items-center bg-gray-900 border border-gray-800 p-6 rounded-xl flex-wrap gap-4">
                         <div>
                             <h2 class="text-xl font-bold text-white">Catálogo de Servicios Digitales</h2>
-                            <p class="text-xs text-gray-400 mt-1">Selecciona los servicios para agregarlos al carrito o iniciar checkout directo.</p>
+                            <p class="text-xs text-gray-400 mt-1">Selecciona servicios para pagar al contado o usando tus cuotas flexibles PANA.</p>
                         </div>
                         <div class="flex items-center gap-3">
-                            <!-- Botón de saldo interactivo (en el catálogo) -->
                             <div class="bg-gray-800 hover:bg-gray-700 border border-green-600 px-4 py-2 rounded-lg text-green-400 font-bold text-sm cursor-pointer transition flex items-center gap-2" id="catalogWalletBadgeContainer" onclick="cambiarSeccionCliente('reportarPago')" title="Haz clic para recargar saldo">
                                 <span id="catalogWalletBadge">Saldo: $0.00</span>
                                 <span class="text-[10px] bg-green-950 text-green-300 border border-green-800 px-1.5 py-0.5 rounded font-bold">+ Recargar</span>
@@ -173,17 +292,17 @@
                 <div id="viewCheckout" class="hidden space-y-6 max-w-6xl mx-auto">
                     <div class="bg-gray-900 border border-gray-800 px-6 py-4 rounded-xl flex justify-between items-center max-w-xl mx-auto">
                         <div class="text-center">
-                            <span class="text-[10px] text-gray-400 block uppercase font-bold">1. ENVÍO</span>
-                            <span class="text-xs font-bold text-green-400">✓ Completado</span>
+                            <span class="text-[10px] text-gray-400 block uppercase font-bold">1. SELECCIÓN</span>
+                            <span class="text-xs font-bold text-green-400">✓ Hecho</span>
                         </div>
                         <div class="h-0.5 w-12 bg-green-600"></div>
                         <div class="text-center">
-                            <span class="text-[10px] text-gray-400 block uppercase font-bold">2. DATOS</span>
-                            <span class="text-xs font-bold text-green-400">✓ Verificados</span>
+                            <span class="text-[10px] text-gray-400 block uppercase font-bold">2. MODALIDAD PANA</span>
+                            <span class="text-xs font-bold text-green-400">✓ Flexible</span>
                         </div>
                         <div class="h-0.5 w-12 bg-red-600"></div>
                         <div class="text-center">
-                            <span class="text-[10px] text-gray-400 block uppercase font-bold">3. PAGO &amp; REVISIÓN</span>
+                            <span class="text-[10px] text-gray-400 block uppercase font-bold">3. PAGO INICIAL</span>
                             <span class="text-xs font-bold text-red-500">● En curso</span>
                         </div>
                     </div>
@@ -192,153 +311,41 @@
                         <div class="lg:col-span-7 space-y-6">
                             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-4">
                                 <div class="flex justify-between items-center border-b border-gray-800 pb-3">
-                                    <h3 class="text-sm font-bold uppercase text-white tracking-wider">📦 INFORMACIÓN DE ENTREGA Y DESTINO</h3>
-                                    <button onclick="cambiarSeccionCliente('catalogo')" class="text-xs text-red-500 hover:text-red-400 font-bold underline">Cambiar servicio</button>
+                                    <h3 class="text-sm font-bold uppercase text-white tracking-wider">📦 DATOS DE DESTINO</h3>
+                                    <button onclick="cambiarSeccionCliente('catalogo')" class="text-xs text-red-500 hover:text-red-400 font-bold underline">Modificar</button>
                                 </div>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                                     <div class="bg-black/40 border border-gray-800 p-3 rounded-lg">
-                                        <p class="text-gray-400 uppercase text-[10px] font-bold">COMPRADOR</p>
+                                        <p class="text-gray-400 uppercase text-[10px] font-bold">CLIENTE</p>
                                         <p class="font-bold text-white mt-1" id="chkResumenNombre">-</p>
                                     </div>
                                     <div class="bg-black/40 border border-gray-800 p-3 rounded-lg">
-                                        <p class="text-gray-400 uppercase text-[10px] font-bold">CORREO DE DESTINO</p>
+                                        <p class="text-gray-400 uppercase text-[10px] font-bold">CORREO</p>
                                         <p class="font-bold text-white mt-1 truncate" id="chkResumenEmail">-</p>
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="text-xs text-gray-400 block mb-1">Confirmar Teléfono / WhatsApp para Notificaciones</label>
+                                    <label class="text-xs text-gray-400 block mb-1">Teléfono / WhatsApp de Contacto</label>
                                     <input type="text" id="chkTelefono" placeholder="Ej: 0412-1234567" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
                                 </div>
                             </div>
 
                             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-4">
-                                <h3 class="text-sm font-bold uppercase text-white tracking-wider border-b border-gray-800 pb-3">💳 MÉTODO DE PAGO Y REQUISITOS</h3>
+                                <h3 class="text-sm font-bold uppercase text-white tracking-wider border-b border-gray-800 pb-3">💳 SELECCIONA MÉTODO DE PAGO</h3>
                                 <div class="space-y-3">
-                                    <!-- Opción 1: Saldo -->
                                     <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
                                         <input type="radio" name="metodoPagoUnificado" value="saldo" checked onclick="toggleMetodoPago('saldo')" class="accent-red-600 mt-1">
                                         <div class="flex-1">
                                             <div class="flex justify-between items-center">
-                                                <span class="font-bold text-white text-sm">Billetera PanaXtreaming (Saldo Disponible)</span>
+                                                <span class="font-bold text-white text-sm">Billetera Saldo Disponible</span>
                                                 <span class="text-xs text-green-400 font-bold" id="checkoutSaldoDisponiblesLabel">$0.00</span>
                                             </div>
-                                            <p class="text-xs text-gray-400 mt-0.5">Débito inmediato y automático desde tu balance interno.</p>
+                                            <p class="text-xs text-gray-400 mt-0.5">Descuento inmediato de tu saldo disponible.</p>
                                         </div>
                                     </label>
-
-                                    <!-- Opción 2: Tarjeta -->
-                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
-                                        <input type="radio" name="metodoPagoUnificado" value="tarjeta" onclick="toggleMetodoPago('tarjeta')" class="accent-red-600 mt-1">
-                                        <div class="flex-1">
-                                            <div class="flex justify-between items-center">
-                                                <span class="font-bold text-white text-sm">Tarjeta de Crédito o Débito</span>
-                                                <span class="text-[10px] text-gray-400 font-bold">VISA • MC • AMEX</span>
-                                            </div>
-                                            <p class="text-xs text-gray-400 mt-0.5">Procesamiento seguro y cifrado en línea.</p>
-                                        </div>
-                                    </label>
-                                    <!-- Formulario Tarjeta -->
-                                    <div id="formContainer-tarjeta" class="hidden bg-black/40 border border-gray-800 p-4 rounded-xl space-y-3 mt-2">
-                                        <div class="flex justify-between items-center"><span class="text-xs font-bold text-yellow-500 uppercase">🔒 REQUISITOS DE TARJETA (16 DÍGITOS)</span><span class="text-[10px] text-gray-400">Seguro SSL</span></div>
-                                        <div class="grid grid-cols-4 gap-2">
-                                            <input type="text" maxlength="4" placeholder="1234" class="bg-black border border-gray-700 p-2 text-center rounded text-xs text-white outline-none">
-                                            <input type="text" maxlength="4" placeholder="5678" class="bg-black border border-gray-700 p-2 text-center rounded text-xs text-white outline-none">
-                                            <input type="text" maxlength="4" placeholder="9012" class="bg-black border border-gray-700 p-2 text-center rounded text-xs text-white outline-none">
-                                            <input type="text" maxlength="4" placeholder="3456" class="bg-black border border-gray-700 p-2 text-center rounded text-xs text-white outline-none">
-                                        </div>
-                                        <div>
-                                            <label class="text-[10px] text-gray-400 block mb-1">Nombre del Titular</label>
-                                            <input type="text" placeholder="EJ: CARLOS PEREZ" class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white outline-none">
-                                        </div>
-                                        <div class="grid grid-cols-2 gap-2">
-                                            <div>
-                                                <label class="text-[10px] text-gray-400 block mb-1">Expiración (MM/AA)</label>
-                                                <input type="text" placeholder="MM/AA" class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white outline-none">
-                                            </div>
-                                            <div>
-                                                <label class="text-[10px] text-gray-400 block mb-1">CVV</label>
-                                                <input type="password" maxlength="4" placeholder="123" class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white outline-none">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Opción 3: PayPal -->
-                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
-                                        <input type="radio" name="metodoPagoUnificado" value="paypal" onclick="toggleMetodoPago('paypal')" class="accent-red-600 mt-1">
-                                        <div class="flex-1">
-                                            <span class="font-bold text-white text-sm block">PayPal (Checkout Automático)</span>
-                                            <p class="text-xs text-gray-400 mt-0.5">Paga de forma rápida y protegida con tu cuenta PayPal.</p>
-                                        </div>
-                                    </label>
-                                    <!-- Formulario PayPal -->
-                                    <div id="formContainer-paypal" class="hidden bg-black/40 border border-gray-800 p-4 rounded-xl space-y-3 mt-2 text-center">
-                                        <p class="text-xs text-gray-300">Serás redirigido de manera segura a la pasarela oficial de PayPal para autorizar el cobro exacto.</p>
-                                    </div>
-
-                                    <!-- Opción 4: Binance Pay -->
-                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
-                                        <input type="radio" name="metodoPagoUnificado" value="binance" onclick="toggleMetodoPago('binance')" class="accent-red-600 mt-1">
-                                        <div class="flex-1">
-                                            <span class="font-bold text-white text-sm block">Binance Pay (USDT / Cripto)</span>
-                                            <p class="text-xs text-gray-400 mt-0.5">Pago instantáneo con QR o ID de Binance.</p>
-                                        </div>
-                                    </label>
-                                    <!-- Formulario Binance -->
-                                    <div id="formContainer-binance" class="hidden bg-black/40 border border-gray-800 p-4 rounded-xl space-y-3 mt-2">
-                                        <div class="flex justify-between items-center"><span class="text-xs font-bold text-yellow-500 uppercase">🟡 REQUISITOS REGLAMENTARIOS BINANCE PAY</span><span class="text-[10px] text-gray-400">USDT / Web3</span></div>
-                                        <p class="text-[11px] text-gray-400">Ingrese su identificador oficial en Binance para validar la recepción de los fondos:</p>
-                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                            <div>
-                                                <label class="text-[10px] text-gray-400 block mb-1">Binance ID (UID de Usuario)</label>
-                                                <input type="text" placeholder="Ej: 128934751" class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white outline-none">
-                                            </div>
-                                            <div>
-                                                <label class="text-[10px] text-gray-400 block mb-1">Correo o Pay ID registrado</label>
-                                                <input type="text" placeholder="usuario@binance.com" class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white outline-none">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <label class="text-[10px] text-gray-400 block mb-1">Número de Orden / Hash de Pago (Order ID)</label>
-                                            <input type="text" placeholder="Ej: BP20260924XXXXXXXX" class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white outline-none">
-                                        </div>
-                                    </div>
-
-                                    <!-- Opción 5: Zinli -->
-                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
-                                        <input type="radio" name="metodoPagoUnificado" value="zinli" onclick="toggleMetodoPago('zinli')" class="accent-red-600 mt-1">
-                                        <div class="flex-1">
-                                            <span class="font-bold text-white text-sm block">Zinli (Billetera Internacional)</span>
-                                            <p class="text-xs text-gray-400 mt-0.5">Débito automático procesado al instante.</p>
-                                        </div>
-                                    </label>
-                                    <!-- Formulario Zinli -->
-                                    <div id="formContainer-zinli" class="hidden bg-black/40 border border-gray-800 p-4 rounded-xl space-y-3 mt-2">
-                                        <div class="flex justify-between items-center"><span class="text-xs font-bold text-purple-400 uppercase">🟣 REQUISITOS REGLAMENTARIOS ZINLI</span><span class="text-[10px] text-gray-400">Billetera Internacional</span></div>
-                                        <p class="text-[11px] text-gray-400">Ingrese las coordenadas de su cuenta Zinli para el procesamiento y validación del cobro:</p>
-                                        <div>
-                                            <label class="text-[10px] text-gray-400 block mb-1">Correo Electrónico Registrado en Zinli</label>
-                                            <input type="text" placeholder="correo.zinli@domain.com" class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white outline-none">
-                                        </div>
-                                        <div class="grid grid-cols-2 gap-2">
-                                            <div>
-                                                <label class="text-[10px] text-gray-400 block mb-1">Número Teléfono Zinli</label>
-                                                <input type="text" placeholder="+58 412..." class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white outline-none">
-                                            </div>
-                                            <div>
-                                                <label class="text-[10px] text-gray-400 block mb-1">Referencia de Transferencia Zinli</label>
-                                                <input type="text" placeholder="Ej: 98765432" class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white outline-none">
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
-
-                                <p class="text-[11px] text-gray-400 leading-relaxed mt-2">
-                                    Al hacer clic en el botón de pago, confirmo que he leído y acepto los términos de servicio, políticas de privacidad y autorizo el procesamiento inmediato del pago para la activación de mi servicio digital en PanaXtreaming.
-                                </p>
-
                                 <button onclick="procesarCompraAutomatizadaFinal()" class="w-full bg-red-600 hover:bg-red-700 text-white font-black text-sm uppercase p-4 rounded-xl transition shadow-xl tracking-wider mt-2">
-                                    REVIEW &amp; PAY / AUTORIZAR PAGO INSTANTÁNEO
+                                    PAGAR INICIAL / AUTORIZAR ORDEN PANA
                                 </button>
                             </div>
                         </div>
@@ -346,21 +353,16 @@
                         <div class="lg:col-span-5">
                             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl sticky top-20 space-y-4">
                                 <h4 class="font-bold text-sm text-white uppercase tracking-wider border-b border-gray-800 pb-3 flex justify-between items-center">
-                                    <span>TU ORDEN</span>
+                                    <span>RESUMEN DE ORDEN</span>
                                     <span class="text-xs text-red-500 font-normal" id="summaryItemsCount">1 Artículo</span>
                                 </h4>
                                 <div id="cartItemsSummaryList" class="space-y-3 max-h-60 overflow-y-auto pr-1"></div>
                                 <div class="border-t border-gray-800 pt-3 space-y-2 text-xs text-gray-300">
-                                    <div class="flex justify-between"><span>Subtotal de Productos</span><span id="summarySubtotal" class="font-bold text-white">$0.00</span></div>
-                                    <div class="flex justify-between"><span>Procesamiento Automatizado</span><span class="text-green-400 font-bold">Gratis</span></div>
+                                    <div class="flex justify-between"><span>Subtotal</span><span id="summarySubtotal" class="font-bold text-white">$0.00</span></div>
                                     <div class="flex justify-between border-t border-gray-800 pt-3 text-base font-black text-white">
-                                        <span>Total a Pagar (USD)</span>
+                                        <span>Total a Pagar Hoy (Inicial)</span>
                                         <span class="text-green-400 text-xl" id="summaryTotal">$0.00</span>
                                     </div>
-                                </div>
-                                <div class="bg-black/40 border border-gray-800 p-3 rounded-lg text-xs text-gray-400 flex items-start gap-2">
-                                    <span>🔒</span>
-                                    <p>Tus datos están protegidos con cifrado de extremo a extremo y procesamiento seguro antifraude.</p>
                                 </div>
                             </div>
                         </div>
@@ -370,7 +372,7 @@
                 <!-- Transacciones -->
                 <div id="viewTransacciones" class="hidden space-y-6">
                     <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
-                        <h2 class="text-xl font-bold text-white mb-4">Historial Completo de Órdenes</h2>
+                        <h2 class="text-xl font-bold text-white mb-4">Historial de Órdenes y Compras</h2>
                         <div id="fullTransactionsList" class="space-y-3"></div>
                     </div>
                 </div>
@@ -378,7 +380,7 @@
                 <!-- Reportar Pago Móvil -->
                 <div id="viewReportarPago" class="hidden space-y-6 max-w-xl mx-auto">
                     <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
-                        <h2 class="text-xl font-bold text-white mb-2">Reportar pago para recargar saldo en mi billetera</h2>
+                        <h2 class="text-xl font-bold text-white mb-2">Reportar Pago Móvil / Recarga</h2>
                         <div class="bg-black/40 border border-gray-800 p-4 rounded-lg text-xs space-y-1 mb-6 text-gray-300">
                             <p><strong>Banco:</strong> Provincial</p>
                             <p><strong>Pago Móvil:</strong> 0412-2753916</p>
@@ -407,23 +409,20 @@
             </div>
         </div>
 
-        <!-- 6. PANEL DE ADMINISTRADOR -->
+        <!-- 6. PANEL ADMIN -->
         <div id="adminPanel" class="hidden flex-1 p-6 max-w-6xl mx-auto w-full space-y-6">
             <div class="flex justify-between items-center bg-gray-900 border border-gray-800 p-6 rounded-xl flex-wrap gap-4">
                 <div>
                     <h2 class="text-2xl font-black text-green-400">🛡️ Panel de Administración</h2>
-                    <p class="text-xs text-gray-400 mt-1">Controla los pagos automatizados, saldos y servicios.</p>
                 </div>
                 <button onclick="cerrarSesion()" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white text-xs font-bold px-4 py-2 rounded">Cerrar Sesión Admin</button>
             </div>
-
             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
-                <h3 class="text-sm font-bold uppercase mb-2 text-cyan-400">⚙️ Estado de Servicios (Activar / Desactivar)</h3>
+                <h3 class="text-sm font-bold uppercase mb-2 text-cyan-400">⚙️ Estado de Servicios</h3>
                 <div id="adminServicesConfig" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3"></div>
             </div>
-
             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
-                <h3 class="text-sm font-bold uppercase mb-4 text-yellow-400">🔔 Reportes de Pago Móvil Pendientes</h3>
+                <h3 class="text-sm font-bold uppercase mb-4 text-red-500">🔔 Reportes de Pago Móvil Pendientes</h3>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-xs border-collapse">
                         <thead>
@@ -439,27 +438,11 @@
                     </table>
                 </div>
             </div>
-
-            <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
-                <h3 class="text-sm font-bold uppercase mb-4 text-gray-300">👥 Clientes Registrados &amp; Saldos</h3>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs border-collapse">
-                        <thead>
-                            <tr class="bg-gray-800 text-gray-300 border-b border-gray-700">
-                                <th class="p-3">Correo</th>
-                                <th class="p-3">Saldo Actual</th>
-                                <th class="p-3">Asignar Saldo Manual</th>
-                            </tr>
-                        </thead>
-                        <tbody id="adminClientsTableBody"></tbody>
-                    </table>
-                </div>
-            </div>
         </div>
 
     </main>
 
-    <!-- SCRIPT DE CONTROL UNIFICADO -->
+    <!-- SCRIPT -->
     <script>
         let catalogoServicios = JSON.parse(localStorage.getItem('panax_db_servicios')) || [
             { id: 'srv1', categoria: '🎬 Streaming de Video', nombre: 'Cuenta Completa PanaXtreaming', desc: 'Acceso total con máxima estabilidad.', precio: 8, activo: true, badge: 'PanaXtreaming', badgeColor: 'bg-red-900 text-red-300' },
@@ -482,9 +465,7 @@
         let sesionActiva = localStorage.getItem('panax_sesion_activa') || null;
         let adminActivo = localStorage.getItem('panax_admin_activo') === 'true';
 
-        window.onload = function() {
-            actualizarEstadoUI();
-        };
+        window.onload = function() { actualizarEstadoUI(); };
 
         function ocultarTodo() {
             document.getElementById('homeHero').style.display = 'none';
@@ -508,24 +489,15 @@
         }
 
         function irAlInicio() {
-            if (adminActivo) {
-                abrirPanelAdmin();
-            } else if (sesionActiva) {
-                abrirPanelCliente();
-            } else {
-                mostrarPantalla('homeHero');
-            }
+            if (adminActivo) abrirPanelAdmin();
+            else if (sesionActiva) abrirPanelCliente();
+            else mostrarPantalla('homeHero');
         }
 
         function actualizarEstadoUI() {
-            ocultarTodo();
-            if (adminActivo) {
-                abrirPanelAdmin();
-            } else if (sesionActiva) {
-                abrirPanelCliente();
-            } else {
-                mostrarPantalla('homeHero');
-            }
+            if (adminActivo) abrirPanelAdmin();
+            else if (sesionActiva) abrirPanelCliente();
+            else mostrarPantalla('homeHero');
         }
 
         function verificarLoginAdmin() {
@@ -536,7 +508,7 @@
                 localStorage.setItem('panax_admin_activo', 'true');
                 abrirPanelAdmin();
             } else {
-                alert('Usuario o contraseña de administrador incorrectos.');
+                alert('Credenciales de administrador incorrectas.');
             }
         }
 
@@ -550,18 +522,8 @@
             let email = document.getElementById('reg-email').value.trim().toLowerCase();
             let cedula = document.getElementById('reg-cedula').value.trim();
             let pass = document.getElementById('reg-pass').value.trim();
-
-            if(!email || !cedula || !pass) {
-                alert('Completa todos los campos.');
-                return;
-            }
-
-            if(dbClientes.find(c => c.email === email)) {
-                alert('El correo ya está registrado.');
-                mostrarPantalla('loginScreen');
-                return;
-            }
-
+            if(!email || !cedula || !pass) { alert('Completa todos los campos.'); return; }
+            if(dbClientes.find(c => c.email === email)) { alert('El correo ya está registrado.'); mostrarPantalla('loginScreen'); return; }
             dbClientes.push({ email, cedula, pass, saldo: 0, historial: [] });
             localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
             alert('¡Registro exitoso! Inicia sesión.');
@@ -572,10 +534,7 @@
             let email = document.getElementById('login-email').value.trim().toLowerCase();
             let pass = document.getElementById('login-pass').value.trim();
             let cliente = dbClientes.find(c => c.email === email && c.pass === pass);
-            if(!cliente) {
-                alert('Datos incorrectos.');
-                return;
-            }
+            if(!cliente) { alert('Datos incorrectos.'); return; }
             sesionActiva = email;
             localStorage.setItem('panax_sesion_activa', email);
             abrirPanelCliente();
@@ -635,39 +594,34 @@
 
             let htmlCat = '';
             for(let cat in categoriasMap) {
-                htmlCat += `<div>
-                    <h3 class="text-sm font-bold uppercase text-red-500 mb-3 tracking-wider">${cat}</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">`;
-                
+                htmlCat += `<div><h3 class="text-sm font-bold uppercase text-red-500 mb-3 tracking-wider">${cat}</h3><div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">`;
                 categoriasMap[cat].forEach(srv => {
                     if (srv.activo) {
+                        let inicialCuota = (srv.precio * 0.4).toFixed(2);
                         htmlCat += `<div class="bg-gray-900 border border-gray-800 rounded-xl p-5 flex flex-col justify-between">
                             <div>
-                                <span class="text-xs ${srv.badgeColor} px-2 py-0.5 rounded font-bold">${srv.badge}</span>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-xs ${srv.badgeColor} px-2 py-0.5 rounded font-bold">${srv.badge}</span>
+                                    <span class="text-[10px] bg-red-600/20 text-red-400 border border-red-600/30 px-2 py-0.5 rounded font-bold">¡Disponible con PANA!</span>
+                                </div>
                                 <h4 class="font-bold text-lg text-white mt-2">${srv.nombre}</h4>
                                 <p class="text-xs text-gray-400 my-2">${srv.desc}</p>
                             </div>
                             <div>
-                                <div class="text-xl font-black text-white mb-3">$${srv.precio}</div>
+                                <div class="flex justify-between items-end mb-3">
+                                    <div>
+                                        <span class="text-[10px] text-gray-400 block uppercase">Precio Total</span>
+                                        <span class="text-xl font-black text-white">$${srv.precio}</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="text-[10px] text-red-400 block uppercase font-bold">Pago Inicial (40%)</span>
+                                        <span class="text-base font-black text-green-400">$${inicialCuota}</span>
+                                    </div>
+                                </div>
                                 <div class="grid grid-cols-2 gap-2">
                                     <button onclick='agregarAlCarrito("${srv.nombre}", ${srv.precio}, "${srv.badge}")' class="bg-gray-800 hover:bg-gray-700 text-white font-bold text-xs uppercase py-2.5 rounded transition border border-gray-700">+ Carrito</button>
-                                    <button onclick='comprarDirecto("${srv.nombre}", ${srv.precio}, "${srv.desc}", "${srv.badge}")' class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase py-2.5 rounded transition">Comprar</button>
+                                    <button onclick='comprarDirecto("${srv.nombre}", ${srv.precio}, "${srv.desc}", "${srv.badge}")' class="bg-red-600 hover:bg-red-700 text-white font-black text-xs uppercase py-2.5 rounded transition">Comprar PANA</button>
                                 </div>
-                            </div>
-                        </div>`;
-                    } else {
-                        htmlCat += `<div class="bg-gray-900/60 border border-yellow-900/50 rounded-xl p-5 flex flex-col justify-between opacity-80">
-                            <div>
-                                <span class="text-xs bg-yellow-950 text-yellow-400 border border-yellow-800 px-2 py-0.5 rounded font-bold">⚠️ No disponible</span>
-                                <h4 class="font-bold text-lg text-gray-300 mt-2">${srv.nombre}</h4>
-                                <p class="text-xs text-gray-500 my-2">${srv.desc}</p>
-                                <div class="bg-yellow-950/40 border border-yellow-900/40 p-2.5 rounded text-[11px] text-yellow-200/90 leading-relaxed mt-2 mb-3">
-                                    ⚠️ No disponible por el momento. Próximamente. Le ofrecemos disculpas.
-                                </div>
-                            </div>
-                            <div>
-                                <div class="text-xl font-black text-gray-500 mb-3">$${srv.precio}</div>
-                                <button disabled class="w-full bg-gray-800 text-gray-500 font-bold text-xs uppercase py-2.5 rounded cursor-not-allowed">No disponible</button>
                             </div>
                         </div>`;
                     }
@@ -680,7 +634,7 @@
         function agregarAlCarrito(nombre, precio, badge) {
             carrito.push({ nombre, precio, badge });
             document.getElementById('cartCount').innerText = carrito.length;
-            alert(`¡"${nombre}" agregado al carrito con éxito!`);
+            alert(`¡"${nombre}" agregado al carrito!`);
         }
 
         function comprarDirecto(nombre, precio, desc, badge) {
@@ -690,135 +644,99 @@
         }
 
         function abrirCheckoutCarrito() {
-            if(carrito.length === 0) {
-                alert('Tu carrito está vacío. Agrega al menos un servicio.');
-                return;
-            }
+            if(carrito.length === 0) { alert('Tu carrito está vacío.'); return; }
             prepararCheckout();
         }
 
         function prepararCheckout() {
             let cliente = dbClientes.find(c => c.email === sesionActiva);
-            let nombreCliente = cliente ? cliente.email.split('@')[0].toUpperCase() : 'SOSAERIK9';
-            document.getElementById('chkResumenNombre').innerText = nombreCliente;
+            document.getElementById('chkResumenNombre').innerText = cliente ? cliente.email.split('@')[0].toUpperCase() : 'CLIENTE';
             document.getElementById('chkResumenEmail').innerText = sesionActiva;
-            document.getElementById('chkTelefono').value = '';
-
-            let total = 0;
+            let total = carrito.reduce((acc, i) => acc + i.precio, 0);
+            let inicialTotal = total * 0.4;
+            
             let htmlItems = '';
             carrito.forEach(item => {
-                total += item.precio;
-                htmlItems += `<div class="flex justify-between items-center bg-black/40 border border-gray-800 p-2.5 rounded text-xs">
-                    <div><span class="text-white font-bold">${item.nombre}</span></div>
-                    <span class="text-white font-black">$${item.precio.toFixed(2)}</span>
-                </div>`;
+                htmlItems += `<div class="flex justify-between items-center bg-black/40 border border-gray-800 p-2.5 rounded text-xs"><span>${item.nombre}</span><span class="font-black">$${item.precio.toFixed(2)}</span></div>`;
             });
-
             document.getElementById('cartItemsSummaryList').innerHTML = htmlItems;
             document.getElementById('summaryItemsCount').innerText = `${carrito.length} Artículo(s)`;
             document.getElementById('summarySubtotal').innerText = `$${total.toFixed(2)}`;
-            document.getElementById('summaryTotal').innerText = `$${total.toFixed(2)}`;
-
-            if(cliente) {
-                document.getElementById('checkoutSaldoDisponiblesLabel').innerText = `$${cliente.saldo.toFixed(2)}`;
-            }
-
-            toggleMetodoPago('saldo');
+            document.getElementById('summaryTotal').innerText = `$${inicialTotal.toFixed(2)} (40% Inicial)`;
             cambiarSeccionCliente('checkout');
         }
 
         function toggleMetodoPago(metodo) {
-            ['tarjeta', 'paypal', 'binance', 'zinli'].forEach(m => {
-                let elem = document.getElementById(`formContainer-${m}`);
-                if(elem) elem.classList.add('hidden');
-            });
-            let seleccionado = document.getElementById(`formContainer-${metodo}`);
-            if(seleccionado) seleccionado.classList.remove('hidden');
+            // Manejador de pago
         }
 
         function procesarCompraAutomatizadaFinal() {
             let cliente = dbClientes.find(c => c.email === sesionActiva);
-            if(!cliente) return;
-
-            let metodoRadio = document.querySelector('input[name="metodoPagoUnificado"]:checked');
-            let metodo = metodoRadio ? metodoRadio.value : 'saldo';
-            let total = carrito.reduce((acc, item) => acc + item.precio, 0);
-            let nombresServicios = carrito.map(i => i.nombre).join(', ');
-
-            if(metodo === 'saldo') {
-                if(cliente.saldo < total) {
-                    alert('Saldo insuficiente en tu billetera. Por favor recarga o selecciona otro método de pago.');
-                    cambiarSeccionCliente('reportarPago');
-                    return;
-                }
-                cliente.saldo -= total;
-            } else if(metodo === 'tarjeta' || metodo === 'paypal' || metodo === 'binance' || metodo === 'zinli') {
-                let telefonoAdmin = "584247010826";
-                let msg = `¡Hola PanaXtreaming! 🚀 Deseo notificar mi pago por *${metodo.toUpperCase()}*:\n\n*Servicios:* ${nombresServicios}\n*Total:* $${total.toFixed(2)}\n*Cliente:* ${sesionActiva}`;
-                window.open(`https://wa.me/${telefonoAdmin}?text=${encodeURIComponent(msg)}`, '_blank');
+            let total = carrito.reduce((acc, i) => acc + i.precio, 0);
+            let inicialTotal = total * 0.4;
+            
+            if(cliente.saldo < inicialTotal) {
+                alert('Saldo insuficiente para cubrir el pago inicial PANA (40%). Por favor recarga tu billetera.');
+                cambiarSeccionCliente('reportarPago');
+                return;
             }
-
-            cliente.historial.push({ 
-                concepto: `Compra (${metodo.toUpperCase()}) de: ${nombresServicios}`, 
-                monto: total, 
-                tipo: 'compra', 
-                fecha: new Date().toLocaleString() 
-            });
-
+            cliente.saldo -= inicialTotal;
+            cliente.historial.push({ concepto: `Pago inicial cuotas PANA servicio digital`, monto: inicialTotal, tipo: 'compra', fecha: new Date().toLocaleString() });
             localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
             carrito = [];
             document.getElementById('cartCount').innerText = '0';
-            alert(`¡Orden procesada con éxito a través de ${metodo.toUpperCase()}! Gracias por confiar en PanaXtreaming.`);
+            alert('¡Inicial PANA procesado con éxito! Tu servicio ha sido activado y tus cuotas quincenales han sido programadas.');
             abrirPanelCliente();
         }
 
         function cambiarSeccionCliente(seccion) {
-            ['viewResumen', 'viewCatalogo', 'viewCheckout', 'viewTransacciones', 'viewReportarPago', 'viewMiPerfil'].forEach(id => {
-                document.getElementById(id).classList.add('hidden');
+            ['viewResumen', 'viewClubNivel', 'viewCuotasPendientes', 'viewComerciosAliados', 'viewImpulsoReferidos', 'viewCatalogo', 'viewCheckout', 'viewTransacciones', 'viewReportarPago', 'viewMiPerfil'].forEach(id => {
+                let el = document.getElementById(id);
+                if(el) el.classList.add('hidden');
             });
             
-            // Todos los botones del menú inician con fondo blanco y letras negras por defecto
-            ['navResumen', 'navCatalogo', 'navTransacciones', 'navReportar', 'navPerfil'].forEach(id => {
-                document.getElementById(id).className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm";
+            ['navResumen', 'navCatalogo', 'navTransacciones', 'navClubNivel', 'navCuotas', 'navAliados', 'navImpulso', 'navReportar', 'navPerfil'].forEach(id => {
+                let el = document.getElementById(id);
+                if(el) el.className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm text-left";
             });
 
-            // El botón seleccionado cambia a rojo con letras blancas
             if(seccion === 'resumen') {
                 document.getElementById('viewResumen').classList.remove('hidden');
-                document.getElementById('navResumen').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md";
-            } else if(seccion === 'catalogo') {
-                document.getElementById('viewCatalogo').classList.remove('hidden');
-                document.getElementById('navCatalogo').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md";
-            } else if(seccion === 'checkout') {
-                document.getElementById('viewCheckout').classList.remove('hidden');
-                document.getElementById('navCatalogo').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md";
+                document.getElementById('navResumen').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md text-left font-bold";
+            } else if(seccion === 'clubNivel') {
+                document.getElementById('viewClubNivel').classList.remove('hidden');
+                document.getElementById('navClubNivel').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md text-left font-bold";
+            } else if(seccion === 'cuotasPendientes') {
+                document.getElementById('viewCuotasPendientes').classList.remove('hidden');
+                document.getElementById('navCuotas').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md text-left font-bold";
+            } else if(seccion === 'comerciosAliados') {
+                document.getElementById('viewComerciosAliados').classList.remove('hidden');
+                document.getElementById('navAliados').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md text-left font-bold";
+            } else if(seccion === 'impulsoReferidos') {
+                document.getElementById('viewImpulsoReferidos').classList.remove('hidden');
+                document.getElementById('navImpulso').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md text-left font-bold";
+            } else if(seccion === 'catalogo' || seccion === 'checkout') {
+                document.getElementById(seccion === 'checkout' ? 'viewCheckout' : 'viewCatalogo').classList.remove('hidden');
+                document.getElementById('navCatalogo').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md text-left font-bold";
             } else if(seccion === 'transacciones') {
                 document.getElementById('viewTransacciones').classList.remove('hidden');
-                document.getElementById('navTransacciones').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md";
+                document.getElementById('navTransacciones').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md text-left font-bold";
             } else if(seccion === 'reportarPago') {
                 document.getElementById('viewReportarPago').classList.remove('hidden');
-                document.getElementById('navReportar').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md";
+                document.getElementById('navReportar').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md text-left font-bold";
             } else if(seccion === 'miPerfil') {
                 document.getElementById('viewMiPerfil').classList.remove('hidden');
-                document.getElementById('navPerfil').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md";
+                document.getElementById('navPerfil').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition shadow-md text-left font-bold";
             }
         }
 
         function enviarReportePago() {
             let monto = parseFloat(document.getElementById('reportMonto').value);
             let ref = document.getElementById('reportRef').value.trim();
-
-            if(!monto || !ref) {
-                alert('Ingresa el monto y la referencia.');
-                return;
-            }
-
+            if(!monto || !ref) { alert('Completa los campos.'); return; }
             dbReportes.push({ id: Date.now(), email: sesionActiva, monto, ref, fecha: new Date().toLocaleString() });
             localStorage.setItem('panax_db_reportes', JSON.stringify(dbReportes));
-
-            alert('¡Reporte enviado al administrador con éxito! En breve será verificado.');
-            document.getElementById('reportMonto').value = '';
-            document.getElementById('reportRef').value = '';
+            alert('¡Reporte enviado con éxito!');
             cambiarSeccionCliente('resumen');
         }
 
@@ -831,92 +749,17 @@
             let htmlServicesAdmin = '';
             catalogoServicios.forEach((srv, idx) => {
                 htmlServicesAdmin += `<div class="bg-black/40 border border-gray-800 p-3 rounded flex justify-between items-center">
-                    <div>
-                        <p class="font-bold text-white text-xs">${srv.nombre}</p>
-                        <p class="text-[10px] text-gray-400">$${srv.precio} - ${srv.badge}</p>
-                    </div>
-                    <button onclick="toggleEstadoServicio(${idx})" class="px-3 py-1 rounded text-xs font-bold transition ${srv.activo ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-gray-800 hover:bg-gray-700 text-gray-400 border border-gray-700'}">
-                        ${srv.activo ? '✓ Activo' : '✕ Inactivo'}
-                    </button>
+                    <span class="text-xs text-white">${srv.nombre}</span>
+                    <button onclick="catalogoServicios[${idx}].activo = !catalogoServicios[${idx}].activo; localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios)); abrirPanelAdmin();" class="px-3 py-1 rounded text-xs font-bold ${srv.activo ? 'bg-green-600 text-white' : 'bg-gray-800 text-gray-400'}">${srv.activo ? 'Activo' : 'Inactivo'}</button>
                 </div>`;
             });
             document.getElementById('adminServicesConfig').innerHTML = htmlServicesAdmin;
 
             let htmlOrders = '';
-            if(dbReportes.length > 0) {
-                dbReportes.forEach((rep, index) => {
-                    htmlOrders += `<tr class="border-b border-gray-800">
-                        <td class="p-3 text-white">${rep.email}</td>
-                        <td class="p-3 text-green-400 font-bold">$${rep.monto.toFixed(2)}</td>
-                        <td class="p-3 text-gray-300">${rep.ref}</td>
-                        <td class="p-3 text-gray-400 text-[10px]">${rep.fecha}</td>
-                        <td class="p-3">
-                            <button onclick="aprobarRecarga(${index})" class="bg-green-600 hover:bg-green-700 text-white font-bold px-3 py-1 rounded text-xs">Aprobar y Asignar Saldo</button>
-                        </td>
-                    </tr>`;
-                });
-            } else {
-                htmlOrders = `<tr><td colspan="5" class="p-4 text-center text-gray-500">No hay reportes de pago móvil pendientes.</td></tr>`;
-            }
-            document.getElementById('adminOrdersTableBody').innerHTML = htmlOrders;
-
-            let htmlClients = '';
-            if(dbClientes.length > 0) {
-                dbClientes.forEach(cli => {
-                    htmlClients += `<tr class="border-b border-gray-800">
-                        <td class="p-3 text-white">${cli.email}</td>
-                        <td class="p-3 text-green-400 font-bold">$${cli.saldo.toFixed(2)}</td>
-                        <td class="p-3">
-                            <button onclick="asignarSaldoDirecto('${cli.email}')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-3 py-1 rounded text-xs">+ Asignar Saldo</button>
-                        </td>
-                    </tr>`;
-                });
-            } else {
-                htmlClients = `<tr><td colspan="3" class="p-4 text-center text-gray-500">No hay clientes registrados.</td></tr>`;
-            }
-            document.getElementById('adminClientsTableBody').innerHTML = htmlClients;
-        }
-
-        function toggleEstadoServicio(index) {
-            catalogoServicios[index].activo = !catalogoServicios[index].activo;
-            localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios));
-            abrirPanelAdmin();
-        }
-
-        function aprobarRecarga(index) {
-            let rep = dbReportes[index];
-            let cliente = dbClientes.find(c => c.email === rep.email);
-
-            if(cliente) {
-                cliente.saldo += rep.monto;
-                cliente.historial.push({
-                    concepto: `Recarga aprobada (Ref: ${rep.ref})`,
-                    monto: rep.monto,
-                    tipo: 'recarga',
-                    fecha: new Date().toLocaleString()
-                });
-            }
-
-            dbReportes.splice(index, 1);
-            localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
-            localStorage.setItem('panax_db_reportes', JSON.stringify(dbReportes));
-
-            alert('¡Saldo aprobado y sumado al cliente exitosamente!');
-            abrirPanelAdmin();
-        }
-
-        function asignarSaldoDirecto(emailCliente) {
-            let monto = parseFloat(prompt(`Monto en $ a sumar a ${emailCliente}:`));
-            if(!monto || isNaN(monto) || monto <= 0) return;
-
-            let cliente = dbClientes.find(c => c.email === emailCliente);
-            if(cliente) {
-                cliente.saldo += monto;
-                cliente.historial.push({ concepto: 'Recarga manual administrador', monto, tipo: 'recarga', fecha: new Date().toLocaleString() });
-                localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
-                alert('¡Saldo asignado correctamente!');
-                abrirPanelAdmin();
-            }
+            dbReportes.forEach((rep, index) => {
+                htmlOrders += `<tr class="border-b border-gray-800"><td class="p-3 text-white">${rep.email}</td><td class="p-3 text-green-400">$${rep.monto}</td><td class="p-3 text-gray-300">${rep.ref}</td><td class="p-3"><button onclick="dbClientes.find(c=>c.email==='${rep.email}').saldo+=${rep.monto};dbReportes.splice(${index},1);localStorage.setItem('panax_db_clientes',JSON.stringify(dbClientes));localStorage.setItem('panax_db_reportes',JSON.stringify(dbReportes));abrirPanelAdmin();" class="bg-green-600 text-white px-3 py-1 rounded text-xs font-bold">Aprobar</button></td></tr>`;
+            });
+            document.getElementById('adminOrdersTableBody').innerHTML = htmlOrders || '<tr><td colspan="4" class="p-4 text-center text-gray-500">Sin reportes pendientes.</td></tr>';
         }
     </script>
 </body>
