@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PanaXtreaming - Plataforma de Gestión y Entretenimiento</title>
+    <title>PanaXtreaming - Checkout Multidivisa Automatizado</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
             background-color: #0b0f19;
             color: #ffffff;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            overflow-x: hidden;
         }
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
@@ -24,206 +23,454 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-red-600 selection:text-white">
+<body class="min-h-screen flex flex-col">
 
-    <header class="w-full bg-[#0b0f19] border-b border-gray-800/60 px-4 sm:px-8 py-4 flex flex-wrap justify-between items-center shadow-lg z-20">
-        <div class="flex items-center space-x-3 mb-2 sm:mb-0">
-            <span class="text-red-600 font-black text-lg sm:text-xl tracking-wider cursor-pointer select-none" onclick="irAlInicio()">PANAXTREAMING</span>
-            <span class="hidden md:inline text-[10px] sm:text-xs bg-red-950/80 text-red-400 border border-red-800/60 px-2.5 py-0.5 rounded font-semibold tracking-wide">ST3TLLA TV &amp; F1UJO TV</span>
+    <!-- BARRA SUPERIOR -->
+    <header class="bg-gray-900 border-b border-gray-800 px-4 py-3 flex justify-between items-center shadow-lg z-20">
+        <div class="flex items-center space-x-3">
+            <span class="text-red-600 font-black text-xl tracking-wider cursor-pointer" onclick="irAlInicio()">PANAXTREAMING</span>
+            <span class="hidden md:inline text-xs bg-red-950 text-red-400 border border-red-800 px-2 py-0.5 rounded font-semibold">ST3TLLA TV &amp; F1UJO TV</span>
         </div>
-        <div class="flex items-center space-x-3 sm:space-x-4">
-            <div id="topWalletDisplay" class="hidden items-center bg-gray-900 border border-gray-800 px-3 py-1.5 rounded-lg text-xs sm:text-sm">
+        <div class="flex items-center space-x-4">
+            <div id="topWalletDisplay" class="hidden items-center bg-gray-800 border border-gray-700 px-3 py-1.5 rounded-lg text-sm">
                 <span class="text-green-400 font-bold mr-2" id="topSaldoUsd">Saldo: $0.00</span>
             </div>
-            <button id="btnSalirSesion" class="hidden bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded text-xs font-bold transition shadow" onclick="cerrarSesion()">Salir</button>
-            <div id="topPublicBtns" class="flex items-center space-x-2">
-                <button class="bg-transparent hover:bg-gray-800 text-white border border-gray-700/80 hover:border-gray-500 px-3 sm:px-4 py-1.5 rounded text-xs font-bold transition" onclick="mostrarPantalla('registerScreen')">Registrarse</button>
-                <button class="bg-red-600 hover:bg-red-700 text-white px-3 sm:px-4 py-1.5 rounded text-xs font-bold transition shadow" onclick="mostrarPantalla('loginScreen')">Iniciar Sesión</button>
+            <button id="btnSalirSesion" class="hidden bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded text-xs font-bold transition" onclick="cerrarSesion()">Salir</button>
+            <div id="topPublicBtns" class="flex space-x-2">
+                <button class="bg-gray-800 hover:bg-gray-700 text-white px-3 py-1.5 rounded text-xs font-bold transition border border-gray-700" onclick="mostrarPantalla('registerScreen')">Registrarse</button>
+                <button class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded text-xs font-bold transition" onclick="mostrarPantalla('loginScreen')">Iniciar Sesión</button>
             </div>
         </div>
     </header>
 
-    <main class="flex-1 flex flex-col w-full relative">
+    <!-- CONTENEDOR GENERAL -->
+    <main class="flex-1 flex flex-col">
 
-        <div id="homeHero" class="flex-1 flex flex-col items-center justify-center text-center px-4 sm:px-6 py-12 max-w-5xl mx-auto my-auto w-full">
-            <h1 class="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight mb-4 text-white drop-shadow-lg leading-tight max-w-4xl">
+        <!-- 1. INICIO PÚBLICO -->
+        <div id="homeHero" class="flex-1 flex flex-col items-center justify-center text-center p-6 max-w-4xl mx-auto my-auto">
+            <h1 class="text-3xl md:text-5xl font-black uppercase tracking-tight mb-4 text-white drop-shadow-md">
                 Películas, series ilimitadas y TV en vivo, en un solo lugar
             </h1>
-            <p class="text-gray-400 text-xs sm:text-sm md:text-base mb-8 max-w-xl leading-relaxed">
-                Disfruta de la mejor plataforma de entretenimiento con soporte garantizado, perfiles privados y recargas al instante.
+            <p class="text-gray-400 text-sm md:text-base mb-8 max-w-xl">
+                Disfruta de la mejor plataforma de entretenimiento con soporte garantizado, perfiles privados y pagos automatizados.
             </p>
-            <div class="flex flex-col sm:flex-row gap-2.5 w-full max-w-md justify-center items-center">
-                <input type="email" id="heroEmail" placeholder="Correo electrónico para empezar" class="w-full sm:flex-1 px-4 py-3 bg-[#0f1423] border border-gray-700/80 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:border-red-600 transition shadow-inner">
-                <button onclick="empezarRegistroHero()" class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded font-black text-xs sm:text-sm uppercase tracking-wider transition shadow-lg whitespace-nowrap">Comenzar &gt;</button>
+            <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md justify-center">
+                <input type="email" id="heroEmail" placeholder="Correo electrónico para empezar" class="px-4 py-3 bg-gray-900 border border-gray-700 rounded text-sm text-white focus:outline-none focus:border-red-600 flex-1">
+                <button onclick="empezarRegistroHero()" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded font-black text-sm uppercase tracking-wider transition shadow-lg">Comenzar &gt;</button>
             </div>
-            <div class="mt-8">
-                <a href="javascript:void(0);" onclick="mostrarPantalla('adminLoginScreen')" class="text-gray-400 hover:text-white text-xs underline font-bold tracking-wide transition">🔐 Acceso Panel Administrador</a>
+            <div class="mt-6">
+                <a href="javascript:void(0);" onclick="mostrarPantalla('adminLoginScreen')" class="text-gray-400 hover:text-white text-xs underline font-bold">🔐 Acceso Panel Administrador</a>
             </div>
         </div>
 
-        <div id="adminLoginScreen" class="hidden flex-1 flex items-center justify-center p-4 w-full">
-            <div class="bg-[#0f1423] border border-red-900/40 p-6 sm:p-8 rounded-xl shadow-2xl max-w-md w-full text-center">
+        <!-- 2. LOGIN DE ADMINISTRADOR -->
+        <div id="adminLoginScreen" class="hidden flex-1 flex items-center justify-center p-4">
+            <div class="bg-gray-900/95 border border-red-900/50 p-8 rounded-xl shadow-2xl max-w-md w-full text-center">
                 <div class="text-3xl mb-2">🛡️</div>
                 <h2 class="text-xl font-bold uppercase mb-2 text-white">Acceso de Administrador</h2>
                 <p class="text-xs text-gray-400 mb-6">Ingresa tus credenciales de control</p>
                 
-                <input type="text" id="adminUser" placeholder="Usuario (admin)" class="w-full bg-black/60 border border-gray-700 p-3 rounded text-sm mb-4 text-white placeholder-gray-500 focus:border-red-600 outline-none">
-                <input type="password" id="adminPass" placeholder="Contraseña (adming1234)" class="w-full bg-black/60 border border-gray-700 p-3 rounded text-sm mb-6 text-white placeholder-gray-500 focus:border-red-600 outline-none">
+                <input type="text" id="adminUser" placeholder="Usuario (admin)" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-4 text-white focus:border-red-600 outline-none">
+                <input type="password" id="adminPass" placeholder="Contraseña (adming1234)" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-6 text-white focus:border-red-600 outline-none">
                 
                 <button onclick="verificarLoginAdmin()" class="w-full bg-red-600 hover:bg-red-700 text-white p-3 rounded font-black text-sm uppercase transition shadow-lg mb-3">Ingresar como Admin</button>
                 <button onclick="mostrarPantalla('homeHero')" class="text-xs text-gray-500 hover:text-gray-300 underline">Volver al inicio</button>
             </div>
         </div>
 
-        <div id="registerScreen" class="hidden flex-1 flex items-center justify-center p-4 w-full">
-            <div class="bg-[#0f1423] border border-gray-800 p-6 sm:p-8 rounded-xl shadow-2xl max-w-md w-full text-center">
+        <!-- 3. PANTALLA DE REGISTRO CLIENTE -->
+        <div id="registerScreen" class="hidden flex-1 flex items-center justify-center p-4">
+            <div class="bg-gray-900/95 border border-red-900/50 p-8 rounded-xl shadow-2xl max-w-md w-full text-center">
                 <h2 class="text-xl font-bold uppercase mb-2 text-white">Crear Cuenta</h2>
-                <p class="text-xs text-gray-400 mb-6">Regístrate para gestionar tus servicios</p>
-                <input type="email" id="reg-email" placeholder="Correo electrónico" class="w-full bg-black/60 border border-gray-700 p-3 rounded text-sm mb-4 text-white placeholder-gray-500 focus:border-red-600 outline-none">
-                <input type="text" id="reg-cedula" placeholder="Cédula de Identidad" class="w-full bg-black/60 border border-gray-700 p-3 rounded text-sm mb-4 text-white placeholder-gray-500 focus:border-red-600 outline-none">
-                <input type="password" id="reg-pass" placeholder="Contraseña" class="w-full bg-black/60 border border-gray-700 p-3 rounded text-sm mb-6 text-white placeholder-gray-500 focus:border-red-600 outline-none">
+                <input type="email" id="reg-email" placeholder="Correo electrónico" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-4 text-white focus:border-red-600 outline-none">
+                <input type="text" id="reg-cedula" placeholder="Cédula de Identidad" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-4 text-white focus:border-red-600 outline-none">
+                <input type="password" id="reg-pass" placeholder="Contraseña" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-6 text-white focus:border-red-600 outline-none">
                 <button onclick="registrarCliente()" class="w-full bg-red-600 hover:bg-red-700 text-white p-3 rounded font-black text-sm uppercase transition shadow-lg">Registrarse</button>
-                <p class="text-xs text-gray-400 mt-4">¿Ya tienes cuenta? <a href="javascript:void(0);" class="text-red-500 font-bold hover:underline" onclick="mostrarPantalla('loginScreen')">Inicia sesión</a></p>
+                <p class="text-xs text-gray-400 mt-4">¿Ya tienes cuenta? <a href="javascript:void(0);" class="text-red-500 font-bold" onclick="mostrarPantalla('loginScreen')">Inicia sesión</a></p>
             </div>
         </div>
 
-        <div id="loginScreen" class="hidden flex-1 flex items-center justify-center p-4 w-full">
-            <div class="bg-[#0f1423] border border-gray-800 p-6 sm:p-8 rounded-xl shadow-2xl max-w-md w-full text-center">
+        <!-- 4. PANTALLA DE LOGIN CLIENTE -->
+        <div id="loginScreen" class="hidden flex-1 flex items-center justify-center p-4">
+            <div class="bg-gray-900/95 border border-red-900/50 p-8 rounded-xl shadow-2xl max-w-md w-full text-center">
                 <h2 class="text-xl font-bold uppercase mb-2 text-white">Inicia Sesión</h2>
-                <p class="text-xs text-gray-400 mb-6">Accede a tu cuenta de PanaXtreaming</p>
-                <input type="email" id="login-email" placeholder="Correo registrado" class="w-full bg-black/60 border border-gray-700 p-3 rounded text-sm mb-4 text-white placeholder-gray-500 focus:border-red-600 outline-none">
-                <input type="password" id="login-pass" placeholder="Contraseña" class="w-full bg-black/60 border border-gray-700 p-3 rounded text-sm mb-6 text-white placeholder-gray-500 focus:border-red-600 outline-none">
+                <input type="email" id="login-email" placeholder="Correo registrado" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-4 text-white focus:border-red-600 outline-none">
+                <input type="password" id="login-pass" placeholder="Contraseña" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-6 text-white focus:border-red-600 outline-none">
                 <button onclick="iniciarSesionCliente()" class="w-full bg-red-600 hover:bg-red-700 text-white p-3 rounded font-black text-sm uppercase transition shadow-lg">Entrar</button>
-                <p class="text-xs text-gray-400 mt-4">¿No tienes cuenta? <a href="javascript:void(0);" class="text-red-500 font-bold hover:underline" onclick="mostrarPantalla('registerScreen')">Regístrate</a></p>
+                <p class="text-xs text-gray-400 mt-4">¿No tienes cuenta? <a href="javascript:void(0);" class="text-red-500 font-bold" onclick="mostrarPantalla('registerScreen')">Regístrate</a></p>
             </div>
         </div>
 
-        <div id="clientPanel" class="hidden flex-1 flex flex-col lg:flex-row w-full max-w-7xl mx-auto">
-            <aside class="w-full lg:w-64 bg-[#0b0f19] lg:bg-[#0f1423] border-b lg:border-b-0 lg:border-r border-gray-800 p-4 flex flex-col space-y-4 lg:space-y-6">
+        <!-- 5. PANEL DEL CLIENTE -->
+        <div id="clientPanel" class="hidden flex-1 flex flex-col md:flex-row w-full max-w-7xl mx-auto">
+            <aside class="w-full md:w-64 bg-gray-900 border-r border-gray-800 p-4 flex flex-col space-y-6">
                 <div>
-                    <p class="text-[10px] text-gray-500 uppercase tracking-wider font-bold mb-2 hidden lg:block">Navegación</p>
-                    <nav class="flex lg:flex-col flex-wrap gap-1">
-                        <button onclick="cambiarSeccionCliente('resumen')" id="navResumen" class="flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold bg-red-600 text-white transition"><span>🏠</span> <span>Resumen</span></button>
-                        <button onclick="cambiarSeccionCliente('catalogo')" id="navCatalogo" class="flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition"><span>🛒</span> <span>Catálogo</span></button>
-                        <button onclick="cambiarSeccionCliente('transacciones')" id="navTransacciones" class="flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition"><span>📄</span> <span>Movimientos</span></button>
-                        <button onclick="cambiarSeccionCliente('reportarPago')" id="navReportar" class="flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition"><span>💳</span> <span>Reportar Pago</span></button>
-                        <button onclick="cambiarSeccionCliente('miPerfil')" id="navPerfil" class="flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition"><span>👤</span> <span>Perfil</span></button>
+                    <p class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-3">Navegación</p>
+                    <nav class="space-y-1">
+                        <button onclick="cambiarSeccionCliente('resumen')" id="navResumen" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition"><span>🏠</span> <span>Resumen</span></button>
+                        <button onclick="cambiarSeccionCliente('catalogo')" id="navCatalogo" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition"><span>🛒</span> <span>Catálogo &amp; Compras</span></button>
+                        <button onclick="cambiarSeccionCliente('transacciones')" id="navTransacciones" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition"><span>📄</span> <span>Transacciones</span></button>
+                    </nav>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-3">Recargas</p>
+                    <nav class="space-y-1">
+                        <button onclick="cambiarSeccionCliente('reportarPago')" id="navReportar" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition"><span>💳</span> <span>Reportar Pago Móvil</span></button>
+                    </nav>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-3">Mi Cuenta</p>
+                    <nav class="space-y-1">
+                        <button onclick="cambiarSeccionCliente('miPerfil')" id="navPerfil" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition"><span>👤</span> <span>Mi Perfil</span></button>
                     </nav>
                 </div>
             </aside>
 
-            <div class="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto custom-scrollbar">
-                <!-- Resumen Sub-view -->
+            <div class="flex-1 p-4 md:p-8 overflow-y-auto">
+                <!-- Resumen -->
                 <div id="viewResumen" class="space-y-6">
-                    <div class="flex justify-between items-center bg-[#0f1423] border border-gray-800 p-5 sm:p-6 rounded-xl flex-wrap gap-4 shadow">
+                    <div class="flex justify-between items-center bg-gray-900 border border-gray-800 p-6 rounded-xl flex-wrap gap-4">
                         <div>
-                            <h2 class="text-xl sm:text-2xl font-black text-white">¡Bienvenido, <span id="clientEmailHeader" class="text-red-500">Cliente</span>!</h2>
+                            <h2 class="text-2xl font-black text-white">¡Bienvenido, <span id="clientEmailHeader" class="text-red-500">Cliente</span>!</h2>
                             <p class="text-xs text-gray-400 mt-1">Consulta tu saldo y estado de cuenta al instante.</p>
                         </div>
-                        <button onclick="cambiarSeccionCliente('reportarPago')" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-4 py-2.5 rounded shadow transition">RECARGA TU CUENTA</button>
+                        <button onclick="cambiarSeccionCliente('reportarPago')" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-4 py-2.5 rounded shadow">RECARGA TU CUENTA</button>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="bg-[#0f1423] border border-gray-800 p-5 rounded-xl border-l-4 border-l-green-500 shadow">
+                        <div class="bg-gray-900 border border-gray-800 p-5 rounded-xl border-l-4 border-l-green-500">
                             <p class="text-xs text-gray-400 uppercase font-semibold">Saldo actual disponible</p>
                             <h3 class="text-3xl font-black text-green-400 mt-2" id="clientActualSaldo">$0.00</h3>
                         </div>
                     </div>
-                    <div class="bg-[#0f1423] border border-gray-800 p-5 sm:p-6 rounded-xl shadow">
+                    <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
                         <h3 class="text-sm font-bold uppercase mb-4 text-gray-300">Movimientos Recientes</h3>
-                        <div id="clientHistoryList" class="space-y-2 max-h-60 overflow-y-auto pr-2 custom-scrollbar"></div>
+                        <div id="clientHistoryList" class="space-y-2 max-h-60 overflow-y-auto pr-2"></div>
                     </div>
                 </div>
 
-                <!-- Catálogo Sub-view -->
+                <!-- Catálogo Dinámico -->
                 <div id="viewCatalogo" class="hidden space-y-6">
-                    <div class="flex justify-between items-center bg-[#0f1423] border border-gray-800 p-5 sm:p-6 rounded-xl flex-wrap gap-3">
-                        <h2 class="text-lg sm:text-xl font-bold text-white">Catálogo de Servicios</h2>
-                        <div class="bg-gray-900 border border-green-600/60 px-3 py-1.5 rounded-lg text-green-400 font-bold text-xs sm:text-sm" id="catalogWalletBadge">Saldo: $0.00</div>
+                    <div class="flex justify-between items-center bg-gray-900 border border-gray-800 p-6 rounded-xl flex-wrap gap-4">
+                        <div>
+                            <h2 class="text-xl font-bold text-white">Catálogo de Servicios Digitales</h2>
+                            <p class="text-xs text-gray-400 mt-1">Selecciona el servicio para iniciar el checkout automatizado.</p>
+                        </div>
+                        <div class="bg-gray-800 border border-green-600 px-4 py-2 rounded-lg text-green-400 font-bold text-sm" id="catalogWalletBadge">Saldo: $0.00</div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="bg-[#0f1423] border border-gray-800 rounded-xl p-5 flex flex-col justify-between shadow">
-                            <div>
-                                <span class="text-[10px] bg-red-950 text-red-300 px-2 py-0.5 rounded font-bold border border-red-800">PanaXtreaming</span>
-                                <h4 class="font-bold text-lg text-white mt-3">Cuenta Completa</h4>
-                                <p class="text-xs text-gray-400 my-3 leading-relaxed">Acceso total con máxima estabilidad y perfiles privados.</p>
+                    <div id="catalogContainer" class="space-y-6"></div>
+                </div>
+
+                <!-- CHECKOUT UNIFICADO CON REQUISITOS REGLAMENTARIOS PARA TODOS LOS MÉTODOS -->
+                <div id="viewCheckout" class="hidden space-y-6 max-w-6xl mx-auto">
+                    
+                    <!-- Barra de Progreso Superior -->
+                    <div class="bg-gray-900 border border-gray-800 px-6 py-4 rounded-xl flex justify-between items-center max-w-xl mx-auto">
+                        <div class="text-center">
+                            <span class="text-[10px] text-gray-400 block uppercase font-bold">1. Envío</span>
+                            <span class="text-xs font-bold text-green-400">✓ Completado</span>
+                        </div>
+                        <div class="h-0.5 w-12 bg-green-600"></div>
+                        <div class="text-center">
+                            <span class="text-[10px] text-gray-400 block uppercase font-bold">2. Datos</span>
+                            <span class="text-xs font-bold text-green-400">✓ Verificados</span>
+                        </div>
+                        <div class="h-0.5 w-12 bg-red-600"></div>
+                        <div class="text-center">
+                            <span class="text-[10px] text-gray-400 block uppercase font-bold">3. Pago &amp; Revisión</span>
+                            <span class="text-xs font-bold text-red-500">● En curso</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                        
+                        <!-- Columna Izquierda (7 Columnas): Métodos de Pago y Requisitos Reglamentarios -->
+                        <div class="lg:col-span-7 space-y-6">
+                            
+                            <!-- Bloque 1: Información de Destino -->
+                            <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-4">
+                                <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+                                    <h3 class="text-sm font-bold uppercase text-white tracking-wider">📦 Información de Entrega y Destino</h3>
+                                    <button onclick="cambiarSeccionCliente('catalogo')" class="text-xs text-red-500 hover:text-red-400 font-bold underline">Cambiar servicio</button>
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                                    <div class="bg-black/40 border border-gray-800 p-3 rounded-lg">
+                                        <p class="text-gray-400 uppercase text-[10px] font-bold">Comprador</p>
+                                        <p class="font-bold text-white mt-1" id="chkResumenNombre">-</p>
+                                    </div>
+                                    <div class="bg-black/40 border border-gray-800 p-3 rounded-lg">
+                                        <p class="text-gray-400 uppercase text-[10px] font-bold">Correo de Destino</p>
+                                        <p class="font-bold text-white mt-1 truncate" id="chkResumenEmail">-</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="text-xs text-gray-400 block mb-1">Confirmar Teléfono / WhatsApp para Notificaciones</label>
+                                    <input type="text" id="chkTelefono" placeholder="Ej: 0412-1234567" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                                </div>
                             </div>
-                            <div class="mt-4 pt-4 border-t border-gray-800">
-                                <div class="text-xl font-black text-white mb-3">8$</div>
-                                <button onclick="comprarConSaldo('Cuenta Completa', 8)" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase py-2.5 rounded transition shadow">Comprar</button>
+
+                            <!-- Bloque 2: Selección de Métodos de Pago y Formularios Específicos -->
+                            <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-4">
+                                <h3 class="text-sm font-bold uppercase text-white tracking-wider border-b border-gray-800 pb-3">💳 Método de Pago y Requisitos</h3>
+                                
+                                <div class="space-y-3">
+                                    <!-- 1. Billetera PanaXtreaming -->
+                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition" onclick="seleccionarMetodoCheckout('saldo')">
+                                        <input type="radio" name="metodoPagoUnificado" value="saldo" checked class="accent-red-600 mt-1">
+                                        <div class="flex-1">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-bold text-white text-sm">Billetera PanaXtreaming (Saldo Disponible)</span>
+                                                <span class="text-xs text-green-400 font-bold" id="checkoutSaldoDisponiblesLabel">$0.00</span>
+                                            </div>
+                                            <p class="text-xs text-gray-400 mt-0.5">Débito inmediato y automático desde tu balance interno.</p>
+                                        </div>
+                                    </label>
+
+                                    <!-- 2. Tarjeta de Crédito / Débito -->
+                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition" onclick="seleccionarMetodoCheckout('tarjeta')">
+                                        <input type="radio" name="metodoPagoUnificado" value="tarjeta" class="accent-red-600 mt-1">
+                                        <div class="flex-1">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-bold text-white text-sm">Tarjeta de Crédito o Débito</span>
+                                                <div class="flex space-x-1 text-[10px] text-gray-400 font-bold"><span>VISA</span> • <span>MC</span> • <span>AMEX</span></div>
+                                            </div>
+                                            <p class="text-xs text-gray-400 mt-0.5">Procesamiento seguro y cifrado en línea.</p>
+                                        </div>
+                                    </label>
+
+                                    <!-- Formulario Tarjeta -->
+                                    <div id="formContainerTarjeta" class="hidden bg-black/80 border border-gray-700 p-5 rounded-xl space-y-4 ml-2 mr-2">
+                                        <div class="flex items-center justify-between">
+                                            <label class="text-xs font-bold text-white uppercase tracking-wider">🔒 Requisitos de Tarjeta (16 Dígitos)</label>
+                                            <span class="text-[10px] text-gray-400">Seguro SSL</span>
+                                        </div>
+                                        <div class="grid grid-cols-4 gap-2">
+                                            <input type="text" id="ccBlock1" maxlength="4" placeholder="1234" oninput="saltarBloqueTarjeta(this, 'ccBlock2')" class="bg-gray-900 border border-gray-700 text-center p-2.5 rounded text-sm font-mono text-white outline-none focus:border-red-600">
+                                            <input type="text" id="ccBlock2" maxlength="4" placeholder="5678" oninput="saltarBloqueTarjeta(this, 'ccBlock3')" class="bg-gray-900 border border-gray-700 text-center p-2.5 rounded text-sm font-mono text-white outline-none focus:border-red-600">
+                                            <input type="text" id="ccBlock3" maxlength="4" placeholder="9012" oninput="saltarBloqueTarjeta(this, 'ccBlock4')" class="bg-gray-900 border border-gray-700 text-center p-2.5 rounded text-sm font-mono text-white outline-none focus:border-red-600">
+                                            <input type="text" id="ccBlock4" maxlength="4" placeholder="3456" oninput="saltarBloqueTarjeta(this, 'ccTitular')" class="bg-gray-900 border border-gray-700 text-center p-2.5 rounded text-sm font-mono text-white outline-none focus:border-red-600">
+                                        </div>
+                                        <div>
+                                            <label class="text-[11px] text-gray-400 block mb-1">Nombre del Titular</label>
+                                            <input type="text" id="ccTitular" placeholder="EJ: CARLOS PEREZ" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white uppercase outline-none focus:border-red-600">
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-3">
+                                            <div>
+                                                <label class="text-[11px] text-gray-400 block mb-1">Expiración (MM/AA)</label>
+                                                <input type="text" id="ccExp" placeholder="MM/AA" maxlength="5" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white text-center outline-none focus:border-red-600">
+                                            </div>
+                                            <div>
+                                                <label class="text-[11px] text-gray-400 block mb-1">CVV</label>
+                                                <input type="password" id="ccCvv" placeholder="123" maxlength="4" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white text-center outline-none focus:border-red-600">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 3. PayPal -->
+                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition" onclick="seleccionarMetodoCheckout('paypal')">
+                                        <input type="radio" name="metodoPagoUnificado" value="paypal" class="accent-red-600 mt-1">
+                                        <div class="flex-1">
+                                            <span class="font-bold text-white text-sm block">PayPal (Checkout Automático)</span>
+                                            <p class="text-xs text-gray-400 mt-0.5">Paga de forma rápida y protegida con tu cuenta PayPal.</p>
+                                        </div>
+                                    </label>
+
+                                    <!-- Formulario Requisitos PayPal -->
+                                    <div id="formContainerPaypal" class="hidden bg-black/80 border border-gray-700 p-5 rounded-xl space-y-4 ml-2 mr-2">
+                                        <div class="flex items-center justify-between">
+                                            <label class="text-xs font-bold text-white uppercase tracking-wider">🅿️ Requisitos Reglamentarios PayPal</label>
+                                            <span class="text-[10px] text-blue-400 font-bold">Verificación API</span>
+                                        </div>
+                                        <p class="text-[11px] text-gray-400 leading-relaxed">Para procesar la orden y futuro cobro automático, ingrese los datos de su cuenta PayPal asociada:</p>
+                                        <div>
+                                            <label class="text-[11px] text-gray-400 block mb-1">Correo Electrónico Asociado a PayPal</label>
+                                            <input type="email" id="paypalEmail" placeholder="tucuenta@domain.com" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-blue-500">
+                                        </div>
+                                        <div>
+                                            <label class="text-[11px] text-gray-400 block mb-1">ID de Transacción o Comprobante (Opcional si es automático)</label>
+                                            <input type="text" id="paypalTxId" placeholder="Ej: 8X129384AB712" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-blue-500">
+                                        </div>
+                                    </div>
+
+                                    <!-- 4. Binance Pay -->
+                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition" onclick="seleccionarMetodoCheckout('binance')">
+                                        <input type="radio" name="metodoPagoUnificado" value="binance" class="accent-red-600 mt-1">
+                                        <div class="flex-1">
+                                            <span class="font-bold text-white text-sm block">Binance Pay (USDT / Cripto)</span>
+                                            <p class="text-xs text-gray-400 mt-0.5">Pago instantáneo con QR o ID de Binance.</p>
+                                        </div>
+                                    </label>
+
+                                    <!-- Formulario Requisitos Binance Pay -->
+                                    <div id="formContainerBinance" class="hidden bg-black/80 border border-gray-700 p-5 rounded-xl space-y-4 ml-2 mr-2">
+                                        <div class="flex items-center justify-between">
+                                            <label class="text-xs font-bold text-white uppercase tracking-wider">🟡 Requisitos Reglamentarios Binance Pay</label>
+                                            <span class="text-[10px] text-yellow-400 font-bold">USDT / Web3</span>
+                                        </div>
+                                        <p class="text-[11px] text-gray-400 leading-relaxed">Ingrese su identificador oficial en Binance para validar la recepción de los fondos:</p>
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                            <div>
+                                                <label class="text-[11px] text-gray-400 block mb-1">Binance ID (UID de Usuario)</label>
+                                                <input type="text" id="binanceUid" placeholder="Ej: 128934751" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-yellow-500">
+                                            </div>
+                                            <div>
+                                                <label class="text-[11px] text-gray-400 block mb-1">Correo o Pay ID registrado</label>
+                                                <input type="text" id="binancePayId" placeholder="usuario@binance.com" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-yellow-500">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="text-[11px] text-gray-400 block mb-1">Número de Orden / Hash de Pago (Order ID)</label>
+                                            <input type="text" id="binanceHash" placeholder="Ej: BP20260924XXXXXXXX" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-yellow-500">
+                                        </div>
+                                    </div>
+
+                                    <!-- 5. Zinli -->
+                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition" onclick="seleccionarMetodoCheckout('zinli')">
+                                        <input type="radio" name="metodoPagoUnificado" value="zinli" class="accent-red-600 mt-1">
+                                        <div class="flex-1">
+                                            <span class="font-bold text-white text-sm block">Zinli (Billetera Internacional)</span>
+                                            <p class="text-xs text-gray-400 mt-0.5">Débito automático procesado al instante.</p>
+                                        </div>
+                                    </label>
+
+                                    <!-- Formulario Requisitos Zinli -->
+                                    <div id="formContainerZinli" class="hidden bg-black/80 border border-gray-700 p-5 rounded-xl space-y-4 ml-2 mr-2">
+                                        <div class="flex items-center justify-between">
+                                            <label class="text-xs font-bold text-white uppercase tracking-wider">🟣 Requisitos Reglamentarios Zinli</label>
+                                            <span class="text-[10px] text-purple-400 font-bold">Billetera Internacional</span>
+                                        </div>
+                                        <p class="text-[11px] text-gray-400 leading-relaxed">Ingrese las coordenadas de su cuenta Zinli para el procesamiento y validación del cobro:</p>
+                                        <div>
+                                            <label class="text-[11px] text-gray-400 block mb-1">Correo Electrónico Registrado en Zinli</label>
+                                            <input type="email" id="zinliEmail" placeholder="correo.zinli@domain.com" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-purple-500">
+                                        </div>
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                            <div>
+                                                <label class="text-[11px] text-gray-400 block mb-1">Número Teléfono Zinli</label>
+                                                <input type="text" id="zinliPhone" placeholder="+58 412..." class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-purple-500">
+                                            </div>
+                                            <div>
+                                                <label class="text-[11px] text-gray-400 block mb-1">Referencia de Transferencia Zinli</label>
+                                                <input type="text" id="zinliRef" placeholder="Ej: 98765432" class="w-full bg-gray-900 border border-gray-700 p-2.5 rounded text-xs text-white text-center outline-none focus:border-purple-500">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- Políticas y Aviso Legal -->
+                                <p class="text-[11px] text-gray-500 leading-relaxed pt-2 border-t border-gray-800">
+                                    Al hacer clic en el botón de pago, confirmo que he leído y acepto los términos de servicio, políticas de privacidad y autorizo el procesamiento inmediato del pago para la activación de mi servicio digital en PanaXtreaming.
+                                </p>
+
+                                <button onclick="procesarCompraAutomatizadaFinal()" class="w-full bg-red-600 hover:bg-red-700 text-white font-black text-sm uppercase p-4 rounded-xl transition shadow-xl tracking-wider mt-2">
+                                    Review &amp; Pay / Autorizar Pago Instantáneo
+                                </button>
+                            </div>
+
+                        </div>
+
+                        <!-- Columna Derecha (5 Columnas): Resumen Detallado de la Orden -->
+                        <div class="lg:col-span-5">
+                            <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl sticky top-4 space-y-4">
+                                <h4 class="font-bold text-sm text-white uppercase tracking-wider border-b border-gray-800 pb-3 flex justify-between items-center">
+                                    <span>Tu Orden</span>
+                                    <span class="text-xs text-red-500 font-normal">1 Artículo</span>
+                                </h4>
+                                
+                                <div class="flex items-start space-x-3 bg-black/40 border border-gray-800 p-3 rounded-xl">
+                                    <div class="bg-red-950 text-red-400 px-3 py-2 rounded font-black text-xs h-fit" id="summaryBadge">SERV</div>
+                                    <div class="flex-1">
+                                        <h5 class="font-bold text-sm text-white" id="summaryItemName">Selecciona un servicio</h5>
+                                        <p class="text-[11px] text-gray-400 mt-0.5" id="summaryItemDesc">Servicio digital garantizado</p>
+                                        <div class="flex justify-between items-center mt-3">
+                                            <span class="text-xs text-gray-400 font-bold">Qty: 1</span>
+                                            <span class="font-black text-white text-sm" id="summarySubtotalItem">$0.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-gray-800 pt-3 space-y-2 text-xs text-gray-300">
+                                    <div class="flex justify-between"><span>Subtotal de Productos</span><span id="summarySubtotal" class="font-bold text-white">$0.00</span></div>
+                                    <div class="flex justify-between"><span>Procesamiento Automatizado</span><span class="text-green-400 font-bold">Gratis</span></div>
+                                    <div class="flex justify-between border-t border-gray-800 pt-3 text-base font-black text-white">
+                                        <span>Total a Pagar (USD)</span>
+                                        <span class="text-green-400 text-xl" id="summaryTotal">$0.00</span>
+                                    </div>
+                                </div>
+
+                                <div class="bg-black/60 border border-gray-800 p-3 rounded-lg flex items-center space-x-3 text-xs text-gray-400">
+                                    <span class="text-xl">🔒</span>
+                                    <p>Tus datos están protegidos con cifrado de extremo a extremo y procesamiento seguro antifraude.</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="bg-[#0f1423] border border-gray-800 rounded-xl p-5 flex flex-col justify-between shadow">
-                            <div>
-                                <span class="text-[10px] bg-red-950 text-red-300 px-2 py-0.5 rounded font-bold border border-red-800">ST3TLLA TV</span>
-                                <h4 class="font-bold text-lg text-white mt-3">ST3TLLA TV Completa</h4>
-                                <p class="text-xs text-gray-400 my-3 leading-relaxed">Programación completa en vivo en Alta Definición.</p>
-                            </div>
-                            <div class="mt-4 pt-4 border-t border-gray-800">
-                                <div class="text-xl font-black text-white mb-3">10$</div>
-                                <button onclick="comprarConSaldo('ST3TLLA TV Completa', 10)" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase py-2.5 rounded transition shadow">Comprar</button>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
 
-                <!-- Transacciones Sub-view -->
+                <!-- Transacciones -->
                 <div id="viewTransacciones" class="hidden space-y-6">
-                    <div class="bg-[#0f1423] border border-gray-800 p-5 sm:p-6 rounded-xl shadow">
-                        <h2 class="text-lg sm:text-xl font-bold text-white mb-4">Historial Completo</h2>
+                    <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
+                        <h2 class="text-xl font-bold text-white mb-4">Historial Completo de Órdenes</h2>
                         <div id="fullTransactionsList" class="space-y-3"></div>
                     </div>
                 </div>
 
-                <!-- Reportar Pago Móvil Sub-view -->
+                <!-- Reportar Pago Móvil -->
                 <div id="viewReportarPago" class="hidden space-y-6 max-w-xl mx-auto">
-                    <div class="bg-[#0f1423] border border-gray-800 p-5 sm:p-6 rounded-xl shadow">
-                        <h2 class="text-lg sm:text-xl font-bold text-white mb-2">Reportar Pago Móvil</h2>
-                        <p class="text-xs text-gray-400 mb-4">Realiza tu pago móvil a los datos bancarios y reporta la referencia.</p>
-                        <div class="bg-black/50 border border-gray-800 p-4 rounded-lg text-xs space-y-1.5 mb-6 text-gray-300">
+                    <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
+                        <h2 class="text-xl font-bold text-white mb-2">Reportar Pago Móvil Nacional</h2>
+                        <div class="bg-black/40 border border-gray-800 p-4 rounded-lg text-xs space-y-1 mb-6 text-gray-300">
                             <p><strong>Banco:</strong> Provincial</p>
                             <p><strong>Pago Móvil:</strong> 0412-2753916</p>
-                            <p><strong>Cédula:</strong> V-XXXXXXXX</p>
                         </div>
                         <div class="space-y-4">
                             <div>
                                 <label class="text-xs text-gray-400 block mb-1">Monto en $ a recargar:</label>
-                                <input type="number" id="reportMonto" placeholder="Ej: 10" class="w-full bg-black/60 border border-gray-700 p-3 rounded text-sm text-white placeholder-gray-500 outline-none focus:border-red-600">
+                                <input type="number" id="reportMonto" placeholder="Ej: 10" class="w-full bg-black border border-gray-700 p-3 rounded text-sm text-white outline-none">
                             </div>
                             <div>
                                 <label class="text-xs text-gray-400 block mb-1">Últimos 4 dígitos de la referencia:</label>
-                                <input type="text" id="reportRef" placeholder="Ej: 4125" class="w-full bg-black/60 border border-gray-700 p-3 rounded text-sm text-white placeholder-gray-500 outline-none focus:border-red-600">
+                                <input type="text" id="reportRef" placeholder="Ej: 4125" class="w-full bg-black border border-gray-700 p-3 rounded text-sm text-white outline-none">
                             </div>
                             <button onclick="enviarReportePago()" class="w-full bg-red-600 hover:bg-red-700 text-white font-black text-sm uppercase p-3 rounded transition shadow">Enviar Reporte al Administrador</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Mi Perfil Sub-view -->
+                <!-- Mi Perfil -->
                 <div id="viewMiPerfil" class="hidden space-y-6 max-w-xl mx-auto">
-                    <div class="bg-[#0f1423] border border-gray-800 p-5 sm:p-6 rounded-xl shadow">
-                        <h2 class="text-lg sm:text-xl font-bold text-white mb-4">Perfil de Usuario</h2>
-                        <p class="text-sm"><strong>Correo Electrónico:</strong> <span id="perfilEmail" class="text-gray-300 ml-1"></span></p>
+                    <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
+                        <h2 class="text-xl font-bold text-white mb-4">Perfil de Usuario</h2>
+                        <p class="text-sm"><strong>Correo:</strong> <span id="perfilEmail" class="text-gray-300"></span></p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="adminPanel" class="hidden flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full">
-            <div class="flex justify-between items-center mb-6 bg-[#0f1423] border border-gray-800 p-5 sm:p-6 rounded-xl flex-wrap gap-4 shadow">
+        <!-- 6. PANEL DE ADMINISTRADOR -->
+        <div id="adminPanel" class="hidden flex-1 p-6 max-w-6xl mx-auto w-full space-y-6">
+            <div class="flex justify-between items-center bg-gray-900 border border-gray-800 p-6 rounded-xl flex-wrap gap-4">
                 <div>
-                    <h2 class="text-xl sm:text-2xl font-black text-green-400">🛡️ Panel de Administración</h2>
-                    <p class="text-xs text-gray-400 mt-1">Gestión centralizada de reportes de pago y saldos de clientes.</p>
+                    <h2 class="text-2xl font-black text-green-400">🛡️ Panel de Administración</h2>
+                    <p class="text-xs text-gray-400 mt-1">Controla los pagos automatizados, saldos y servicios.</p>
                 </div>
-                <button onclick="cerrarSesion()" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white text-xs font-bold px-4 py-2 rounded transition">Cerrar Sesión Admin</button>
+                <button onclick="cerrarSesion()" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white text-xs font-bold px-4 py-2 rounded">Cerrar Sesión Admin</button>
             </div>
 
-            <!-- Solicitudes de pago pendientes -->
-            <div class="bg-[#0f1423] border border-gray-800 p-5 sm:p-6 rounded-xl mb-6 shadow">
-                <h3 class="text-sm font-bold uppercase mb-4 text-yellow-400">🔔 Solicitudes y Reportes Pendientes</h3>
+            <!-- GESTIÓN DE SERVICIOS -->
+            <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
+                <h3 class="text-sm font-bold uppercase mb-2 text-cyan-400">⚙️ Estado de Servicios (Activar / Desactivar)</h3>
+                <div id="adminServicesConfig" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3"></div>
+            </div>
+
+            <!-- Reportes de pago móvil pendientes -->
+            <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
+                <h3 class="text-sm font-bold uppercase mb-4 text-yellow-400">🔔 Reportes de Pago Móvil Pendientes</h3>
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs border-collapse min-w-[500px]">
+                    <table class="w-full text-left text-xs border-collapse">
                         <thead>
-                            <tr class="bg-gray-900 text-gray-300 border-b border-gray-800">
+                            <tr class="bg-gray-800 text-gray-300 border-b border-gray-700">
                                 <th class="p-3">Cliente</th>
                                 <th class="p-3">Monto</th>
                                 <th class="p-3">Referencia</th>
@@ -236,13 +483,13 @@
                 </div>
             </div>
 
-            <!-- Clientes registrados -->
-            <div class="bg-[#0f1423] border border-gray-800 p-5 sm:p-6 rounded-xl shadow">
+            <!-- Clientes y Saldos -->
+            <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
                 <h3 class="text-sm font-bold uppercase mb-4 text-gray-300">👥 Clientes Registrados &amp; Saldos</h3>
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs border-collapse min-w-[400px]">
+                    <table class="w-full text-left text-xs border-collapse">
                         <thead>
-                            <tr class="bg-gray-900 text-gray-300 border-b border-gray-800">
+                            <tr class="bg-gray-800 text-gray-300 border-b border-gray-700">
                                 <th class="p-3">Correo</th>
                                 <th class="p-3">Saldo Actual</th>
                                 <th class="p-3">Asignar Saldo Manual</th>
@@ -256,15 +503,29 @@
 
     </main>
 
-    <footer class="w-full text-center py-4 text-gray-600 text-[11px] border-t border-gray-900">
-        PanaXtreaming © 2026 - Todos los derechos reservados.
-    </footer>
-
+    <!-- SCRIPT DE CONTROL UNIFICADO -->
     <script>
+        let catalogoServicios = JSON.parse(localStorage.getItem('panax_db_servicios')) || [
+            { id: 'srv1', categoria: '🎬 Streaming de Video', nombre: 'Cuenta Completa PanaXtreaming', desc: 'Acceso total con máxima estabilidad.', precio: 8, activo: true, badge: 'PanaXtreaming', badgeColor: 'bg-red-900 text-red-300' },
+            { id: 'srv2', categoria: '🎬 Streaming de Video', nombre: 'ST3TLLA TV Completa', desc: 'Programación en vivo en HD.', precio: 10, activo: true, badge: 'ST3TLLA TV', badgeColor: 'bg-red-900 text-red-300' },
+            { id: 'srv3', categoria: '🎬 Streaming de Video', nombre: 'Perfil Netflix 4K', desc: 'Pantalla individual de alta definición.', precio: 4, activo: true, badge: 'Netflix', badgeColor: 'bg-red-900 text-red-300' },
+            { id: 'srv4', categoria: '🎬 Streaming de Video', nombre: 'Disney+ / Combo+', desc: 'Series, películas y deportes en vivo.', precio: 5, activo: true, badge: 'Disney+', badgeColor: 'bg-blue-900 text-blue-300' },
+            { id: 'srv5', categoria: '🎬 Streaming de Video', nombre: 'Max (HBO) Cuenta', desc: 'Estrenos y contenido exclusivo.', precio: 4, activo: true, badge: 'Max', badgeColor: 'bg-purple-900 text-purple-300' },
+            { id: 'srv6', categoria: '🎬 Streaming de Video', nombre: 'Prime Video', desc: 'Series y películas originales.', precio: 3, activo: true, badge: 'Amazon', badgeColor: 'bg-cyan-900 text-cyan-300' },
+            { id: 'srv7', categoria: '🎵 Música y Entretenimiento Diario', nombre: 'Spotify Premium', desc: 'Música sin anuncios y sin conexión.', precio: 4, activo: true, badge: 'Spotify', badgeColor: 'bg-green-900 text-green-300' },
+            { id: 'srv8', categoria: '🎵 Música y Entretenimiento Diario', nombre: 'YouTube Premium', desc: 'Videos sin publicidad y música de fondo.', precio: 4, activo: true, badge: 'YouTube', badgeColor: 'bg-red-950 text-red-300' },
+            { id: 'srv9', categoria: '🎮 Videojuegos y Pines Digitales', nombre: 'Diamantes Free Fire', desc: 'Recarga directa a tu ID de juego.', precio: 5, activo: true, badge: 'Free Fire', badgeColor: 'bg-yellow-900 text-yellow-300' },
+            { id: 'srv10', categoria: '🎮 Videojuegos y Pines Digitales', nombre: 'Robux (Tarjeta Pin)', desc: 'Código digital para tu cuenta.', precio: 10, activo: true, badge: 'Roblox', badgeColor: 'bg-yellow-900 text-yellow-300' },
+            { id: 'srv11', categoria: '💻 Productividad y Herramientas', nombre: 'Canva Pro', desc: 'Plantillas y herramientas de diseño avanzado.', precio: 3, activo: true, badge: 'Canva', badgeColor: 'bg-blue-950 text-blue-300' },
+            { id: 'srv12', categoria: '💻 Productividad y Herramientas', nombre: 'ChatGPT Plus Acceso', desc: 'Inteligencia artificial de alto rendimiento.', precio: 6, activo: true, badge: 'OpenAI', badgeColor: 'bg-emerald-950 text-emerald-300' }
+        ];
+
         let dbClientes = JSON.parse(localStorage.getItem('panax_db_clientes')) || [];
         let dbReportes = JSON.parse(localStorage.getItem('panax_db_reportes')) || [];
         let sesionActiva = localStorage.getItem('panax_sesion_activa') || null;
         let adminActivo = localStorage.getItem('panax_admin_activo') === 'true';
+
+        let itemCheckoutActual = { nombre: '', precio: 0, desc: '', badge: '' };
 
         window.onload = function() {
             actualizarEstadoUI();
@@ -312,7 +573,6 @@
             }
         }
 
-        // --- AUTENTICACIÓN ADMINISTRADOR ---
         function verificarLoginAdmin() {
             let u = document.getElementById('adminUser').value.trim();
             let p = document.getElementById('adminPass').value.trim();
@@ -322,11 +582,10 @@
                 localStorage.setItem('panax_admin_activo', 'true');
                 abrirPanelAdmin();
             } else {
-                alert('Usuario o contraseña de administrador incorrectos. (Usa: admin / adming1234)');
+                alert('Usuario o contraseña de administrador incorrectos.');
             }
         }
 
-        // --- REGISTRO Y LOGIN CLIENTES ---
         function empezarRegistroHero() {
             let email = document.getElementById('heroEmail').value.trim();
             if(email) document.getElementById('reg-email').value = email;
@@ -339,19 +598,19 @@
             let pass = document.getElementById('reg-pass').value.trim();
 
             if(!email || !cedula || !pass) {
-                alert('Por favor completa todos los campos.');
+                alert('Completa todos los campos.');
                 return;
             }
 
             if(dbClientes.find(c => c.email === email)) {
-                alert('Este correo electrónico ya se encuentra registrado.');
+                alert('El correo ya está registrado.');
                 mostrarPantalla('loginScreen');
                 return;
             }
 
             dbClientes.push({ email, cedula, pass, saldo: 0, historial: [] });
             localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
-            alert('¡Registro exitoso! Ya puedes iniciar sesión.');
+            alert('¡Registro exitoso! Inicia sesión.');
             mostrarPantalla('loginScreen');
         }
 
@@ -361,7 +620,7 @@
 
             let cliente = dbClientes.find(c => c.email === email && c.pass === pass);
             if(!cliente) {
-                alert('Correo o contraseña incorrectos.');
+                alert('Datos incorrectos.');
                 return;
             }
 
@@ -378,7 +637,6 @@
             actualizarEstadoUI();
         }
 
-        // --- PANEL CLIENTE ---
         function abrirPanelCliente() {
             ocultarTodo();
             document.getElementById('clientPanel').style.display = 'flex';
@@ -394,63 +652,221 @@
             document.getElementById('clientActualSaldo').innerText = `$${cliente.saldo.toFixed(2)}`;
             document.getElementById('catalogWalletBadge').innerText = `Saldo: $${cliente.saldo.toFixed(2)}`;
             document.getElementById('perfilEmail').innerText = cliente.email;
+            
+            let lblSaldo = document.getElementById('checkoutSaldoDisponiblesLabel');
+            if(lblSaldo) lblSaldo.innerText = `$${cliente.saldo.toFixed(2)}`;
 
             let htmlHist = '';
             if(cliente.historial && cliente.historial.length > 0) {
                 cliente.historial.slice().reverse().forEach(item => {
-                    htmlHist += `<div class="bg-black/40 border border-gray-800/80 p-3 rounded text-xs flex justify-between items-center gap-2">
+                    htmlHist += `<div class="bg-black/40 border border-gray-800 p-3 rounded text-xs flex justify-between items-center">
                         <div><p class="font-bold text-white">${item.concepto}</p><p class="text-gray-500 text-[10px]">${item.fecha}</p></div>
-                        <span class="font-bold whitespace-nowrap ${item.tipo === 'recarga' ? 'text-green-400' : 'text-red-400'}">${item.tipo === 'recarga' ? '+' : '-'}$${item.monto.toFixed(2)}</span>
+                        <span class="font-bold ${item.tipo === 'recarga' ? 'text-green-400' : 'text-red-400'}">${item.tipo === 'recarga' ? '+' : '-'}$${item.monto.toFixed(2)}</span>
                     </div>`;
                 });
             } else {
-                htmlHist = '<p class="text-xs text-gray-500">No hay movimientos recientes registrados.</p>';
+                htmlHist = '<p class="text-xs text-gray-500">No hay movimientos recientes.</p>';
             }
             document.getElementById('clientHistoryList').innerHTML = htmlHist;
             document.getElementById('fullTransactionsList').innerHTML = htmlHist;
 
+            renderizarCatalogoCliente();
             cambiarSeccionCliente('resumen');
         }
 
+        function renderizarCatalogoCliente() {
+            let categoriasMap = {};
+            catalogoServicios.forEach(srv => {
+                if(!categoriasMap[srv.categoria]) categoriasMap[srv.categoria] = [];
+                categoriasMap[srv.categoria].push(srv);
+            });
+
+            let htmlCat = '';
+            for(let cat in categoriasMap) {
+                htmlCat += `<div>
+                    <h3 class="text-sm font-bold uppercase text-red-500 mb-3 tracking-wider">${cat}</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">`;
+                
+                categoriasMap[cat].forEach(srv => {
+                    if (srv.activo) {
+                        htmlCat += `<div class="bg-gray-900 border border-gray-800 rounded-xl p-5 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs ${srv.badgeColor} px-2 py-0.5 rounded font-bold">${srv.badge}</span>
+                                <h4 class="font-bold text-lg text-white mt-2">${srv.nombre}</h4>
+                                <p class="text-xs text-gray-400 my-2">${srv.desc}</p>
+                            </div>
+                            <div>
+                                <div class="text-xl font-black text-white mb-3">$${srv.precio}</div>
+                                <button onclick='iniciarCheckout("${srv.nombre}", ${srv.precio}, "${srv.desc}", "${srv.badge}")' class="w-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase py-2.5 rounded transition">Comprar Servicio</button>
+                            </div>
+                        </div>`;
+                    } else {
+                        htmlCat += `<div class="bg-gray-900/60 border border-yellow-900/50 rounded-xl p-5 flex flex-col justify-between opacity-80">
+                            <div>
+                                <span class="text-xs bg-yellow-950 text-yellow-400 border border-yellow-800 px-2 py-0.5 rounded font-bold">⚠️ No disponible</span>
+                                <h4 class="font-bold text-lg text-gray-300 mt-2">${srv.nombre}</h4>
+                                <p class="text-xs text-gray-500 my-2">${srv.desc}</p>
+                                <div class="bg-yellow-950/40 border border-yellow-900/40 p-2.5 rounded text-[11px] text-yellow-200/90 leading-relaxed mt-2 mb-3">
+                                    ⚠️ No disponible por el momento. Próximamente. Le ofrecemos disculpas por las molestias ocasionadas, le invitamos a estar atentos.
+                                </div>
+                            </div>
+                            <div>
+                                <div class="text-xl font-black text-gray-500 mb-3">$${srv.precio}</div>
+                                <button disabled class="w-full bg-gray-800 text-gray-500 font-bold text-xs uppercase py-2.5 rounded cursor-not-allowed">No disponible</button>
+                            </div>
+                        </div>`;
+                    }
+                });
+                htmlCat += `</div></div>`;
+            }
+            document.getElementById('catalogContainer').innerHTML = htmlCat;
+        }
+
+        function iniciarCheckout(nombre, precio, desc, badge) {
+            itemCheckoutActual = { nombre, precio, desc, badge };
+            let cliente = dbClientes.find(c => c.email === sesionActiva);
+
+            document.getElementById('chkResumenNombre').innerText = cliente ? cliente.email.split('@')[0].toUpperCase() : 'Cliente PanaXtreaming';
+            document.getElementById('chkResumenEmail').innerText = sesionActiva;
+            document.getElementById('chkTelefono').value = '';
+
+            document.getElementById('summaryItemName').innerText = nombre;
+            document.getElementById('summaryItemDesc').innerText = desc;
+            document.getElementById('summaryBadge').innerText = badge;
+            document.getElementById('summarySubtotalItem').innerText = `$${precio.toFixed(2)}`;
+            document.getElementById('summarySubtotal').innerText = `$${precio.toFixed(2)}`;
+            document.getElementById('summaryTotal').innerText = `$${precio.toFixed(2)}`;
+
+            if(cliente) {
+                document.getElementById('checkoutSaldoDisponiblesLabel').innerText = `$${cliente.saldo.toFixed(2)}`;
+            }
+
+            cambiarSeccionCliente('checkout');
+            seleccionarMetodoCheckout('saldo');
+        }
+
+        function seleccionarMetodoCheckout(tipo) {
+            // Ocultar todos los formularios adicionales primero
+            document.getElementById('formContainerTarjeta').classList.add('hidden');
+            document.getElementById('formContainerPaypal').classList.add('hidden');
+            document.getElementById('formContainerBinance').classList.add('hidden');
+            document.getElementById('formContainerZinli').classList.add('hidden');
+
+            if(tipo === 'tarjeta') {
+                document.getElementById('formContainerTarjeta').classList.remove('hidden');
+            } else if(tipo === 'paypal') {
+                document.getElementById('formContainerPaypal').classList.remove('hidden');
+            } else if(tipo === 'binance') {
+                document.getElementById('formContainerBinance').classList.remove('hidden');
+            } else if(tipo === 'zinli') {
+                document.getElementById('formContainerZinli').classList.remove('hidden');
+            }
+        }
+
+        // Salto automático entre bloques de dígitos de tarjeta
+        function saltarBloqueTarjeta(actual, siguienteId) {
+            if (actual.value.length >= 4) {
+                let sig = document.getElementById(siguienteId);
+                if (sig) sig.focus();
+            }
+        }
+
+        function procesarCompraAutomatizadaFinal() {
+            let cliente = dbClientes.find(c => c.email === sesionActiva);
+            if(!cliente) return;
+
+            let metodoRadio = document.querySelector('input[name="metodoPagoUnificado"]:checked');
+            if(!metodoRadio) {
+                alert('Por favor selecciona un método de pago.');
+                return;
+            }
+
+            let metodo = metodoRadio.value;
+
+            // Validaciones reglamentarias según el método seleccionado
+            if(metodo === 'tarjeta') {
+                let b1 = document.getElementById('ccBlock1').value.trim();
+                let b2 = document.getElementById('ccBlock2').value.trim();
+                let b3 = document.getElementById('ccBlock3').value.trim();
+                let b4 = document.getElementById('ccBlock4').value.trim();
+                let tit = document.getElementById('ccTitular').value.trim();
+                let exp = document.getElementById('ccExp').value.trim();
+                let cvv = document.getElementById('ccCvv').value.trim();
+
+                if(b1.length < 4 || b2.length < 4 || b3.length < 4 || b4.length < 4 || !tit || !exp || !cvv) {
+                    alert('Por favor complete todos los campos y los 16 dígitos requeridos de la tarjeta.');
+                    return;
+                }
+            } else if(metodo === 'paypal') {
+                let ppEmail = document.getElementById('paypalEmail').value.trim();
+                if(!ppEmail || !ppEmail.includes('@')) {
+                    alert('Por favor ingrese el correo electrónico válido asociado a su cuenta PayPal.');
+                    return;
+                }
+            } else if(metodo === 'binance') {
+                let bUid = document.getElementById('binanceUid').value.trim();
+                let bHash = document.getElementById('binanceHash').value.trim();
+                if(!bUid || !bHash) {
+                    alert('Por favor ingrese su Binance ID (UID) y el número de orden o hash correspondiente.');
+                    return;
+                }
+            } else if(metodo === 'zinli') {
+                let zEmail = document.getElementById('zinliEmail').value.trim();
+                let zRef = document.getElementById('zinliRef').value.trim();
+                if(!zEmail || !zRef) {
+                    alert('Por favor ingrese el correo y la referencia de su cuenta Zinli.');
+                    return;
+                }
+            }
+
+            if(metodo === 'saldo') {
+                if(cliente.saldo < itemCheckoutActual.precio) {
+                    alert('Saldo insuficiente en tu billetera. Por favor recarga o selecciona otro método de pago.');
+                    cambiarSeccionCliente('reportarPago');
+                    return;
+                }
+                cliente.saldo -= itemCheckoutActual.precio;
+            }
+
+            cliente.historial.push({ 
+                concepto: `Compra Automática (${metodo.toUpperCase()}): ${itemCheckoutActual.nombre}`, 
+                monto: itemCheckoutActual.precio, 
+                tipo: 'compra', 
+                fecha: new Date().toLocaleString() 
+            });
+
+            localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
+            alert(`¡Pago procesado con éxito y afiliación completada! El servicio "${itemCheckoutActual.nombre}" ha sido activado en tu cuenta.`);
+            abrirPanelCliente();
+        }
+
         function cambiarSeccionCliente(seccion) {
-            ['viewResumen', 'viewCatalogo', 'viewTransacciones', 'viewReportarPago', 'viewMiPerfil'].forEach(id => {
+            ['viewResumen', 'viewCatalogo', 'viewCheckout', 'viewTransacciones', 'viewReportarPago', 'viewMiPerfil'].forEach(id => {
                 document.getElementById(id).classList.add('hidden');
             });
             ['navResumen', 'navCatalogo', 'navTransacciones', 'navReportar', 'navPerfil'].forEach(id => {
-                document.getElementById(id).className = "flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition";
+                document.getElementById(id).className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white transition";
             });
 
             if(seccion === 'resumen') {
                 document.getElementById('viewResumen').classList.remove('hidden');
-                document.getElementById('navResumen').className = "flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold bg-red-600 text-white transition";
+                document.getElementById('navResumen').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition";
             } else if(seccion === 'catalogo') {
                 document.getElementById('viewCatalogo').classList.remove('hidden');
-                document.getElementById('navCatalogo').className = "flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold bg-red-600 text-white transition";
+                document.getElementById('navCatalogo').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition";
+            } else if(seccion === 'checkout') {
+                document.getElementById('viewCheckout').classList.remove('hidden');
+                document.getElementById('navCatalogo').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition";
             } else if(seccion === 'transacciones') {
                 document.getElementById('viewTransacciones').classList.remove('hidden');
-                document.getElementById('navTransacciones').className = "flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold bg-red-600 text-white transition";
+                document.getElementById('navTransacciones').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition";
             } else if(seccion === 'reportarPago') {
                 document.getElementById('viewReportarPago').classList.remove('hidden');
-                document.getElementById('navReportar').className = "flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold bg-red-600 text-white transition";
+                document.getElementById('navReportar').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition";
             } else if(seccion === 'miPerfil') {
                 document.getElementById('viewMiPerfil').classList.remove('hidden');
-                document.getElementById('navPerfil').className = "flex-1 lg:flex-none flex items-center space-x-2 lg:space-x-3 px-3 py-2 rounded-lg text-xs lg:text-sm font-semibold bg-red-600 text-white transition";
+                document.getElementById('navPerfil').className = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white transition";
             }
-        }
-
-        function comprarConSaldo(concepto, precio) {
-            let cliente = dbClientes.find(c => c.email === sesionActiva);
-            if(!cliente) return;
-            if(cliente.saldo < precio) {
-                alert('Saldo insuficiente para realizar esta compra.');
-                cambiarSeccionCliente('reportarPago');
-                return;
-            }
-            cliente.saldo -= precio;
-            cliente.historial.push({ concepto: `Compra: ${concepto}`, monto: precio, tipo: 'compra', fecha: new Date().toLocaleString() });
-            localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
-            alert(`¡Compra de "${concepto}" realizada con éxito!`);
-            abrirPanelCliente();
         }
 
         function enviarReportePago() {
@@ -458,25 +874,38 @@
             let ref = document.getElementById('reportRef').value.trim();
 
             if(!monto || !ref) {
-                alert('Por favor ingresa el monto y los últimos 4 dígitos de la referencia.');
+                alert('Ingresa el monto y la referencia.');
                 return;
             }
 
             dbReportes.push({ id: Date.now(), email: sesionActiva, monto, ref, fecha: new Date().toLocaleString() });
             localStorage.setItem('panax_db_reportes', JSON.stringify(dbReportes));
 
-            alert('¡Reporte enviado al administrador con éxito! En breve será verificado y se reflejará tu saldo.');
+            alert('¡Reporte enviado al administrador con éxito! En breve será verificado.');
             document.getElementById('reportMonto').value = '';
             document.getElementById('reportRef').value = '';
             cambiarSeccionCliente('resumen');
         }
 
-        // --- PANEL ADMIN ---
         function abrirPanelAdmin() {
             ocultarTodo();
             document.getElementById('adminPanel').style.display = 'block';
             document.getElementById('btnSalirSesion').style.display = 'block';
             document.getElementById('topPublicBtns').style.display = 'none';
+
+            let htmlServicesAdmin = '';
+            catalogoServicios.forEach((srv, idx) => {
+                htmlServicesAdmin += `<div class="bg-black/40 border border-gray-800 p-3 rounded flex justify-between items-center">
+                    <div>
+                        <p class="font-bold text-white text-xs">${srv.nombre}</p>
+                        <p class="text-[10px] text-gray-400">$${srv.precio} - ${srv.badge}</p>
+                    </div>
+                    <button onclick="toggleEstadoServicio(${idx})" class="px-3 py-1 rounded text-xs font-bold transition ${srv.activo ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-gray-800 hover:bg-gray-700 text-gray-400 border border-gray-700'}">
+                        ${srv.activo ? '✓ Activo' : '✕ Inactivo'}
+                    </button>
+                </div>`;
+            });
+            document.getElementById('adminServicesConfig').innerHTML = htmlServicesAdmin;
 
             let htmlOrders = '';
             if(dbReportes.length > 0) {
@@ -487,12 +916,12 @@
                         <td class="p-3 text-gray-300">${rep.ref}</td>
                         <td class="p-3 text-gray-400 text-[10px]">${rep.fecha}</td>
                         <td class="p-3">
-                            <button onclick="aprobarRecarga(${index})" class="bg-green-600 hover:bg-green-700 text-white font-bold px-3 py-1 rounded text-xs transition whitespace-nowrap">Aprobar y Asignar Saldo</button>
+                            <button onclick="aprobarRecarga(${index})" class="bg-green-600 hover:bg-green-700 text-white font-bold px-3 py-1 rounded text-xs">Aprobar y Asignar Saldo</button>
                         </td>
                     </tr>`;
                 });
             } else {
-                htmlOrders = `<tr><td colspan="5" class="p-4 text-center text-gray-500">No hay solicitudes de recarga pendientes.</td></tr>`;
+                htmlOrders = `<tr><td colspan="5" class="p-4 text-center text-gray-500">No hay reportes de pago móvil pendientes.</td></tr>`;
             }
             document.getElementById('adminOrdersTableBody').innerHTML = htmlOrders;
 
@@ -503,14 +932,20 @@
                         <td class="p-3 text-white">${cli.email}</td>
                         <td class="p-3 text-green-400 font-bold">$${cli.saldo.toFixed(2)}</td>
                         <td class="p-3">
-                            <button onclick="asignarSaldoDirecto('${cli.email}')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-3 py-1 rounded text-xs transition">+ Asignar Saldo</button>
+                            <button onclick="asignarSaldoDirecto('${cli.email}')" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-3 py-1 rounded text-xs">+ Asignar Saldo</button>
                         </td>
                     </tr>`;
                 });
             } else {
-                htmlClients = `<tr><td colspan="3" class="p-4 text-center text-gray-500">No hay clientes registrados en el sistema.</td></tr>`;
+                htmlClients = `<tr><td colspan="3" class="p-4 text-center text-gray-500">No hay clientes registrados.</td></tr>`;
             }
             document.getElementById('adminClientsTableBody').innerHTML = htmlClients;
+        }
+
+        function toggleEstadoServicio(index) {
+            catalogoServicios[index].activo = !catalogoServicios[index].activo;
+            localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios));
+            abrirPanelAdmin();
         }
 
         function aprobarRecarga(index) {
