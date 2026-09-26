@@ -288,21 +288,21 @@
                     <div id="catalogContainer" class="space-y-6"></div>
                 </div>
 
-                <!-- CHECKOUT UNIFICADO -->
+                <!-- CHECKOUT UNIFICADO CON MÉTODOS DE PAGO Y REQUISITOS (Basado en imagen 2) -->
                 <div id="viewCheckout" class="hidden space-y-6 max-w-6xl mx-auto">
                     <div class="bg-gray-900 border border-gray-800 px-6 py-4 rounded-xl flex justify-between items-center max-w-xl mx-auto">
                         <div class="text-center">
-                            <span class="text-[10px] text-gray-400 block uppercase font-bold">1. SELECCIÓN</span>
-                            <span class="text-xs font-bold text-green-400">✓ Hecho</span>
+                            <span class="text-[10px] text-gray-400 block uppercase font-bold">1. ENVÍO</span>
+                            <span class="text-xs font-bold text-green-400">✓ Completado</span>
                         </div>
                         <div class="h-0.5 w-12 bg-green-600"></div>
                         <div class="text-center">
-                            <span class="text-[10px] text-gray-400 block uppercase font-bold">2. MODALIDAD PANA</span>
-                            <span class="text-xs font-bold text-green-400">✓ Flexible</span>
+                            <span class="text-[10px] text-gray-400 block uppercase font-bold">2. DATOS</span>
+                            <span class="text-xs font-bold text-green-400">✓ Verificados</span>
                         </div>
                         <div class="h-0.5 w-12 bg-red-600"></div>
                         <div class="text-center">
-                            <span class="text-[10px] text-gray-400 block uppercase font-bold">3. PAGO INICIAL</span>
+                            <span class="text-[10px] text-gray-400 block uppercase font-bold">3. PAGO &amp; REVISIÓN</span>
                             <span class="text-xs font-bold text-red-500">● En curso</span>
                         </div>
                     </div>
@@ -311,41 +311,105 @@
                         <div class="lg:col-span-7 space-y-6">
                             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-4">
                                 <div class="flex justify-between items-center border-b border-gray-800 pb-3">
-                                    <h3 class="text-sm font-bold uppercase text-white tracking-wider">📦 DATOS DE DESTINO</h3>
-                                    <button onclick="cambiarSeccionCliente('catalogo')" class="text-xs text-red-500 hover:text-red-400 font-bold underline">Modificar</button>
+                                    <h3 class="text-sm font-bold uppercase text-white tracking-wider">📦 INFORMACIÓN DE ENTREGA Y DESTINO</h3>
+                                    <button onclick="cambiarSeccionCliente('catalogo')" class="text-xs text-red-500 hover:text-red-400 font-bold underline">Cambiar servicio</button>
                                 </div>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                                     <div class="bg-black/40 border border-gray-800 p-3 rounded-lg">
-                                        <p class="text-gray-400 uppercase text-[10px] font-bold">CLIENTE</p>
+                                        <p class="text-gray-400 uppercase text-[10px] font-bold">COMPRADOR</p>
                                         <p class="font-bold text-white mt-1" id="chkResumenNombre">-</p>
                                     </div>
                                     <div class="bg-black/40 border border-gray-800 p-3 rounded-lg">
-                                        <p class="text-gray-400 uppercase text-[10px] font-bold">CORREO</p>
+                                        <p class="text-gray-400 uppercase text-[10px] font-bold">CORREO DE DESTINO</p>
                                         <p class="font-bold text-white mt-1 truncate" id="chkResumenEmail">-</p>
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="text-xs text-gray-400 block mb-1">Teléfono / WhatsApp de Contacto</label>
+                                    <label class="text-xs text-gray-400 block mb-1">Confirmar Teléfono / WhatsApp para Notificaciones</label>
                                     <input type="text" id="chkTelefono" placeholder="Ej: 0412-1234567" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
                                 </div>
                             </div>
 
                             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-4">
-                                <h3 class="text-sm font-bold uppercase text-white tracking-wider border-b border-gray-800 pb-3">💳 SELECCIONA MÉTODO DE PAGO</h3>
+                                <h3 class="text-sm font-bold uppercase text-white tracking-wider border-b border-gray-800 pb-3">💳 MÉTODO DE PAGO Y REQUISITOS</h3>
                                 <div class="space-y-3">
+                                    
+                                    <!-- Método 1: Billetera -->
                                     <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
                                         <input type="radio" name="metodoPagoUnificado" value="saldo" checked onclick="toggleMetodoPago('saldo')" class="accent-red-600 mt-1">
                                         <div class="flex-1">
                                             <div class="flex justify-between items-center">
-                                                <span class="font-bold text-white text-sm">Billetera Saldo Disponible</span>
+                                                <span class="font-bold text-white text-sm">Billetera PanaXtreaming (Saldo Disponible)</span>
                                                 <span class="text-xs text-green-400 font-bold" id="checkoutSaldoDisponiblesLabel">$0.00</span>
                                             </div>
-                                            <p class="text-xs text-gray-400 mt-0.5">Descuento inmediato de tu saldo disponible.</p>
+                                            <p class="text-xs text-gray-400 mt-0.5">Débito inmediato y automático desde tu balance interno.</p>
                                         </div>
                                     </label>
+
+                                    <!-- Método 2: Tarjeta de Crédito o Débito -->
+                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
+                                        <input type="radio" name="metodoPagoUnificado" value="tarjeta" onclick="toggleMetodoPago('tarjeta')" class="accent-red-600 mt-1">
+                                        <div class="flex-1">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-bold text-white text-sm">Tarjeta de Crédito o Débito</span>
+                                                <span class="text-xs text-cyan-400 font-bold">Visa / Master</span>
+                                            </div>
+                                            <p class="text-xs text-gray-400 mt-0.5">Procesamiento automático seguro.</p>
+                                        </div>
+                                    </label>
+                                    <div id="reqTarjeta" class="hidden pl-7 space-y-3 pt-1">
+                                        <input type="text" id="reqCardNumber" placeholder="Número de tarjeta (16 dígitos)" maxlength="16" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <input type="text" id="reqCardExp" placeholder="MM/AA" maxlength="5" class="bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                                            <input type="password" id="reqCardCvv" placeholder="CVV (3 dígitos)" maxlength="4" class="bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                                        </div>
+                                    </div>
+
+                                    <!-- Método 3: Pago Móvil / Transferencia -->
+                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
+                                        <input type="radio" name="metodoPagoUnificado" value="pagomovil" onclick="toggleMetodoPago('pagomovil')" class="accent-red-600 mt-1">
+                                        <div class="flex-1">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-bold text-white text-sm">Pago Móvil / Transferencia Bancaria</span>
+                                                <span class="text-xs text-yellow-400 font-bold">Nacional (Bolívares)</span>
+                                            </div>
+                                            <p class="text-xs text-gray-400 mt-0.5">Validación automática por referencia.</p>
+                                        </div>
+                                    </label>
+                                    <div id="reqPagoMovil" class="hidden pl-7 space-y-3 pt-1">
+                                        <select id="reqBanco" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                                            <option value="">Selecciona tu banco</option>
+                                            <option value="Provincial">0108 - Banco Provincial</option>
+                                            <option value="Banesco">0134 - Banesco</option>
+                                            <option value="Mercantil">0105 - Banco Mercantil</option>
+                                            <option value="Venezuela">0102 - Banco de Venezuela</option>
+                                            <option value="BNC">0191 - BNC</option>
+                                        </select>
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <input type="text" id="reqTlfOrigen" placeholder="Teléfono (Ej: 04121234567)" class="bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                                            <input type="text" id="reqRefBancaria" placeholder="Últimos 4 dígitos Ref." maxlength="4" class="bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                                        </div>
+                                    </div>
+
+                                    <!-- Método 4: Binance Pay / USDT -->
+                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
+                                        <input type="radio" name="metodoPagoUnificado" value="binance" onclick="toggleMetodoPago('binance')" class="accent-red-600 mt-1">
+                                        <div class="flex-1">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-bold text-white text-sm">Binance Pay (USDT)</span>
+                                                <span class="text-xs text-amber-400 font-bold">Cripto Instantáneo</span>
+                                            </div>
+                                            <p class="text-xs text-gray-400 mt-0.5">Acreditación automática por ID de Binance.</p>
+                                        </div>
+                                    </label>
+                                    <div id="reqBinance" class="hidden pl-7 space-y-3 pt-1">
+                                        <input type="text" id="reqBinanceId" placeholder="Correo o Binance Pay ID" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                                    </div>
+
                                 </div>
-                                <button onclick="procesarCompraAutomatizadaFinal()" class="w-full bg-red-600 hover:bg-red-700 text-white font-black text-sm uppercase p-4 rounded-xl transition shadow-xl tracking-wider mt-2">
-                                    PAGAR INICIAL / AUTORIZAR ORDEN PANA
+
+                                <button onclick="procesarCompraAutomatizadaFinal()" class="w-full bg-red-600 hover:bg-red-700 text-white font-black text-sm uppercase p-4 rounded-xl transition shadow-xl tracking-wider mt-4">
+                                    REVIEW &amp; PAY / AUTORIZAR PAGO INSTANTÁNEO
                                 </button>
                             </div>
                         </div>
@@ -353,14 +417,14 @@
                         <div class="lg:col-span-5">
                             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl sticky top-20 space-y-4">
                                 <h4 class="font-bold text-sm text-white uppercase tracking-wider border-b border-gray-800 pb-3 flex justify-between items-center">
-                                    <span>RESUMEN DE ORDEN</span>
-                                    <span class="text-xs text-red-500 font-normal" id="summaryItemsCount">1 Artículo</span>
+                                    <span>TU ORDEN</span>
+                                    <span class="text-xs text-red-500 font-normal" id="summaryItemsCount">1 Artículo(s)</span>
                                 </h4>
                                 <div id="cartItemsSummaryList" class="space-y-3 max-h-60 overflow-y-auto pr-1"></div>
                                 <div class="border-t border-gray-800 pt-3 space-y-2 text-xs text-gray-300">
                                     <div class="flex justify-between"><span>Subtotal</span><span id="summarySubtotal" class="font-bold text-white">$0.00</span></div>
                                     <div class="flex justify-between border-t border-gray-800 pt-3 text-base font-black text-white">
-                                        <span>Total a Pagar Hoy (Inicial)</span>
+                                        <span>Total a Pagar (USD)</span>
                                         <span class="text-green-400 text-xl" id="summaryTotal">$0.00</span>
                                     </div>
                                 </div>
@@ -445,9 +509,9 @@
     <!-- SCRIPT -->
     <script>
         let catalogoServicios = JSON.parse(localStorage.getItem('panax_db_servicios')) || [
-            { id: 'srv1', categoria: '🎬 Streaming de Video', nombre: 'Cuenta Completa PanaXtreaming', desc: 'Acceso total con máxima estabilidad (Demo 12 horas disponible).', precio: 8, activo: true, badge: 'PanaXtreaming', badgeColor: 'bg-red-900 text-red-300' },
-            { id: 'srv2', categoria: '🎬 Streaming de Video', nombre: 'ST3TLLA TV Completa', desc: 'Programación en vivo en HD (Demo 12 horas disponible).', precio: 10, activo: true, badge: 'ST3TLLA TV', badgeColor: 'bg-red-900 text-red-300' },
-            { id: 'srv3', categoria: '🎬 Streaming de Video', nombre: 'Cuenta Completa Netflix 4K', desc: 'Cuenta completa de alta definición.', precio: 4, activo: true, badge: 'Netflix', badgeColor: 'bg-red-900 text-red-300' },
+            { id: 'srv1', categoria: '🎬 Streaming de Video', nombre: 'Cuenta Completa PanaXtreaming', desc: 'Acceso total con máxima estabilidad.', precio: 8, activo: true, badge: 'PanaXtreaming', badgeColor: 'bg-red-900 text-red-300' },
+            { id: 'srv2', categoria: '🎬 Streaming de Video', nombre: 'ST3TLLA TV Completa', desc: 'Programación en vivo en HD.', precio: 10, activo: true, badge: 'ST3TLLA TV', badgeColor: 'bg-red-900 text-red-300' },
+            { id: 'srv3', categoria: '🎬 Streaming de Video', nombre: 'Perfil Netflix 4K', desc: 'Pantalla individual de alta definición.', precio: 4, activo: true, badge: 'Netflix', badgeColor: 'bg-red-900 text-red-300' },
             { id: 'srv4', categoria: '🎬 Streaming de Video', nombre: 'Disney+ / Combo+', desc: 'Series, películas y deportes en vivo.', precio: 5, activo: true, badge: 'Disney+', badgeColor: 'bg-blue-900 text-blue-300' },
             { id: 'srv5', categoria: '🎬 Streaming de Video', nombre: 'Max (HBO) Cuenta', desc: 'Estrenos y contenido exclusivo.', precio: 4, activo: true, badge: 'Max', badgeColor: 'bg-purple-900 text-purple-300' },
             { id: 'srv6', categoria: '🎬 Streaming de Video', nombre: 'Prime Video', desc: 'Series y películas originales.', precio: 3, activo: true, badge: 'Amazon', badgeColor: 'bg-cyan-900 text-cyan-300' },
@@ -524,7 +588,7 @@
             let pass = document.getElementById('reg-pass').value.trim();
             if(!email || !cedula || !pass) { alert('Completa todos los campos.'); return; }
             if(dbClientes.find(c => c.email === email)) { alert('El correo ya está registrado.'); mostrarPantalla('loginScreen'); return; }
-            dbClientes.push({ email, cedula, pass, saldo: 0, historial: [] });
+            dbClientes.push({ email, cedula, pass, saldo: 50.00, historial: [] }); // Bono de prueba inicial $50
             localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
             alert('¡Registro exitoso! Inicia sesión.');
             mostrarPantalla('loginScreen');
@@ -662,12 +726,22 @@
             document.getElementById('cartItemsSummaryList').innerHTML = htmlItems;
             document.getElementById('summaryItemsCount').innerText = `${carrito.length} Artículo(s)`;
             document.getElementById('summarySubtotal').innerText = `$${total.toFixed(2)}`;
-            document.getElementById('summaryTotal').innerText = `$${inicialTotal.toFixed(2)} (40% Inicial)`;
+            document.getElementById('summaryTotal').innerText = `$${inicialTotal.toFixed(2)}`;
             cambiarSeccionCliente('checkout');
         }
 
         function toggleMetodoPago(metodo) {
-            // Manejador de pago
+            document.getElementById('reqTarjeta').classList.add('hidden');
+            document.getElementById('reqPagoMovil').classList.add('hidden');
+            document.getElementById('reqBinance').classList.add('hidden');
+
+            if (metodo === 'tarjeta') {
+                document.getElementById('reqTarjeta').classList.remove('hidden');
+            } else if (metodo === 'pagomovil') {
+                document.getElementById('reqPagoMovil').classList.remove('hidden');
+            } else if (metodo === 'binance') {
+                document.getElementById('reqBinance').classList.remove('hidden');
+            }
         }
 
         function procesarCompraAutomatizadaFinal() {
@@ -675,17 +749,44 @@
             let total = carrito.reduce((acc, i) => acc + i.precio, 0);
             let inicialTotal = total * 0.4;
             
-            if(cliente.saldo < inicialTotal) {
-                alert('Saldo insuficiente para cubrir el pago inicial PANA (40%). Por favor recarga tu billetera.');
-                cambiarSeccionCliente('reportarPago');
-                return;
+            let metodoSeleccionado = document.querySelector('input[name="metodoPagoUnificado"]:checked').value;
+
+            if (metodoSeleccionado === 'saldo') {
+                if(cliente.saldo < inicialTotal) {
+                    alert('Saldo insuficiente en tu billetera para cubrir el pago inicial PANA (40%). Recarga tu saldo.');
+                    cambiarSeccionCliente('reportarPago');
+                    return;
+                }
+                cliente.saldo -= inicialTotal;
+            } else if (metodoSeleccionado === 'tarjeta') {
+                let cardNum = document.getElementById('reqCardNumber').value.trim();
+                let cardExp = document.getElementById('reqCardExp').value.trim();
+                let cardCvv = document.getElementById('reqCardCvv').value.trim();
+                if(cardNum.length < 16 || !cardExp || !cardCvv) {
+                    alert('Por favor ingresa los datos válidos de tu tarjeta de crédito o débito.');
+                    return;
+                }
+            } else if (metodoSeleccionado === 'pagomovil') {
+                let banco = document.getElementById('reqBanco').value;
+                let tlf = document.getElementById('reqTlfOrigen').value.trim();
+                let ref = document.getElementById('reqRefBancaria').value.trim();
+                if(!banco || !tlf || ref.length < 4) {
+                    alert('Por favor completa los datos del Pago Móvil autorizados (Banco, Teléfono y 4 dígitos de referencia).');
+                    return;
+                }
+            } else if (metodoSeleccionado === 'binance') {
+                let binanceId = document.getElementById('reqBinanceId').value.trim();
+                if(!binanceId) {
+                    alert('Por favor ingresa tu correo o ID de Binance Pay.');
+                    return;
+                }
             }
-            cliente.saldo -= inicialTotal;
-            cliente.historial.push({ concepto: `Pago inicial cuotas PANA servicio digital`, monto: inicialTotal, tipo: 'compra', fecha: new Date().toLocaleString() });
+
+            cliente.historial.push({ concepto: `Pago inicial cuotas PANA / Método: ${metodoSeleccionado.toUpperCase()}`, monto: inicialTotal, tipo: 'compra', fecha: new Date().toLocaleString() });
             localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
             carrito = [];
             document.getElementById('cartCount').innerText = '0';
-            alert('¡Inicial PANA procesado con éxito! Tu servicio ha sido activado y tus cuotas quincenales han sido programadas.');
+            alert('¡Pago procesado de forma automática y exitosa! Tu servicio digital ha sido activado y tus cuotas programadas.');
             abrirPanelCliente();
         }
 
