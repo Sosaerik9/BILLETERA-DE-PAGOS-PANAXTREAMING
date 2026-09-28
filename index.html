@@ -288,7 +288,7 @@
                     <div id="catalogContainer" class="space-y-6"></div>
                 </div>
 
-                <!-- CHECKOUT UNIFICADO CON MÉTODOS DE PAGO Y REQUISITOS (Basado en imagen 2) -->
+                <!-- CHECKOUT UNIFICADO CON MÉTODOS DE PAGO ACTUALIZADOS (Inspirado en las imágenes) -->
                 <div id="viewCheckout" class="hidden space-y-6 max-w-6xl mx-auto">
                     <div class="bg-gray-900 border border-gray-800 px-6 py-4 rounded-xl flex justify-between items-center max-w-xl mx-auto">
                         <div class="text-center">
@@ -331,7 +331,7 @@
                             </div>
 
                             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-4">
-                                <h3 class="text-sm font-bold uppercase text-white tracking-wider border-b border-gray-800 pb-3">💳 MÉTODO DE PAGO Y REQUISITOS</h3>
+                                <h3 class="text-sm font-bold uppercase text-white tracking-wider border-b border-gray-800 pb-3">💳 MÉTODOS DE PAGO Y REQUISITOS</h3>
                                 <div class="space-y-3">
                                     
                                     <!-- Método 1: Billetera -->
@@ -346,26 +346,54 @@
                                         </div>
                                     </label>
 
-                                    <!-- Método 2: Tarjeta de Crédito o Débito -->
+                                    <!-- Método 2: Tarjeta de Crédito o Débito (Actualizado según la imagen 2) -->
                                     <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
                                         <input type="radio" name="metodoPagoUnificado" value="tarjeta" onclick="toggleMetodoPago('tarjeta')" class="accent-red-600 mt-1">
                                         <div class="flex-1">
                                             <div class="flex justify-between items-center">
-                                                <span class="font-bold text-white text-sm">Tarjeta de Crédito o Débito</span>
-                                                <span class="text-xs text-cyan-400 font-bold">Visa / Master</span>
+                                                <span class="font-bold text-white text-sm">Pay With Card (Tarjeta de Crédito o Débito)</span>
+                                                <span class="text-xs text-cyan-400 font-bold">Visa / Master / Amex</span>
                                             </div>
-                                            <p class="text-xs text-gray-400 mt-0.5">Procesamiento automático seguro.</p>
+                                            <p class="text-xs text-gray-400 mt-0.5">Your information is encrypted and secure.</p>
                                         </div>
                                     </label>
                                     <div id="reqTarjeta" class="hidden pl-7 space-y-3 pt-1">
-                                        <input type="text" id="reqCardNumber" placeholder="Número de tarjeta (16 dígitos)" maxlength="16" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                                        <div>
+                                            <label class="text-[11px] text-gray-400 block mb-1">Card number</label>
+                                            <input type="text" id="reqCardNumber" placeholder="Número de tarjeta (16 dígitos)" maxlength="16" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                                        </div>
+                                        <div>
+                                            <label class="text-[11px] text-gray-400 block mb-1">Cardholder name</label>
+                                            <input type="text" id="reqCardName" placeholder="Nombre del titular" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                                        </div>
                                         <div class="grid grid-cols-2 gap-2">
-                                            <input type="text" id="reqCardExp" placeholder="MM/AA" maxlength="5" class="bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
-                                            <input type="password" id="reqCardCvv" placeholder="CVV (3 dígitos)" maxlength="4" class="bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                                            <div>
+                                                <label class="text-[11px] text-gray-400 block mb-1">Expiration date (MM/AA)</label>
+                                                <input type="text" id="reqCardExp" placeholder="MM/AA" maxlength="5" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                                            </div>
+                                            <div>
+                                                <label class="text-[11px] text-gray-400 block mb-1">Security code (CVV)</label>
+                                                <input type="password" id="reqCardCvv" placeholder="CVV" maxlength="4" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <!-- Método 3: Pago Móvil / Transferencia -->
+                                    <!-- Método 3: PayPal (Actualizado según la imagen 2) -->
+                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
+                                        <input type="radio" name="metodoPagoUnificado" value="paypal" onclick="toggleMetodoPago('paypal')" class="accent-red-600 mt-1">
+                                        <div class="flex-1">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-bold text-white text-sm">PayPal (Or Pay With PayPal)</span>
+                                                <span class="text-xs text-blue-400 font-bold">Pay in 4 available</span>
+                                            </div>
+                                            <p class="text-xs text-gray-400 mt-0.5">Redirección segura y pago instantáneo internacional.</p>
+                                        </div>
+                                    </label>
+                                    <div id="reqPaypal" class="hidden pl-7 space-y-3 pt-1">
+                                        <input type="text" id="reqPaypalEmail" placeholder="Correo electrónico de tu cuenta PayPal" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                                    </div>
+
+                                    <!-- Método 4: Pago Móvil / Transferencia -->
                                     <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
                                         <input type="radio" name="metodoPagoUnificado" value="pagomovil" onclick="toggleMetodoPago('pagomovil')" class="accent-red-600 mt-1">
                                         <div class="flex-1">
@@ -373,7 +401,7 @@
                                                 <span class="font-bold text-white text-sm">Pago Móvil / Transferencia Bancaria</span>
                                                 <span class="text-xs text-yellow-400 font-bold">Nacional (Bolívares)</span>
                                             </div>
-                                            <p class="text-xs text-gray-400 mt-0.5">Validación automática por referencia.</p>
+                                            <p class="text-xs text-gray-400 mt-0.5">Validación por referencia para revisión del administrador.</p>
                                         </div>
                                     </label>
                                     <div id="reqPagoMovil" class="hidden pl-7 space-y-3 pt-1">
@@ -391,7 +419,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Método 4: Binance Pay / USDT -->
+                                    <!-- Método 5: Binance Pay / USDT -->
                                     <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
                                         <input type="radio" name="metodoPagoUnificado" value="binance" onclick="toggleMetodoPago('binance')" class="accent-red-600 mt-1">
                                         <div class="flex-1">
@@ -409,7 +437,7 @@
                                 </div>
 
                                 <button onclick="procesarCompraAutomatizadaFinal()" class="w-full bg-red-600 hover:bg-red-700 text-white font-black text-sm uppercase p-4 rounded-xl transition shadow-xl tracking-wider mt-4">
-                                    REVIEW &amp; PAY / AUTORIZAR PAGO INSTANTÁNEO
+                                    REVIEW ORDER / AUTORIZAR PAGO INSTANTÁNEO
                                 </button>
                             </div>
                         </div>
@@ -417,14 +445,14 @@
                         <div class="lg:col-span-5">
                             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl sticky top-20 space-y-4">
                                 <h4 class="font-bold text-sm text-white uppercase tracking-wider border-b border-gray-800 pb-3 flex justify-between items-center">
-                                    <span>TU ORDEN</span>
+                                    <span>TU ORDEN (YOUR ORDER)</span>
                                     <span class="text-xs text-red-500 font-normal" id="summaryItemsCount">1 Artículo(s)</span>
                                 </h4>
                                 <div id="cartItemsSummaryList" class="space-y-3 max-h-60 overflow-y-auto pr-1"></div>
                                 <div class="border-t border-gray-800 pt-3 space-y-2 text-xs text-gray-300">
                                     <div class="flex justify-between"><span>Subtotal</span><span id="summarySubtotal" class="font-bold text-white">$0.00</span></div>
                                     <div class="flex justify-between border-t border-gray-800 pt-3 text-base font-black text-white">
-                                        <span>Total a Pagar (USD)</span>
+                                        <span>Order total (USD)</span>
                                         <span class="text-green-400 text-xl" id="summaryTotal">$0.00</span>
                                     </div>
                                 </div>
@@ -473,20 +501,37 @@
             </div>
         </div>
 
-        <!-- 6. PANEL ADMIN -->
+        <!-- 6. PANEL ADMIN CON BOTONES DE PROCESAMIENTO Y GESTIÓN DE SOLICITUDES -->
         <div id="adminPanel" class="hidden flex-1 p-6 max-w-6xl mx-auto w-full space-y-6">
             <div class="flex justify-between items-center bg-gray-900 border border-gray-800 p-6 rounded-xl flex-wrap gap-4">
                 <div>
-                    <h2 class="text-2xl font-black text-green-400">🛡️ Panel de Administración</h2>
+                    <h2 class="text-2xl font-black text-green-400">🛡️ Panel de Administración - Solicitudes de Clientes</h2>
                 </div>
                 <button onclick="cerrarSesion()" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white text-xs font-bold px-4 py-2 rounded">Cerrar Sesión Admin</button>
             </div>
+
+            <!-- SECCIÓN 1: Solicitudes de Pedidos / Órdenes y Pagos (Tarjetas, PayPal, Billetera, etc.) -->
             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
-                <h3 class="text-sm font-bold uppercase mb-2 text-cyan-400">⚙️ Estado de Servicios</h3>
-                <div id="adminServicesConfig" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3"></div>
+                <h3 class="text-sm font-bold uppercase mb-4 text-red-500">📦 Solicitudes de Órdenes y Checkout de Clientes</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="bg-gray-800 text-gray-300 border-b border-gray-700">
+                                <th class="p-3">Cliente</th>
+                                <th class="p-3">Método / Detalles</th>
+                                <th class="p-3">Total ($)</th>
+                                <th class="p-3">Fecha</th>
+                                <th class="p-3">Acciones de Procesamiento</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminOrdersTableBody"></tbody>
+                    </table>
+                </div>
             </div>
+
+            <!-- SECCIÓN 2: Reportes de Pago Móvil Pendientes -->
             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
-                <h3 class="text-sm font-bold uppercase mb-4 text-red-500">🔔 Reportes de Pago Móvil Pendientes</h3>
+                <h3 class="text-sm font-bold uppercase mb-4 text-yellow-400">🔔 Reportes de Pago Móvil / Recargas Pendientes</h3>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-xs border-collapse">
                         <thead>
@@ -498,9 +543,15 @@
                                 <th class="p-3">Acción</th>
                             </tr>
                         </thead>
-                        <tbody id="adminOrdersTableBody"></tbody>
+                        <tbody id="adminReportesTableBody"></tbody>
                     </table>
                 </div>
+            </div>
+
+            <!-- SECCIÓN 3: Configuración de Servicios -->
+            <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
+                <h3 class="text-sm font-bold uppercase mb-2 text-cyan-400">⚙️ Estado de Servicios del Catálogo</h3>
+                <div id="adminServicesConfig" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3"></div>
             </div>
         </div>
 
@@ -525,6 +576,7 @@
 
         let dbClientes = JSON.parse(localStorage.getItem('panax_db_clientes')) || [];
         let dbReportes = JSON.parse(localStorage.getItem('panax_db_reportes')) || [];
+        let dbSolicitudesOrdenes = JSON.parse(localStorage.getItem('panax_db_solicitudes_ordenes')) || [];
         let carrito = [];
         let sesionActiva = localStorage.getItem('panax_sesion_activa') || null;
         let adminActivo = localStorage.getItem('panax_admin_activo') === 'true';
@@ -588,7 +640,7 @@
             let pass = document.getElementById('reg-pass').value.trim();
             if(!email || !cedula || !pass) { alert('Completa todos los campos.'); return; }
             if(dbClientes.find(c => c.email === email)) { alert('El correo ya está registrado.'); mostrarPantalla('loginScreen'); return; }
-            dbClientes.push({ email, cedula, pass, saldo: 50.00, historial: [] }); // Bono de prueba inicial $50
+            dbClientes.push({ email, cedula, pass, saldo: 50.00, historial: [] });
             localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
             alert('¡Registro exitoso! Inicia sesión.');
             mostrarPantalla('loginScreen');
@@ -732,11 +784,14 @@
 
         function toggleMetodoPago(metodo) {
             document.getElementById('reqTarjeta').classList.add('hidden');
+            document.getElementById('reqPaypal').classList.add('hidden');
             document.getElementById('reqPagoMovil').classList.add('hidden');
             document.getElementById('reqBinance').classList.add('hidden');
 
             if (metodo === 'tarjeta') {
                 document.getElementById('reqTarjeta').classList.remove('hidden');
+            } else if (metodo === 'paypal') {
+                document.getElementById('reqPaypal').classList.remove('hidden');
             } else if (metodo === 'pagomovil') {
                 document.getElementById('reqPagoMovil').classList.remove('hidden');
             } else if (metodo === 'binance') {
@@ -748,8 +803,8 @@
             let cliente = dbClientes.find(c => c.email === sesionActiva);
             let total = carrito.reduce((acc, i) => acc + i.precio, 0);
             let inicialTotal = total * 0.4;
-            
             let metodoSeleccionado = document.querySelector('input[name="metodoPagoUnificado"]:checked').value;
+            let detallePago = metodoSeleccionado.toUpperCase();
 
             if (metodoSeleccionado === 'saldo') {
                 if(cliente.saldo < inicialTotal) {
@@ -760,33 +815,57 @@
                 cliente.saldo -= inicialTotal;
             } else if (metodoSeleccionado === 'tarjeta') {
                 let cardNum = document.getElementById('reqCardNumber').value.trim();
+                let cardName = document.getElementById('reqCardName').value.trim();
                 let cardExp = document.getElementById('reqCardExp').value.trim();
                 let cardCvv = document.getElementById('reqCardCvv').value.trim();
-                if(cardNum.length < 16 || !cardExp || !cardCvv) {
-                    alert('Por favor ingresa los datos válidos de tu tarjeta de crédito o débito.');
+                if(cardNum.length < 16 || !cardName || !cardExp || !cardCvv) {
+                    alert('Por favor ingresa todos los datos válidos de tu tarjeta (número, titular, expiración y CVV).');
                     return;
                 }
+                detallePago = `TARJETA (Terminada en ${cardNum.slice(-4)})`;
+            } else if (metodoSeleccionado === 'paypal') {
+                let paypalEmail = document.getElementById('reqPaypalEmail').value.trim();
+                if(!paypalEmail) {
+                    alert('Por favor ingresa tu correo electrónico de PayPal.');
+                    return;
+                }
+                detallePago = `PAYPAL (${paypalEmail})`;
             } else if (metodoSeleccionado === 'pagomovil') {
                 let banco = document.getElementById('reqBanco').value;
                 let tlf = document.getElementById('reqTlfOrigen').value.trim();
                 let ref = document.getElementById('reqRefBancaria').value.trim();
                 if(!banco || !tlf || ref.length < 4) {
-                    alert('Por favor completa los datos del Pago Móvil autorizados (Banco, Teléfono y 4 dígitos de referencia).');
+                    alert('Por favor completa los datos del Pago Móvil (Banco, Teléfono y 4 dígitos de referencia).');
                     return;
                 }
+                detallePago = `PAGO MÓVIL (${banco} - Ref: ${ref})`;
             } else if (metodoSeleccionado === 'binance') {
                 let binanceId = document.getElementById('reqBinanceId').value.trim();
                 if(!binanceId) {
                     alert('Por favor ingresa tu correo o ID de Binance Pay.');
                     return;
                 }
+                detallePago = `BINANCE PAY (${binanceId})`;
             }
 
-            cliente.historial.push({ concepto: `Pago inicial cuotas PANA / Método: ${metodoSeleccionado.toUpperCase()}`, monto: inicialTotal, tipo: 'compra', fecha: new Date().toLocaleString() });
+            // Registrar la orden en la base de datos de solicitudes para el Admin
+            dbSolicitudesOrdenes.push({
+                id: Date.now(),
+                email: cliente.email,
+                items: [...carrito],
+                totalInicial: inicialTotal,
+                metodo: detallePago,
+                estado: 'Pendiente de Aprobación',
+                fecha: new Date().toLocaleString()
+            });
+            localStorage.setItem('panax_db_solicitudes_ordenes', JSON.stringify(dbSolicitudesOrdenes));
+
+            cliente.historial.push({ concepto: `Orden de Compra / Método: ${detallePago}`, monto: inicialTotal, tipo: 'compra', fecha: new Date().toLocaleString() });
             localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
+            
             carrito = [];
             document.getElementById('cartCount').innerText = '0';
-            alert('¡Pago procesado de forma automática y exitosa! Tu servicio digital ha sido activado y tus cuotas programadas.');
+            alert('¡Orden enviada con éxito al sistema! El administrador procesará y activará tu servicio digital y cuotas en breve.');
             abrirPanelCliente();
         }
 
@@ -841,12 +920,14 @@
             cambiarSeccionCliente('resumen');
         }
 
+        // PANEL DE ADMINISTRACIÓN CON BOTONES DE PROCESAMIENTO
         function abrirPanelAdmin() {
             ocultarTodo();
             document.getElementById('adminPanel').style.display = 'block';
             document.getElementById('btnSalirSesion').style.display = 'block';
             document.getElementById('topPublicBtns').style.display = 'none';
 
+            // 1. Renderizar Configuración de Servicios
             let htmlServicesAdmin = '';
             catalogoServicios.forEach((srv, idx) => {
                 htmlServicesAdmin += `<div class="bg-black/40 border border-gray-800 p-3 rounded flex justify-between items-center">
@@ -856,11 +937,68 @@
             });
             document.getElementById('adminServicesConfig').innerHTML = htmlServicesAdmin;
 
+            // 2. Renderizar Solicitudes de Órdenes y Checkout de Clientes con Botones de Procesamiento
             let htmlOrders = '';
-            dbReportes.forEach((rep, index) => {
-                htmlOrders += `<tr class="border-b border-gray-800"><td class="p-3 text-white">${rep.email}</td><td class="p-3 text-green-400">$${rep.monto}</td><td class="p-3 text-gray-300">${rep.ref}</td><td class="p-3"><button onclick="dbClientes.find(c=>c.email==='${rep.email}').saldo+=${rep.monto};dbReportes.splice(${index},1);localStorage.setItem('panax_db_clientes',JSON.stringify(dbClientes));localStorage.setItem('panax_db_reportes',JSON.stringify(dbReportes));abrirPanelAdmin();" class="bg-green-600 text-white px-3 py-1 rounded text-xs font-bold">Aprobar</button></td></tr>`;
+            dbSolicitudesOrdenes.forEach((sol, index) => {
+                let itemsNombres = sol.items.map(i => i.nombre).join(', ');
+                htmlOrders += `<tr class="border-b border-gray-800">
+                    <td class="p-3 text-white font-bold">${sol.email}</td>
+                    <td class="p-3 text-gray-300"><strong>Items:</strong> ${itemsNombres}<br><span class="text-[10px] text-cyan-400">Método: ${sol.metodo}</span></td>
+                    <td class="p-3 text-green-400 font-black">$${sol.totalInicial.toFixed(2)}</td>
+                    <td class="p-3 text-gray-400 text-[10px]">${sol.fecha}</td>
+                    <td class="p-3 space-x-2">
+                        <button onclick="procesarSolicitudOrden(${index}, 'Aprobada')" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded text-xs font-bold transition">Aprobar / Procesar</button>
+                        <button onclick="procesarSolicitudOrden(${index}, 'Rechazada')" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded text-xs font-bold transition">Rechazar</button>
+                    </td>
+                </tr>`;
             });
-            document.getElementById('adminOrdersTableBody').innerHTML = htmlOrders || '<tr><td colspan="4" class="p-4 text-center text-gray-500">Sin reportes pendientes.</td></tr>';
+            document.getElementById('adminOrdersTableBody').innerHTML = htmlOrders || '<tr><td colspan="5" class="p-4 text-center text-gray-500">Sin órdenes o solicitudes de checkout pendientes.</td></tr>';
+
+            // 3. Renderizar Reportes de Pago Móvil con Botones de Aprobación
+            let htmlReportes = '';
+            dbReportes.forEach((rep, index) => {
+                htmlReportes += `<tr class="border-b border-gray-800">
+                    <td class="p-3 text-white">${rep.email}</td>
+                    <td class="p-3 text-green-400 font-bold">$${rep.monto}</td>
+                    <td class="p-3 text-gray-300">${rep.ref}</td>
+                    <td class="p-3 text-gray-400 text-[10px]">${rep.fecha}</td>
+                    <td class="p-3">
+                        <button onclick="aprobarPagoMovil(${index})" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded text-xs font-bold">Aprobar Saldo</button>
+                    </td>
+                </tr>`;
+            });
+            document.getElementById('adminReportesTableBody').innerHTML = htmlReportes || '<tr><td colspan="5" class="p-4 text-center text-gray-500">Sin reportes de pago móvil pendientes.</td></tr>';
+        }
+
+        // Función del Admin para Procesar/Aprobar/Rechazar Solicitudes de Órdenes
+        function procesarSolicitudOrden(index, estado) {
+            let sol = dbSolicitudesOrdenes[index];
+            sol.estado = estado;
+            // Registrar en el historial del cliente
+            let cliente = dbClientes.find(c => c.email === sol.email);
+            if(cliente) {
+                cliente.historial.push({ concepto: `Orden ${estado.toLowerCase()} - ${sol.metodo}`, monto: sol.totalInicial, tipo: 'compra', fecha: new Date().toLocaleString() });
+                localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
+            }
+            dbSolicitudesOrdenes.splice(index, 1);
+            localStorage.setItem('panax_db_solicitudes_ordenes', JSON.stringify(dbSolicitudesOrdenes));
+            alert(`Solicitud marcada como: ${estado}. El cliente ha sido actualizado.`);
+            abrirPanelAdmin();
+        }
+
+        // Función del Admin para Aprobar Pago Móvil y sumar saldo al cliente
+        function aprobarPagoMovil(index) {
+            let rep = dbReportes[index];
+            let cliente = dbClientes.find(c => c.email === rep.email);
+            if(cliente) {
+                cliente.saldo += rep.monto;
+                cliente.historial.push({ concepto: `Recarga Pago Móvil Ref: ${rep.ref}`, monto: rep.monto, tipo: 'recarga', fecha: new Date().toLocaleString() });
+                localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
+            }
+            dbReportes.splice(index, 1);
+            localStorage.setItem('panax_db_reportes', JSON.stringify(dbReportes));
+            alert('¡Pago móvil aprobado con éxito y acreditado al saldo del cliente!');
+            abrirPanelAdmin();
         }
     </script>
 </body>
