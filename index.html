@@ -226,7 +226,7 @@
                         </div>
 
                         <div class="bg-green-950/30 border border-green-800/40 p-4 rounded-xl text-center text-xs text-green-300">
-                            ✨ ¡Estás al día con todos tus pagos! No tienes cuotas vencidas en este momento.
+                            ✨ ¡Estás al día con todos pagos! No tienes cuotas vencidas en este momento.
                         </div>
                     </div>
                 </div>
@@ -476,66 +476,22 @@
             </div>
         </div>
 
-        <!-- 6. PANEL ADMIN CON GESTIÓN SEGMENTADA POR SERVICIO ESPECÍFICO -->
+        <!-- 6. PANEL ADMIN CON GESTIÓN DE 10 CELDAS POR SERVICIO -->
         <div id="adminPanel" class="hidden flex-1 p-6 max-w-6xl mx-auto w-full space-y-6">
             <div class="flex justify-between items-center bg-gray-900 border border-gray-800 p-6 rounded-xl flex-wrap gap-4">
                 <div>
-                    <h2 class="text-2xl font-black text-green-400">🛡️ Panel de Administración - Carga por Servicio Específico</h2>
+                    <h2 class="text-2xl font-black text-green-400">🛡 Panel de Administración - Control de 10 Celdas por Servicio</h2>
                 </div>
                 <button onclick="cerrarSesion()" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white text-xs font-bold px-4 py-2 rounded">Cerrar Sesión Admin</button>
             </div>
 
-            <!-- CARGA DE CREDENCIALES SELECCIONANDO EL SERVICIO COMERCIALIZADO -->
-            <div class="bg-gray-900 border border-red-900/50 p-6 rounded-xl shadow-lg space-y-4">
-                <div class="border-b border-gray-800 pb-3 flex justify-between items-center flex-wrap gap-2">
-                    <h3 class="text-sm font-bold uppercase text-red-500 tracking-wider">🔑 Cargar Credenciales por Servicio Comercializado</h3>
-                    <span class="text-xs text-gray-400">Selecciona el servicio específico para cargar el inventario automático</span>
-                </div>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-                    <!-- SELECTOR DESPLEGABLE CON CADA SERVICIO COMERCIALIZADO -->
-                    <select id="adminSelectServicio" class="bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
-                        <option value="" disabled selected>-- Elige el servicio específico --</option>
-                        <optgroup label="🎬 Streaming de Video">
-                            <option value="Cuenta Completa PanaXtreaming">Cuenta Completa PanaXtreaming</option>
-                            <option value="ST3TLLA TV Completa">ST3TLLA TV Completa</option>
-                            <option value="Perfil Netflix 4K">Perfil Netflix 4K</option>
-                            <option value="Disney+ Cuenta Completa">Disney+ Cuenta Completa</option>
-                            <option value="Max Cuenta Completa">Max Cuenta Completa</option>
-                            <option value="Amazon Prime Video">Amazon Prime Video</option>
-                        </optgroup>
-                        <optgroup label="🎵 Música y Entretenimiento">
-                            <option value="Spotify Individual (1 Mes)">Spotify Individual (1 Mes)</option>
-                            <option value="YouTube Premium">YouTube Premium</option>
-                            <option value="Apple Music">Apple Music</option>
-                        </optgroup>
-                        <optgroup label="💻 Productividad y Herramientas">
-                            <option value="Canva Pro (Cuenta Completa)">Canva Pro (Cuenta Completa)</option>
-                            <option value="Office 365 Licencia">Office 365 Licencia</option>
-                            <option value="Paramount+">Paramount+</option>
-                            <option value="Crunchyroll">Crunchyroll</option>
-                        </optgroup>
-                    </select>
-
-                    <input type="number" id="adminNewPrecio" placeholder="Precio ($)" class="bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
-                    <input type="text" id="adminCredUsuario" placeholder="Usuario / Correo de la cuenta" class="bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <input type="text" id="adminCredPass" placeholder="Contraseña de acceso" class="bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
-                    <input type="text" id="adminCredPin" placeholder="PIN de seguridad / Perfil (Opcional)" class="bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
-                    <input type="text" id="adminNewDesc" placeholder="Breve descripción o condiciones..." class="bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
-                </div>
-
-                <div class="flex justify-end">
-                    <button onclick="agregarServicioConCredenciales()" class="bg-red-600 hover:bg-red-700 text-white font-black text-xs uppercase px-6 py-2.5 rounded transition shadow">💾 Guardar Credenciales en Inventario</button>
-                </div>
-            </div>
-
-            <!-- INVENTARIO SEGMENTADO POR CATEGORÍAS -->
+            <!-- INVENTARIO SEGMENTADO CON 10 CELDAS DESPLEGABLES POR SERVICIO -->
             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-6">
-                <h3 class="text-sm font-bold uppercase text-cyan-400">⚙️ Inventario Actual Organizado por Servicios</h3>
-                <div id="adminServicesConfig" class="space-y-6"></div>
+                <div class="border-b border-gray-800 pb-3 flex justify-between items-center flex-wrap gap-2">
+                    <h3 class="text-sm font-bold uppercase text-cyan-400">⚙️ Servicios y sus 10 Celdas de Credenciales / Pantallas</h3>
+                    <span class="text-xs text-gray-400">Haz clic en "Desplegar 10 Celdas" en cualquier servicio para gestionar su stock individual.</span>
+                </div>
+                <div id="adminServicesConfig" class="space-y-4"></div>
             </div>
 
             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
@@ -561,11 +517,24 @@
 
     <!-- SCRIPT -->
     <script>
+        // Cada servicio ahora contiene una estructura 'celdasStock' con un array de 10 elementos por defecto
         let catalogoServicios = JSON.parse(localStorage.getItem('panax_db_servicios')) || [
-            { id: 'srv1', categoria: '🎬 Streaming de Video', nombre: 'Cuenta Completa PanaXtreaming', desc: 'Acceso total con máxima estabilidad.', precio: 8, activo: true, badge: 'PanaXtreaming', badgeColor: 'bg-red-900 text-red-300', credUsuario: 'master@panax.com', credPass: 'pana2026*', credPin: 'N/A' },
-            { id: 'srv2', categoria: '🎬 Streaming de Video', nombre: 'ST3TLLA TV Completa', desc: 'Programación en vivo en HD.', precio: 10, activo: true, badge: 'ST3TLLA TV', badgeColor: 'bg-red-900 text-red-300', credUsuario: 'st3tlla_user@tv.net', credPass: 'stella987', credPin: '1234' },
-            { id: 'srv3', categoria: '🎬 Streaming de Video', nombre: 'Perfil Netflix 4K', desc: 'Pantalla individual de alta definición.', precio: 4, activo: true, badge: 'Netflix', badgeColor: 'bg-red-900 text-red-300', credUsuario: 'net_sosa4k@gmail.com', credPass: 'flixpass2026', credPin: '0421' },
-            { id: 'srv4', categoria: '🎵 Música y Entretenimiento', nombre: 'Spotify Individual (1 Mes)', desc: 'Música sin anuncios.', precio: 3, activo: true, badge: 'Spotify', badgeColor: 'bg-green-900 text-green-300', credUsuario: 'spotify_sosa@music.com', credPass: 'music2026#', credPin: 'N/A' }
+            { 
+                id: 'srv1', categoria: '🎬 Streaming de Video', nombre: 'Cuenta Completa PanaXtreaming', desc: 'Acceso total con máxima estabilidad.', precio: 8, activo: true, badge: 'PanaXtreaming', badgeColor: 'bg-red-900 text-red-300', 
+                celdasStock: Array(10).fill(0).map((_, i) => ({ usuario: `cuenta${i+1}@panax.com`, pass: `pass2026_${i+1}`, pin: `${1000+i}`, entrega: '2026-09-01', vencimiento: '2026-10-01', disponible: true }))
+            },
+            { 
+                id: 'srv2', categoria: '🎬 Streaming de Video', nombre: 'ST3TLLA TV Completa', desc: 'Programación en vivo en HD.', precio: 10, activo: true, badge: 'ST3TLLA TV', badgeColor: 'bg-red-900 text-red-300', 
+                celdasStock: Array(10).fill(0).map((_, i) => ({ usuario: `stella_user${i+1}@tv.net`, pass: `stella987_${i+1}`, pin: `${2000+i}`, entrega: '2026-09-01', vencimiento: '2026-10-01', disponible: true }))
+            },
+            { 
+                id: 'srv3', categoria: '🎬 Streaming de Video', nombre: 'Perfil Netflix 4K', desc: 'Pantalla individual de alta definición.', precio: 4, activo: true, badge: 'Netflix', badgeColor: 'bg-red-900 text-red-300', 
+                celdasStock: Array(10).fill(0).map((_, i) => ({ usuario: `net_perfil${i+1}@gmail.com`, pass: `flixpass_${i+1}`, pin: `${3000+i}`, entrega: '2026-09-01', vencimiento: '2026-10-01', disponible: true }))
+            },
+            { 
+                id: 'srv4', categoria: '🎵 Música y Entretenimiento', nombre: 'Spotify Individual (1 Mes)', desc: 'Música sin anuncios.', precio: 3, activo: true, badge: 'Spotify', badgeColor: 'bg-green-900 text-green-300', 
+                celdasStock: Array(10).fill(0).map((_, i) => ({ usuario: `spotify_user${i+1}@music.com`, pass: `music_${i+1}`, pin: 'N/A', entrega: '2026-09-01', vencimiento: '2026-10-01', disponible: true }))
+            }
         ];
 
         let dbClientes = JSON.parse(localStorage.getItem('panax_db_clientes')) || [];
@@ -686,6 +655,7 @@
                             <p><strong>Usuario / Correo:</strong> ${item.credenciales.usuario}</p>
                             <p><strong>Contraseña:</strong> ${item.credenciales.password}</p>
                             <p><strong>PIN / Perfil:</strong> ${item.credenciales.pin || 'N/A'}</p>
+                            <p><strong>Entrega:</strong> ${item.credenciales.entrega || 'N/A'} | <strong>Vencimiento:</strong> ${item.credenciales.vencimiento || 'N/A'}</p>
                         </div>`;
                     }
                     htmlHist += `<div class="bg-black/40 border border-gray-800 p-3.5 rounded text-xs space-y-1">
@@ -828,23 +798,31 @@
                 if(!binanceId) { alert('Ingresa tu ID de Binance Pay.'); return; }
             }
 
-            // EXTRACCIÓN AUTOMÁTICA DE CREDENCIALES DESDE LA BASE DE DATOS DE SERVICIOS
+            // EXTRACCIÓN AUTOMÁTICA DE CREDENCIALES DESDE LA CELA DISPONIBLE DE LAS 10 CELDAS
             carrito.forEach(itemCarrito => {
                 let srvOriginal = catalogoServicios.find(s => s.id === itemCarrito.id);
                 let credencialesAsignadas = null;
 
-                if (srvOriginal && srvOriginal.credUsuario) {
-                    credencialesAsignadas = {
-                        usuario: srvOriginal.credUsuario,
-                        password: srvOriginal.credPass,
-                        pin: srvOriginal.credPin
-                    };
-                } else {
-                    credencialesAsignadas = {
-                        usuario: cliente.email,
-                        password: 'GeneradaAuto2026*',
-                        pin: 'N/A'
-                    };
+                if (srvOriginal && srvOriginal.celdasStock) {
+                    let celdaLibre = srvOriginal.celdasStock.find(c => c.disponible);
+                    if (celdaLibre) {
+                        credencialesAsignadas = {
+                            usuario: celdaLibre.usuario,
+                            password: celdaLibre.pass,
+                            pin: celdaLibre.pin,
+                            entrega: celdaLibre.entrega,
+                            vencimiento: celdaLibre.vencimiento
+                        };
+                        celdaLibre.disponible = false; // Marcar celda como ocupada
+                    } else {
+                        credencialesAsignadas = {
+                            usuario: cliente.email,
+                            password: 'GeneradaAuto2026*',
+                            pin: 'N/A',
+                            entrega: 'Hoy',
+                            vencimiento: '30 Días'
+                        };
+                    }
                 }
 
                 cliente.historial.push({
@@ -857,6 +835,7 @@
             });
 
             localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
+            localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios));
             carrito = [];
             document.getElementById('cartCount').innerText = '0';
             alert('¡Compra procesada con éxito! Tus credenciales de acceso han sido extraídas y asignadas en tu historial de órdenes.');
@@ -914,59 +893,41 @@
             cambiarSeccionCliente('resumen');
         }
 
-        /* FUNCIÓN DE ADMIN: AGREGAR CREDENCIALES SELECCIONANDO EL SERVICIO ESPECÍFICO */
-        function agregarServicioConCredenciales() {
-            let selectServicio = document.getElementById('adminSelectServicio');
-            let nombreServicio = selectServicio.value;
-            let precio = parseFloat(document.getElementById('adminNewPrecio').value);
-            let credUsuario = document.getElementById('adminCredUsuario').value.trim();
-            let credPass = document.getElementById('adminCredPass').value.trim();
-            let credPin = document.getElementById('adminCredPin').value.trim();
-            let desc = document.getElementById('adminNewDesc').value.trim() || 'Suscripción digital automatizada.';
-
-            if (!nombreServicio) {
-                alert('Por favor selecciona un servicio específico del menú desplegable.');
-                return;
+        // FUNCIÓN PARA ALTERNAR EL DESPLEGABLE DE LAS 10 CELDAS DE CADA SERVICIO
+        function toggleDesplegableCeldas(srvIndex) {
+            let contenedor = document.getElementById(`celdas_container_${srvIndex}`);
+            if (contenedor.classList.contains('hidden')) {
+                contenedor.classList.remove('hidden');
+            } else {
+                contenedor.classList.add('hidden');
             }
-            if (!precio) {
-                alert('Por favor ingresa el precio del servicio.');
-                return;
+        }
+
+        // GUARDAR LOS CAMBIOS EDITADOS EN LAS 10 CELDAS DE UN SERVICIO
+        function guardarCeldasServicio(srvIndex) {
+            for (let i = 0; i < 10; i++) {
+                let usuario = document.getElementById(`srv_${srvIndex}_celda_${i}_usr`).value.trim();
+                let pass = document.getElementById(`srv_${srvIndex}_celda_${i}_pass`).value.trim();
+                let pin = document.getElementById(`srv_${srvIndex}_celda_${i}_pin`).value.trim();
+                let entrega = document.getElementById(`srv_${srvIndex}_celda_${i}_ent`).value.trim();
+                let vencimiento = document.getElementById(`srv_${srvIndex}_celda_${i}_ven`).value.trim();
+
+                if (!catalogoServicios[srvIndex].celdasStock) {
+                    catalogoServicios[srvIndex].celdasStock = Array(10).fill(0).map(() => ({ usuario: '', pass: '', pin: '', entrega: '', vencimiento: '', disponible: true }));
+                }
+
+                catalogoServicios[srvIndex].celdasStock[i] = {
+                    usuario,
+                    pass,
+                    pin,
+                    entrega,
+                    vencimiento,
+                    disponible: catalogoServicios[srvIndex].celdasStock[i].disponible
+                };
             }
 
-            // Determinar la categoría basándose en la opción elegida
-            let categoria = '🎬 Streaming de Video';
-            if (nombreServicio.includes('Spotify') || nombreServicio.includes('YouTube') || nombreServicio.includes('Apple')) {
-                categoria = '🎵 Música y Entretenimiento';
-            } else if (nombreServicio.includes('Canva') || nombreServicio.includes('Office') || nombreServicio.includes('Paramount') || nombreServicio.includes('Crunchyroll')) {
-                categoria = '💻 Productividad y Herramientas';
-            }
-
-            let nuevoSrv = {
-                id: 'srv_' + Date.now(),
-                categoria,
-                nombre: nombreServicio,
-                desc,
-                precio,
-                activo: true,
-                badge: nombreServicio.split(' ')[0],
-                badgeColor: categoria.includes('Streaming') ? 'bg-red-900 text-red-300' : 'bg-green-900 text-green-300',
-                credUsuario: credUsuario || 'soporte@panax.com',
-                credPass: credPass || 'clave1234*',
-                credPin: credPin || 'N/A'
-            };
-
-            catalogoServicios.push(nuevoSrv);
             localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios));
-            
-            // Limpiar campos
-            selectServicio.selectedIndex = 0;
-            document.getElementById('adminNewPrecio').value = '';
-            document.getElementById('adminCredUsuario').value = '';
-            document.getElementById('adminCredPass').value = '';
-            document.getElementById('adminCredPin').value = '';
-            document.getElementById('adminNewDesc').value = '';
-
-            alert('¡Credenciales cargadas exitosamente para el servicio seleccionado!');
+            alert('¡Las 10 celdas de credenciales y fechas se han guardado exitosamente!');
             abrirPanelAdmin();
         }
 
@@ -976,33 +937,65 @@
             document.getElementById('btnSalirSesion').style.display = 'block';
             document.getElementById('topPublicBtns').style.display = 'none';
 
-            let categoriasAdminMap = {};
-            catalogoServicios.forEach((srv, idx) => {
-                if(!categoriasAdminMap[srv.categoria]) categoriasAdminMap[srv.categoria] = [];
-                categoriasAdminMap[srv.categoria].push({ srv, idx });
+            let htmlServicesAdmin = '';
+            catalogoServicios.forEach((srv, srvIndex) => {
+                // Asegurar que cada servicio tenga 10 celdas inicializadas
+                if (!srv.celdasStock || srv.celdasStock.length !== 10) {
+                    srv.celdasStock = Array(10).fill(0).map((_, i) => ({
+                        usuario: `usuario${i+1}@panax.com`,
+                        pass: `pass${i+1}*`,
+                        pin: 'N/A',
+                        entrega: '2026-09-01',
+                        vencimiento: '2026-10-01',
+                        disponible: true
+                    }));
+                }
+
+                let celdasHtml = '';
+                for (let i = 0; i < 10; i++) {
+                    let c = srv.celdasStock[i];
+                    celdasHtml += `
+                        <div class="bg-black/50 border border-gray-800 p-3 rounded-lg space-y-2">
+                            <div class="flex justify-between items-center text-[10px] text-gray-400 font-bold uppercase">
+                                <span>Celda #${i+1}</span>
+                                <span class="${c.disponible ? 'text-green-400' : 'text-red-400'}">${c.disponible ? 'Disponible' : 'Ocupada / Vendida'}</span>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-5 gap-2">
+                                <input type="text" id="srv_${srvIndex}_celda_${i}_usr" value="${c.usuario || ''}" placeholder="Correo / Usuario" class="bg-black border border-gray-700 p-2 rounded text-[11px] text-white outline-none focus:border-red-600">
+                                <input type="text" id="srv_${srvIndex}_celda_${i}_pass" value="${c.pass || ''}" placeholder="Contraseña" class="bg-black border border-gray-700 p-2 rounded text-[11px] text-white outline-none focus:border-red-600">
+                                <input type="text" id="srv_${srvIndex}_celda_${i}_pin" value="${c.pin || ''}" placeholder="PIN" class="bg-black border border-gray-700 p-2 rounded text-[11px] text-white outline-none focus:border-red-600">
+                                <input type="text" id="srv_${srvIndex}_celda_${i}_ent" value="${c.entrega || ''}" placeholder="F. Entrega (YYYY-MM-DD)" class="bg-black border border-gray-700 p-2 rounded text-[11px] text-white outline-none focus:border-red-600">
+                                <input type="text" id="srv_${srvIndex}_celda_${i}_ven" value="${c.vencimiento || ''}" placeholder="F. Vencimiento" class="bg-black border border-gray-700 p-2 rounded text-[11px] text-white outline-none focus:border-red-600">
+                            </div>
+                        </div>
+                    `;
+                }
+
+                htmlServicesAdmin += `
+                    <div class="bg-black/30 border border-gray-800 p-4 rounded-xl space-y-3">
+                        <div class="flex justify-between items-center flex-wrap gap-2">
+                            <div>
+                                <h4 class="text-sm font-bold text-white uppercase">${srv.nombre}</h4>
+                                <span class="text-xs text-green-400 font-bold">$${srv.precio} USD</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button onclick="toggleDesplegableCeldas(${srvIndex})" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded text-xs font-bold transition shadow">📂 Desplegar 10 Celdas</button>
+                                <button onclick="catalogoServicios[${srvIndex}].activo = !catalogoServicios[${srvIndex}].activo; localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios)); abrirPanelAdmin();" class="px-3 py-1.5 rounded text-xs font-bold ${srv.activo ? 'bg-green-600 text-white' : 'bg-gray-800 text-gray-400'}">${srv.activo ? 'Activo' : 'Inactivo'}</button>
+                            </div>
+                        </div>
+
+                        <!-- CONTENEDOR DESPLEGABLE CON LAS 10 CELDAS -->
+                        <div id="celdas_container_${srvIndex}" class="hidden space-y-3 pt-3 border-t border-gray-800">
+                            <p class="text-[11px] text-yellow-400 font-semibold">💡 Configura a continuación las 10 celdas independientes para este servicio digital:</p>
+                            ${celdasHtml}
+                            <div class="flex justify-end pt-2">
+                                <button onclick="guardarCeldasServicio(${srvIndex})" class="bg-green-600 hover:bg-green-700 text-white font-bold text-xs uppercase px-4 py-2 rounded transition shadow">💾 Guardar Cambios en estas 10 Celdas</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
             });
 
-            let htmlServicesAdmin = '';
-            for(let cat in categoriasAdminMap) {
-                htmlServicesAdmin += `<div class="bg-black/30 border border-gray-800 p-4 rounded-xl space-y-3">
-                    <h4 class="text-xs font-bold uppercase text-red-400 tracking-wider">${cat}</h4>
-                    <div class="space-y-2">`;
-                categoriasAdminMap[cat].forEach(item => {
-                    let srv = item.srv;
-                    let idx = item.idx;
-                    htmlServicesAdmin += `<div class="bg-black/60 border border-gray-800 p-3 rounded flex justify-between items-center flex-wrap gap-2">
-                        <div>
-                            <span class="text-xs font-bold text-white block">${srv.nombre} — <span class="text-green-400">$${srv.precio}</span></span>
-                            <span class="text-[10px] text-gray-400 font-mono">Usuario: ${srv.credUsuario || 'N/A'} | Pass: ${srv.credPass || 'N/A'} | PIN: ${srv.credPin || 'N/A'}</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <button onclick="catalogoServicios[${idx}].activo = !catalogoServicios[${idx}].activo; localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios)); abrirPanelAdmin();" class="px-3 py-1 rounded text-xs font-bold ${srv.activo ? 'bg-green-600 text-white' : 'bg-gray-800 text-gray-400'}">${srv.activo ? 'Activo' : 'Inactivo'}</button>
-                            <button onclick="catalogoServicios.splice(${idx}, 1); localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios)); abrirPanelAdmin();" class="bg-red-900/60 hover:bg-red-900 text-red-300 px-2.5 py-1 rounded text-xs font-bold">🗑️</button>
-                        </div>
-                    </div>`;
-                });
-                htmlServicesAdmin += `</div></div>`;
-            }
             document.getElementById('adminServicesConfig').innerHTML = htmlServicesAdmin;
 
             let htmlOrders = '';
