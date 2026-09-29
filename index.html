@@ -108,7 +108,7 @@
             </div>
         </div>
 
-        <!-- 5. PANEL DEL CLIENTE CON DETALLES EN ROJO -->
+        <!-- 5. PANEL DEL CLIENTE -->
         <div id="clientPanel" class="hidden flex-1 flex flex-col md:flex-row w-full max-w-7xl mx-auto">
             <aside class="w-full md:w-72 bg-gray-900 border-r border-gray-800 p-4 flex flex-col space-y-6">
                 
@@ -128,7 +128,7 @@
                     <nav class="space-y-1.5">
                         <button onclick="cambiarSeccionCliente('resumen')" id="navResumen" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm"><span>🏠</span> <span>Resumen</span></button>
                         <button onclick="cambiarSeccionCliente('catalogo')" id="navCatalogo" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm"><span>🛒</span> <span>Catálogo a Cuotas / Contado</span></button>
-                        <button onclick="cambiarSeccionCliente('transacciones')" id="navTransacciones" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm"><span>📄</span> <span>Historial de Órdenes</span></button>
+                        <button onclick="cambiarSeccionCliente('transacciones')" id="navTransacciones" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm"><span>📄</span> <span>Historial &amp; Credenciales</span></button>
                     </nav>
                 </div>
 
@@ -173,7 +173,7 @@
                     </div>
                 </div>
 
-                <!-- 🎖️ SECCIÓN: MI NIVEL & LÍNEA DE COMPRA -->
+                <!-- 🎖 SECCIÓN: MI NIVEL & LÍNEA DE COMPRA -->
                 <div id="viewClubNivel" class="hidden space-y-6 max-w-3xl mx-auto">
                     <div class="bg-gradient-to-r from-red-600/20 via-gray-900 to-gray-900 border border-red-600/40 p-6 rounded-2xl shadow-xl space-y-4">
                         <div class="flex justify-between items-start flex-wrap gap-4">
@@ -288,7 +288,7 @@
                     <div id="catalogContainer" class="space-y-6"></div>
                 </div>
 
-                <!-- CHECKOUT UNIFICADO CON MÉTODOS DE PAGO ACTUALIZADOS (Inspirado en las imágenes) -->
+                <!-- CHECKOUT UNIFICADO -->
                 <div id="viewCheckout" class="hidden space-y-6 max-w-6xl mx-auto">
                     <div class="bg-gray-900 border border-gray-800 px-6 py-4 rounded-xl flex justify-between items-center max-w-xl mx-auto">
                         <div class="text-center">
@@ -331,7 +331,7 @@
                             </div>
 
                             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-4">
-                                <h3 class="text-sm font-bold uppercase text-white tracking-wider border-b border-gray-800 pb-3">💳 MÉTODOS DE PAGO Y REQUISITOS</h3>
+                                <h3 class="text-sm font-bold uppercase text-white tracking-wider border-b border-gray-800 pb-3">💳 MÉTODO DE PAGO Y REQUISITOS</h3>
                                 <div class="space-y-3">
                                     
                                     <!-- Método 1: Billetera -->
@@ -346,54 +346,26 @@
                                         </div>
                                     </label>
 
-                                    <!-- Método 2: Tarjeta de Crédito o Débito (Actualizado según la imagen 2) -->
+                                    <!-- Método 2: Tarjeta -->
                                     <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
                                         <input type="radio" name="metodoPagoUnificado" value="tarjeta" onclick="toggleMetodoPago('tarjeta')" class="accent-red-600 mt-1">
                                         <div class="flex-1">
                                             <div class="flex justify-between items-center">
-                                                <span class="font-bold text-white text-sm">Pay With Card (Tarjeta de Crédito o Débito)</span>
-                                                <span class="text-xs text-cyan-400 font-bold">Visa / Master / Amex</span>
+                                                <span class="font-bold text-white text-sm">Tarjeta de Crédito o Débito</span>
+                                                <span class="text-xs text-cyan-400 font-bold">Visa / Master</span>
                                             </div>
-                                            <p class="text-xs text-gray-400 mt-0.5">Your information is encrypted and secure.</p>
+                                            <p class="text-xs text-gray-400 mt-0.5">Procesamiento automático seguro.</p>
                                         </div>
                                     </label>
                                     <div id="reqTarjeta" class="hidden pl-7 space-y-3 pt-1">
-                                        <div>
-                                            <label class="text-[11px] text-gray-400 block mb-1">Card number</label>
-                                            <input type="text" id="reqCardNumber" placeholder="Número de tarjeta (16 dígitos)" maxlength="16" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
-                                        </div>
-                                        <div>
-                                            <label class="text-[11px] text-gray-400 block mb-1">Cardholder name</label>
-                                            <input type="text" id="reqCardName" placeholder="Nombre del titular" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
-                                        </div>
+                                        <input type="text" id="reqCardNumber" placeholder="Número de tarjeta (16 dígitos)" maxlength="16" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
                                         <div class="grid grid-cols-2 gap-2">
-                                            <div>
-                                                <label class="text-[11px] text-gray-400 block mb-1">Expiration date (MM/AA)</label>
-                                                <input type="text" id="reqCardExp" placeholder="MM/AA" maxlength="5" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
-                                            </div>
-                                            <div>
-                                                <label class="text-[11px] text-gray-400 block mb-1">Security code (CVV)</label>
-                                                <input type="password" id="reqCardCvv" placeholder="CVV" maxlength="4" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
-                                            </div>
+                                            <input type="text" id="reqCardExp" placeholder="MM/AA" maxlength="5" class="bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                                            <input type="password" id="reqCardCvv" placeholder="CVV (3 dígitos)" maxlength="4" class="bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
                                         </div>
                                     </div>
 
-                                    <!-- Método 3: PayPal (Actualizado según la imagen 2) -->
-                                    <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
-                                        <input type="radio" name="metodoPagoUnificado" value="paypal" onclick="toggleMetodoPago('paypal')" class="accent-red-600 mt-1">
-                                        <div class="flex-1">
-                                            <div class="flex justify-between items-center">
-                                                <span class="font-bold text-white text-sm">PayPal (Or Pay With PayPal)</span>
-                                                <span class="text-xs text-blue-400 font-bold">Pay in 4 available</span>
-                                            </div>
-                                            <p class="text-xs text-gray-400 mt-0.5">Redirección segura y pago instantáneo internacional.</p>
-                                        </div>
-                                    </label>
-                                    <div id="reqPaypal" class="hidden pl-7 space-y-3 pt-1">
-                                        <input type="text" id="reqPaypalEmail" placeholder="Correo electrónico de tu cuenta PayPal" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
-                                    </div>
-
-                                    <!-- Método 4: Pago Móvil / Transferencia -->
+                                    <!-- Método 3: Pago Móvil -->
                                     <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
                                         <input type="radio" name="metodoPagoUnificado" value="pagomovil" onclick="toggleMetodoPago('pagomovil')" class="accent-red-600 mt-1">
                                         <div class="flex-1">
@@ -401,7 +373,7 @@
                                                 <span class="font-bold text-white text-sm">Pago Móvil / Transferencia Bancaria</span>
                                                 <span class="text-xs text-yellow-400 font-bold">Nacional (Bolívares)</span>
                                             </div>
-                                            <p class="text-xs text-gray-400 mt-0.5">Validación por referencia para revisión del administrador.</p>
+                                            <p class="text-xs text-gray-400 mt-0.5">Validación automática por referencia.</p>
                                         </div>
                                     </label>
                                     <div id="reqPagoMovil" class="hidden pl-7 space-y-3 pt-1">
@@ -419,7 +391,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Método 5: Binance Pay / USDT -->
+                                    <!-- Método 4: Binance Pay -->
                                     <label class="flex items-start space-x-3 bg-black/50 border border-gray-700 p-4 rounded-xl cursor-pointer hover:border-red-600 transition">
                                         <input type="radio" name="metodoPagoUnificado" value="binance" onclick="toggleMetodoPago('binance')" class="accent-red-600 mt-1">
                                         <div class="flex-1">
@@ -437,7 +409,7 @@
                                 </div>
 
                                 <button onclick="procesarCompraAutomatizadaFinal()" class="w-full bg-red-600 hover:bg-red-700 text-white font-black text-sm uppercase p-4 rounded-xl transition shadow-xl tracking-wider mt-4">
-                                    REVIEW ORDER / AUTORIZAR PAGO INSTANTÁNEO
+                                    REVIEW &amp; PAY / AUTORIZAR PAGO INSTANTÁNEO
                                 </button>
                             </div>
                         </div>
@@ -445,14 +417,14 @@
                         <div class="lg:col-span-5">
                             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl sticky top-20 space-y-4">
                                 <h4 class="font-bold text-sm text-white uppercase tracking-wider border-b border-gray-800 pb-3 flex justify-between items-center">
-                                    <span>TU ORDEN (YOUR ORDER)</span>
+                                    <span>TU ORDEN</span>
                                     <span class="text-xs text-red-500 font-normal" id="summaryItemsCount">1 Artículo(s)</span>
                                 </h4>
                                 <div id="cartItemsSummaryList" class="space-y-3 max-h-60 overflow-y-auto pr-1"></div>
                                 <div class="border-t border-gray-800 pt-3 space-y-2 text-xs text-gray-300">
                                     <div class="flex justify-between"><span>Subtotal</span><span id="summarySubtotal" class="font-bold text-white">$0.00</span></div>
                                     <div class="flex justify-between border-t border-gray-800 pt-3 text-base font-black text-white">
-                                        <span>Order total (USD)</span>
+                                        <span>Total a Pagar (USD)</span>
                                         <span class="text-green-400 text-xl" id="summaryTotal">$0.00</span>
                                     </div>
                                 </div>
@@ -461,10 +433,13 @@
                     </div>
                 </div>
 
-                <!-- Transacciones -->
+                <!-- Transacciones & Credenciales Entregadas -->
                 <div id="viewTransacciones" class="hidden space-y-6">
-                    <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
-                        <h2 class="text-xl font-bold text-white mb-4">Historial de Órdenes y Compras</h2>
+                    <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-4">
+                        <div>
+                            <h2 class="text-xl font-bold text-white">Historial de Órdenes y Credenciales de Acceso</h2>
+                            <p class="text-xs text-gray-400 mt-1">Aquí encontrarás los datos automáticos (usuario, contraseña, PIN o correo) de las suscripciones que has adquirido.</p>
+                        </div>
                         <div id="fullTransactionsList" class="space-y-3"></div>
                     </div>
                 </div>
@@ -501,37 +476,70 @@
             </div>
         </div>
 
-        <!-- 6. PANEL ADMIN CON BOTONES DE PROCESAMIENTO Y GESTIÓN DE SOLICITUDES -->
+        <!-- 6. PANEL ADMIN CON GESTIÓN SEGMENTADA POR SERVICIO ESPECÍFICO -->
         <div id="adminPanel" class="hidden flex-1 p-6 max-w-6xl mx-auto w-full space-y-6">
             <div class="flex justify-between items-center bg-gray-900 border border-gray-800 p-6 rounded-xl flex-wrap gap-4">
                 <div>
-                    <h2 class="text-2xl font-black text-green-400">🛡️ Panel de Administración - Solicitudes de Clientes</h2>
+                    <h2 class="text-2xl font-black text-green-400">🛡️ Panel de Administración - Carga por Servicio Específico</h2>
                 </div>
                 <button onclick="cerrarSesion()" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white text-xs font-bold px-4 py-2 rounded">Cerrar Sesión Admin</button>
             </div>
 
-            <!-- SECCIÓN 1: Solicitudes de Pedidos / Órdenes y Pagos (Tarjetas, PayPal, Billetera, etc.) -->
-            <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
-                <h3 class="text-sm font-bold uppercase mb-4 text-red-500">📦 Solicitudes de Órdenes y Checkout de Clientes</h3>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs border-collapse">
-                        <thead>
-                            <tr class="bg-gray-800 text-gray-300 border-b border-gray-700">
-                                <th class="p-3">Cliente</th>
-                                <th class="p-3">Método / Detalles</th>
-                                <th class="p-3">Total ($)</th>
-                                <th class="p-3">Fecha</th>
-                                <th class="p-3">Acciones de Procesamiento</th>
-                            </tr>
-                        </thead>
-                        <tbody id="adminOrdersTableBody"></tbody>
-                    </table>
+            <!-- CARGA DE CREDENCIALES SELECCIONANDO EL SERVICIO COMERCIALIZADO -->
+            <div class="bg-gray-900 border border-red-900/50 p-6 rounded-xl shadow-lg space-y-4">
+                <div class="border-b border-gray-800 pb-3 flex justify-between items-center flex-wrap gap-2">
+                    <h3 class="text-sm font-bold uppercase text-red-500 tracking-wider">🔑 Cargar Credenciales por Servicio Comercializado</h3>
+                    <span class="text-xs text-gray-400">Selecciona el servicio específico para cargar el inventario automático</span>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                    <!-- SELECTOR DESPLEGABLE CON CADA SERVICIO COMERCIALIZADO -->
+                    <select id="adminSelectServicio" class="bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                        <option value="" disabled selected>-- Elige el servicio específico --</option>
+                        <optgroup label="🎬 Streaming de Video">
+                            <option value="Cuenta Completa PanaXtreaming">Cuenta Completa PanaXtreaming</option>
+                            <option value="ST3TLLA TV Completa">ST3TLLA TV Completa</option>
+                            <option value="Perfil Netflix 4K">Perfil Netflix 4K</option>
+                            <option value="Disney+ Cuenta Completa">Disney+ Cuenta Completa</option>
+                            <option value="Max Cuenta Completa">Max Cuenta Completa</option>
+                            <option value="Amazon Prime Video">Amazon Prime Video</option>
+                        </optgroup>
+                        <optgroup label="🎵 Música y Entretenimiento">
+                            <option value="Spotify Individual (1 Mes)">Spotify Individual (1 Mes)</option>
+                            <option value="YouTube Premium">YouTube Premium</option>
+                            <option value="Apple Music">Apple Music</option>
+                        </optgroup>
+                        <optgroup label="💻 Productividad y Herramientas">
+                            <option value="Canva Pro (Cuenta Completa)">Canva Pro (Cuenta Completa)</option>
+                            <option value="Office 365 Licencia">Office 365 Licencia</option>
+                            <option value="Paramount+">Paramount+</option>
+                            <option value="Crunchyroll">Crunchyroll</option>
+                        </optgroup>
+                    </select>
+
+                    <input type="number" id="adminNewPrecio" placeholder="Precio ($)" class="bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                    <input type="text" id="adminCredUsuario" placeholder="Usuario / Correo de la cuenta" class="bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <input type="text" id="adminCredPass" placeholder="Contraseña de acceso" class="bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                    <input type="text" id="adminCredPin" placeholder="PIN de seguridad / Perfil (Opcional)" class="bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                    <input type="text" id="adminNewDesc" placeholder="Breve descripción o condiciones..." class="bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                </div>
+
+                <div class="flex justify-end">
+                    <button onclick="agregarServicioConCredenciales()" class="bg-red-600 hover:bg-red-700 text-white font-black text-xs uppercase px-6 py-2.5 rounded transition shadow">💾 Guardar Credenciales en Inventario</button>
                 </div>
             </div>
 
-            <!-- SECCIÓN 2: Reportes de Pago Móvil Pendientes -->
+            <!-- INVENTARIO SEGMENTADO POR CATEGORÍAS -->
+            <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-6">
+                <h3 class="text-sm font-bold uppercase text-cyan-400">⚙️ Inventario Actual Organizado por Servicios</h3>
+                <div id="adminServicesConfig" class="space-y-6"></div>
+            </div>
+
             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
-                <h3 class="text-sm font-bold uppercase mb-4 text-yellow-400">🔔 Reportes de Pago Móvil / Recargas Pendientes</h3>
+                <h3 class="text-sm font-bold uppercase mb-4 text-red-500">🔔 Reportes de Pago Móvil Pendientes</h3>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-xs border-collapse">
                         <thead>
@@ -543,15 +551,9 @@
                                 <th class="p-3">Acción</th>
                             </tr>
                         </thead>
-                        <tbody id="adminReportesTableBody"></tbody>
+                        <tbody id="adminOrdersTableBody"></tbody>
                     </table>
                 </div>
-            </div>
-
-            <!-- SECCIÓN 3: Configuración de Servicios -->
-            <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl">
-                <h3 class="text-sm font-bold uppercase mb-2 text-cyan-400">⚙️ Estado de Servicios del Catálogo</h3>
-                <div id="adminServicesConfig" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3"></div>
             </div>
         </div>
 
@@ -560,23 +562,14 @@
     <!-- SCRIPT -->
     <script>
         let catalogoServicios = JSON.parse(localStorage.getItem('panax_db_servicios')) || [
-            { id: 'srv1', categoria: '🎬 Streaming de Video', nombre: 'Cuenta Completa PanaXtreaming', desc: 'Acceso total con máxima estabilidad.', precio: 8, activo: true, badge: 'PanaXtreaming', badgeColor: 'bg-red-900 text-red-300' },
-            { id: 'srv2', categoria: '🎬 Streaming de Video', nombre: 'ST3TLLA TV Completa', desc: 'Programación en vivo en HD.', precio: 10, activo: true, badge: 'ST3TLLA TV', badgeColor: 'bg-red-900 text-red-300' },
-            { id: 'srv3', categoria: '🎬 Streaming de Video', nombre: 'Perfil Netflix 4K', desc: 'Pantalla individual de alta definición.', precio: 4, activo: true, badge: 'Netflix', badgeColor: 'bg-red-900 text-red-300' },
-            { id: 'srv4', categoria: '🎬 Streaming de Video', nombre: 'Disney+ / Combo+', desc: 'Series, películas y deportes en vivo.', precio: 5, activo: true, badge: 'Disney+', badgeColor: 'bg-blue-900 text-blue-300' },
-            { id: 'srv5', categoria: '🎬 Streaming de Video', nombre: 'Max (HBO) Cuenta', desc: 'Estrenos y contenido exclusivo.', precio: 4, activo: true, badge: 'Max', badgeColor: 'bg-purple-900 text-purple-300' },
-            { id: 'srv6', categoria: '🎬 Streaming de Video', nombre: 'Prime Video', desc: 'Series y películas originales.', precio: 3, activo: true, badge: 'Amazon', badgeColor: 'bg-cyan-900 text-cyan-300' },
-            { id: 'srv7', categoria: '🎵 Música y Entretenimiento Diario', nombre: 'Spotify Premium', desc: 'Música sin anuncios y sin conexión.', precio: 4, activo: true, badge: 'Spotify', badgeColor: 'bg-green-900 text-green-300' },
-            { id: 'srv8', categoria: '🎵 Música y Entretenimiento Diario', nombre: 'YouTube Premium', desc: 'Videos sin publicidad y música de fondo.', precio: 4, activo: true, badge: 'YouTube', badgeColor: 'bg-red-950 text-red-300' },
-            { id: 'srv9', categoria: '🎮 Videojuegos y Pines Digitales', nombre: 'Diamantes Free Fire', desc: 'Recarga directa a tu ID de juego.', precio: 5, activo: true, badge: 'Free Fire', badgeColor: 'bg-yellow-900 text-yellow-300' },
-            { id: 'srv10', categoria: '🎮 Videojuegos y Pines Digitales', nombre: 'Robux (Tarjeta Pin)', desc: 'Código digital para tu cuenta.', precio: 10, activo: true, badge: 'Roblox', badgeColor: 'bg-yellow-900 text-yellow-300' },
-            { id: 'srv11', categoria: '💻 Productividad y Herramientas', nombre: 'Canva Pro', desc: 'Plantillas y herramientas de diseño avanzado.', precio: 3, activo: true, badge: 'Canva', badgeColor: 'bg-blue-950 text-blue-300' },
-            { id: 'srv12', categoria: '💻 Productividad y Herramientas', nombre: 'ChatGPT Plus Acceso', desc: 'Inteligencia artificial de alto rendimiento.', precio: 6, activo: true, badge: 'OpenAI', badgeColor: 'bg-emerald-950 text-emerald-300' }
+            { id: 'srv1', categoria: '🎬 Streaming de Video', nombre: 'Cuenta Completa PanaXtreaming', desc: 'Acceso total con máxima estabilidad.', precio: 8, activo: true, badge: 'PanaXtreaming', badgeColor: 'bg-red-900 text-red-300', credUsuario: 'master@panax.com', credPass: 'pana2026*', credPin: 'N/A' },
+            { id: 'srv2', categoria: '🎬 Streaming de Video', nombre: 'ST3TLLA TV Completa', desc: 'Programación en vivo en HD.', precio: 10, activo: true, badge: 'ST3TLLA TV', badgeColor: 'bg-red-900 text-red-300', credUsuario: 'st3tlla_user@tv.net', credPass: 'stella987', credPin: '1234' },
+            { id: 'srv3', categoria: '🎬 Streaming de Video', nombre: 'Perfil Netflix 4K', desc: 'Pantalla individual de alta definición.', precio: 4, activo: true, badge: 'Netflix', badgeColor: 'bg-red-900 text-red-300', credUsuario: 'net_sosa4k@gmail.com', credPass: 'flixpass2026', credPin: '0421' },
+            { id: 'srv4', categoria: '🎵 Música y Entretenimiento', nombre: 'Spotify Individual (1 Mes)', desc: 'Música sin anuncios.', precio: 3, activo: true, badge: 'Spotify', badgeColor: 'bg-green-900 text-green-300', credUsuario: 'spotify_sosa@music.com', credPass: 'music2026#', credPin: 'N/A' }
         ];
 
         let dbClientes = JSON.parse(localStorage.getItem('panax_db_clientes')) || [];
         let dbReportes = JSON.parse(localStorage.getItem('panax_db_reportes')) || [];
-        let dbSolicitudesOrdenes = JSON.parse(localStorage.getItem('panax_db_solicitudes_ordenes')) || [];
         let carrito = [];
         let sesionActiva = localStorage.getItem('panax_sesion_activa') || null;
         let adminActivo = localStorage.getItem('panax_admin_activo') === 'true';
@@ -686,9 +679,22 @@
             let htmlHist = '';
             if(cliente.historial && cliente.historial.length > 0) {
                 cliente.historial.slice().reverse().forEach(item => {
-                    htmlHist += `<div class="bg-black/40 border border-gray-800 p-3 rounded text-xs flex justify-between items-center">
-                        <div><p class="font-bold text-white">${item.concepto}</p><p class="text-gray-500 text-[10px]">${item.fecha}</p></div>
-                        <span class="font-bold ${item.tipo === 'recarga' ? 'text-green-400' : 'text-red-400'}">${item.tipo === 'recarga' ? '+' : '-'}$${item.monto.toFixed(2)}</span>
+                    let badgeCredenciales = '';
+                    if (item.credenciales) {
+                        badgeCredenciales = `<div class="mt-2 bg-black/60 border border-green-600/40 p-2.5 rounded text-[11px] text-green-300 space-y-1 font-mono">
+                            <p class="font-bold text-white uppercase text-[10px] tracking-wider mb-1">🔑 Datos de Acceso Asignados:</p>
+                            <p><strong>Usuario / Correo:</strong> ${item.credenciales.usuario}</p>
+                            <p><strong>Contraseña:</strong> ${item.credenciales.password}</p>
+                            <p><strong>PIN / Perfil:</strong> ${item.credenciales.pin || 'N/A'}</p>
+                        </div>`;
+                    }
+                    htmlHist += `<div class="bg-black/40 border border-gray-800 p-3.5 rounded text-xs space-y-1">
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-white text-sm">${item.concepto}</span>
+                            <span class="font-bold ${item.tipo === 'recarga' ? 'text-green-400' : 'text-red-400'}">${item.tipo === 'recarga' ? '+' : '-'}$${item.monto.toFixed(2)}</span>
+                        </div>
+                        <p class="text-gray-500 text-[10px]">${item.fecha}</p>
+                        ${badgeCredenciales}
                     </div>`;
                 });
             } else {
@@ -717,8 +723,8 @@
                         htmlCat += `<div class="bg-gray-900 border border-gray-800 rounded-xl p-5 flex flex-col justify-between">
                             <div>
                                 <div class="flex justify-between items-center mb-1">
-                                    <span class="text-xs ${srv.badgeColor} px-2 py-0.5 rounded font-bold">${srv.badge}</span>
-                                    <span class="text-[10px] bg-red-600/20 text-red-400 border border-red-600/30 px-2 py-0.5 rounded font-bold">¡Disponible con PANA!</span>
+                                    <span class="text-xs ${srv.badgeColor || 'bg-red-900 text-red-300'} px-2 py-0.5 rounded font-bold">${srv.badge || 'PANA'}</span>
+                                    <span class="text-[10px] bg-red-600/20 text-red-400 border border-red-600/30 px-2 py-0.5 rounded font-bold">¡Entrega Automática!</span>
                                 </div>
                                 <h4 class="font-bold text-lg text-white mt-2">${srv.nombre}</h4>
                                 <p class="text-xs text-gray-400 my-2">${srv.desc}</p>
@@ -735,8 +741,8 @@
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-2 gap-2">
-                                    <button onclick='agregarAlCarrito("${srv.nombre}", ${srv.precio}, "${srv.badge}")' class="bg-gray-800 hover:bg-gray-700 text-white font-bold text-xs uppercase py-2.5 rounded transition border border-gray-700">+ Carrito</button>
-                                    <button onclick='comprarDirecto("${srv.nombre}", ${srv.precio}, "${srv.desc}", "${srv.badge}")' class="bg-red-600 hover:bg-red-700 text-white font-black text-xs uppercase py-2.5 rounded transition">Comprar PANA</button>
+                                    <button onclick='agregarAlCarrito("${srv.id}", "${srv.nombre}", ${srv.precio}, "${srv.badge}")' class="bg-gray-800 hover:bg-gray-700 text-white font-bold text-xs uppercase py-2.5 rounded transition border border-gray-700">+ Carrito</button>
+                                    <button onclick='comprarDirecto("${srv.id}", "${srv.nombre}", ${srv.precio})' class="bg-red-600 hover:bg-red-700 text-white font-black text-xs uppercase py-2.5 rounded transition">Comprar</button>
                                 </div>
                             </div>
                         </div>`;
@@ -747,14 +753,15 @@
             document.getElementById('catalogContainer').innerHTML = htmlCat;
         }
 
-        function agregarAlCarrito(nombre, precio, badge) {
-            carrito.push({ nombre, precio, badge });
+        function agregarAlCarrito(id, nombre, precio, badge) {
+            carrito.push({ id, nombre, precio, badge });
             document.getElementById('cartCount').innerText = carrito.length;
             alert(`¡"${nombre}" agregado al carrito!`);
         }
 
-        function comprarDirecto(nombre, precio, desc, badge) {
-            carrito = [{ nombre, precio, badge }];
+        function comprarDirecto(id, nombre, precio) {
+            let srv = catalogoServicios.find(s => s.id === id);
+            carrito = [{ id: srv.id, nombre: srv.nombre, precio: srv.precio, badge: srv.badge }];
             document.getElementById('cartCount').innerText = carrito.length;
             prepararCheckout();
         }
@@ -784,14 +791,11 @@
 
         function toggleMetodoPago(metodo) {
             document.getElementById('reqTarjeta').classList.add('hidden');
-            document.getElementById('reqPaypal').classList.add('hidden');
             document.getElementById('reqPagoMovil').classList.add('hidden');
             document.getElementById('reqBinance').classList.add('hidden');
 
             if (metodo === 'tarjeta') {
                 document.getElementById('reqTarjeta').classList.remove('hidden');
-            } else if (metodo === 'paypal') {
-                document.getElementById('reqPaypal').classList.remove('hidden');
             } else if (metodo === 'pagomovil') {
                 document.getElementById('reqPagoMovil').classList.remove('hidden');
             } else if (metodo === 'binance') {
@@ -804,7 +808,6 @@
             let total = carrito.reduce((acc, i) => acc + i.precio, 0);
             let inicialTotal = total * 0.4;
             let metodoSeleccionado = document.querySelector('input[name="metodoPagoUnificado"]:checked').value;
-            let detallePago = metodoSeleccionado.toUpperCase();
 
             if (metodoSeleccionado === 'saldo') {
                 if(cliente.saldo < inicialTotal) {
@@ -815,57 +818,48 @@
                 cliente.saldo -= inicialTotal;
             } else if (metodoSeleccionado === 'tarjeta') {
                 let cardNum = document.getElementById('reqCardNumber').value.trim();
-                let cardName = document.getElementById('reqCardName').value.trim();
-                let cardExp = document.getElementById('reqCardExp').value.trim();
-                let cardCvv = document.getElementById('reqCardCvv').value.trim();
-                if(cardNum.length < 16 || !cardName || !cardExp || !cardCvv) {
-                    alert('Por favor ingresa todos los datos válidos de tu tarjeta (número, titular, expiración y CVV).');
-                    return;
-                }
-                detallePago = `TARJETA (Terminada en ${cardNum.slice(-4)})`;
-            } else if (metodoSeleccionado === 'paypal') {
-                let paypalEmail = document.getElementById('reqPaypalEmail').value.trim();
-                if(!paypalEmail) {
-                    alert('Por favor ingresa tu correo electrónico de PayPal.');
-                    return;
-                }
-                detallePago = `PAYPAL (${paypalEmail})`;
+                if(cardNum.length < 16) { alert('Ingresa los datos válidos de tu tarjeta.'); return; }
             } else if (metodoSeleccionado === 'pagomovil') {
                 let banco = document.getElementById('reqBanco').value;
-                let tlf = document.getElementById('reqTlfOrigen').value.trim();
                 let ref = document.getElementById('reqRefBancaria').value.trim();
-                if(!banco || !tlf || ref.length < 4) {
-                    alert('Por favor completa los datos del Pago Móvil (Banco, Teléfono y 4 dígitos de referencia).');
-                    return;
-                }
-                detallePago = `PAGO MÓVIL (${banco} - Ref: ${ref})`;
+                if(!banco || ref.length < 4) { alert('Completa los datos del Pago Móvil.'); return; }
             } else if (metodoSeleccionado === 'binance') {
                 let binanceId = document.getElementById('reqBinanceId').value.trim();
-                if(!binanceId) {
-                    alert('Por favor ingresa tu correo o ID de Binance Pay.');
-                    return;
-                }
-                detallePago = `BINANCE PAY (${binanceId})`;
+                if(!binanceId) { alert('Ingresa tu ID de Binance Pay.'); return; }
             }
 
-            // Registrar la orden en la base de datos de solicitudes para el Admin
-            dbSolicitudesOrdenes.push({
-                id: Date.now(),
-                email: cliente.email,
-                items: [...carrito],
-                totalInicial: inicialTotal,
-                metodo: detallePago,
-                estado: 'Pendiente de Aprobación',
-                fecha: new Date().toLocaleString()
-            });
-            localStorage.setItem('panax_db_solicitudes_ordenes', JSON.stringify(dbSolicitudesOrdenes));
+            // EXTRACCIÓN AUTOMÁTICA DE CREDENCIALES DESDE LA BASE DE DATOS DE SERVICIOS
+            carrito.forEach(itemCarrito => {
+                let srvOriginal = catalogoServicios.find(s => s.id === itemCarrito.id);
+                let credencialesAsignadas = null;
 
-            cliente.historial.push({ concepto: `Orden de Compra / Método: ${detallePago}`, monto: inicialTotal, tipo: 'compra', fecha: new Date().toLocaleString() });
+                if (srvOriginal && srvOriginal.credUsuario) {
+                    credencialesAsignadas = {
+                        usuario: srvOriginal.credUsuario,
+                        password: srvOriginal.credPass,
+                        pin: srvOriginal.credPin
+                    };
+                } else {
+                    credencialesAsignadas = {
+                        usuario: cliente.email,
+                        password: 'GeneradaAuto2026*',
+                        pin: 'N/A'
+                    };
+                }
+
+                cliente.historial.push({
+                    concepto: `Suscripción: ${itemCarrito.nombre}`,
+                    monto: itemCarrito.precio,
+                    tipo: 'compra',
+                    fecha: new Date().toLocaleString(),
+                    credenciales: credencialesAsignadas
+                });
+            });
+
             localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
-            
             carrito = [];
             document.getElementById('cartCount').innerText = '0';
-            alert('¡Orden enviada con éxito al sistema! El administrador procesará y activará tu servicio digital y cuotas en breve.');
+            alert('¡Compra procesada con éxito! Tus credenciales de acceso han sido extraídas y asignadas en tu historial de órdenes.');
             abrirPanelCliente();
         }
 
@@ -920,85 +914,102 @@
             cambiarSeccionCliente('resumen');
         }
 
-        // PANEL DE ADMINISTRACIÓN CON BOTONES DE PROCESAMIENTO
+        /* FUNCIÓN DE ADMIN: AGREGAR CREDENCIALES SELECCIONANDO EL SERVICIO ESPECÍFICO */
+        function agregarServicioConCredenciales() {
+            let selectServicio = document.getElementById('adminSelectServicio');
+            let nombreServicio = selectServicio.value;
+            let precio = parseFloat(document.getElementById('adminNewPrecio').value);
+            let credUsuario = document.getElementById('adminCredUsuario').value.trim();
+            let credPass = document.getElementById('adminCredPass').value.trim();
+            let credPin = document.getElementById('adminCredPin').value.trim();
+            let desc = document.getElementById('adminNewDesc').value.trim() || 'Suscripción digital automatizada.';
+
+            if (!nombreServicio) {
+                alert('Por favor selecciona un servicio específico del menú desplegable.');
+                return;
+            }
+            if (!precio) {
+                alert('Por favor ingresa el precio del servicio.');
+                return;
+            }
+
+            // Determinar la categoría basándose en la opción elegida
+            let categoria = '🎬 Streaming de Video';
+            if (nombreServicio.includes('Spotify') || nombreServicio.includes('YouTube') || nombreServicio.includes('Apple')) {
+                categoria = '🎵 Música y Entretenimiento';
+            } else if (nombreServicio.includes('Canva') || nombreServicio.includes('Office') || nombreServicio.includes('Paramount') || nombreServicio.includes('Crunchyroll')) {
+                categoria = '💻 Productividad y Herramientas';
+            }
+
+            let nuevoSrv = {
+                id: 'srv_' + Date.now(),
+                categoria,
+                nombre: nombreServicio,
+                desc,
+                precio,
+                activo: true,
+                badge: nombreServicio.split(' ')[0],
+                badgeColor: categoria.includes('Streaming') ? 'bg-red-900 text-red-300' : 'bg-green-900 text-green-300',
+                credUsuario: credUsuario || 'soporte@panax.com',
+                credPass: credPass || 'clave1234*',
+                credPin: credPin || 'N/A'
+            };
+
+            catalogoServicios.push(nuevoSrv);
+            localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios));
+            
+            // Limpiar campos
+            selectServicio.selectedIndex = 0;
+            document.getElementById('adminNewPrecio').value = '';
+            document.getElementById('adminCredUsuario').value = '';
+            document.getElementById('adminCredPass').value = '';
+            document.getElementById('adminCredPin').value = '';
+            document.getElementById('adminNewDesc').value = '';
+
+            alert('¡Credenciales cargadas exitosamente para el servicio seleccionado!');
+            abrirPanelAdmin();
+        }
+
         function abrirPanelAdmin() {
             ocultarTodo();
             document.getElementById('adminPanel').style.display = 'block';
             document.getElementById('btnSalirSesion').style.display = 'block';
             document.getElementById('topPublicBtns').style.display = 'none';
 
-            // 1. Renderizar Configuración de Servicios
-            let htmlServicesAdmin = '';
+            let categoriasAdminMap = {};
             catalogoServicios.forEach((srv, idx) => {
-                htmlServicesAdmin += `<div class="bg-black/40 border border-gray-800 p-3 rounded flex justify-between items-center">
-                    <span class="text-xs text-white">${srv.nombre}</span>
-                    <button onclick="catalogoServicios[${idx}].activo = !catalogoServicios[${idx}].activo; localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios)); abrirPanelAdmin();" class="px-3 py-1 rounded text-xs font-bold ${srv.activo ? 'bg-green-600 text-white' : 'bg-gray-800 text-gray-400'}">${srv.activo ? 'Activo' : 'Inactivo'}</button>
-                </div>`;
+                if(!categoriasAdminMap[srv.categoria]) categoriasAdminMap[srv.categoria] = [];
+                categoriasAdminMap[srv.categoria].push({ srv, idx });
             });
+
+            let htmlServicesAdmin = '';
+            for(let cat in categoriasAdminMap) {
+                htmlServicesAdmin += `<div class="bg-black/30 border border-gray-800 p-4 rounded-xl space-y-3">
+                    <h4 class="text-xs font-bold uppercase text-red-400 tracking-wider">${cat}</h4>
+                    <div class="space-y-2">`;
+                categoriasAdminMap[cat].forEach(item => {
+                    let srv = item.srv;
+                    let idx = item.idx;
+                    htmlServicesAdmin += `<div class="bg-black/60 border border-gray-800 p-3 rounded flex justify-between items-center flex-wrap gap-2">
+                        <div>
+                            <span class="text-xs font-bold text-white block">${srv.nombre} — <span class="text-green-400">$${srv.precio}</span></span>
+                            <span class="text-[10px] text-gray-400 font-mono">Usuario: ${srv.credUsuario || 'N/A'} | Pass: ${srv.credPass || 'N/A'} | PIN: ${srv.credPin || 'N/A'}</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="catalogoServicios[${idx}].activo = !catalogoServicios[${idx}].activo; localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios)); abrirPanelAdmin();" class="px-3 py-1 rounded text-xs font-bold ${srv.activo ? 'bg-green-600 text-white' : 'bg-gray-800 text-gray-400'}">${srv.activo ? 'Activo' : 'Inactivo'}</button>
+                            <button onclick="catalogoServicios.splice(${idx}, 1); localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios)); abrirPanelAdmin();" class="bg-red-900/60 hover:bg-red-900 text-red-300 px-2.5 py-1 rounded text-xs font-bold">🗑️</button>
+                        </div>
+                    </div>`;
+                });
+                htmlServicesAdmin += `</div></div>`;
+            }
             document.getElementById('adminServicesConfig').innerHTML = htmlServicesAdmin;
 
-            // 2. Renderizar Solicitudes de Órdenes y Checkout de Clientes con Botones de Procesamiento
             let htmlOrders = '';
-            dbSolicitudesOrdenes.forEach((sol, index) => {
-                let itemsNombres = sol.items.map(i => i.nombre).join(', ');
-                htmlOrders += `<tr class="border-b border-gray-800">
-                    <td class="p-3 text-white font-bold">${sol.email}</td>
-                    <td class="p-3 text-gray-300"><strong>Items:</strong> ${itemsNombres}<br><span class="text-[10px] text-cyan-400">Método: ${sol.metodo}</span></td>
-                    <td class="p-3 text-green-400 font-black">$${sol.totalInicial.toFixed(2)}</td>
-                    <td class="p-3 text-gray-400 text-[10px]">${sol.fecha}</td>
-                    <td class="p-3 space-x-2">
-                        <button onclick="procesarSolicitudOrden(${index}, 'Aprobada')" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded text-xs font-bold transition">Aprobar / Procesar</button>
-                        <button onclick="procesarSolicitudOrden(${index}, 'Rechazada')" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded text-xs font-bold transition">Rechazar</button>
-                    </td>
-                </tr>`;
-            });
-            document.getElementById('adminOrdersTableBody').innerHTML = htmlOrders || '<tr><td colspan="5" class="p-4 text-center text-gray-500">Sin órdenes o solicitudes de checkout pendientes.</td></tr>';
-
-            // 3. Renderizar Reportes de Pago Móvil con Botones de Aprobación
-            let htmlReportes = '';
             dbReportes.forEach((rep, index) => {
-                htmlReportes += `<tr class="border-b border-gray-800">
-                    <td class="p-3 text-white">${rep.email}</td>
-                    <td class="p-3 text-green-400 font-bold">$${rep.monto}</td>
-                    <td class="p-3 text-gray-300">${rep.ref}</td>
-                    <td class="p-3 text-gray-400 text-[10px]">${rep.fecha}</td>
-                    <td class="p-3">
-                        <button onclick="aprobarPagoMovil(${index})" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded text-xs font-bold">Aprobar Saldo</button>
-                    </td>
-                </tr>`;
+                htmlOrders += `<tr class="border-b border-gray-800"><td class="p-3 text-white">${rep.email}</td><td class="p-3 text-green-400">$${rep.monto}</td><td class="p-3 text-gray-300">${rep.ref}</td><td class="p-3 text-gray-400">${rep.fecha}</td><td class="p-3"><button onclick="dbClientes.find(c=>c.email==='${rep.email}').saldo+=${rep.monto};dbReportes.splice(${index},1);localStorage.setItem('panax_db_clientes',JSON.stringify(dbClientes));localStorage.setItem('panax_db_reportes',JSON.stringify(dbReportes));abrirPanelAdmin();" class="bg-green-600 text-white px-3 py-1 rounded text-xs font-bold">Aprobar</button></td></tr>`;
             });
-            document.getElementById('adminReportesTableBody').innerHTML = htmlReportes || '<tr><td colspan="5" class="p-4 text-center text-gray-500">Sin reportes de pago móvil pendientes.</td></tr>';
-        }
-
-        // Función del Admin para Procesar/Aprobar/Rechazar Solicitudes de Órdenes
-        function procesarSolicitudOrden(index, estado) {
-            let sol = dbSolicitudesOrdenes[index];
-            sol.estado = estado;
-            // Registrar en el historial del cliente
-            let cliente = dbClientes.find(c => c.email === sol.email);
-            if(cliente) {
-                cliente.historial.push({ concepto: `Orden ${estado.toLowerCase()} - ${sol.metodo}`, monto: sol.totalInicial, tipo: 'compra', fecha: new Date().toLocaleString() });
-                localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
-            }
-            dbSolicitudesOrdenes.splice(index, 1);
-            localStorage.setItem('panax_db_solicitudes_ordenes', JSON.stringify(dbSolicitudesOrdenes));
-            alert(`Solicitud marcada como: ${estado}. El cliente ha sido actualizado.`);
-            abrirPanelAdmin();
-        }
-
-        // Función del Admin para Aprobar Pago Móvil y sumar saldo al cliente
-        function aprobarPagoMovil(index) {
-            let rep = dbReportes[index];
-            let cliente = dbClientes.find(c => c.email === rep.email);
-            if(cliente) {
-                cliente.saldo += rep.monto;
-                cliente.historial.push({ concepto: `Recarga Pago Móvil Ref: ${rep.ref}`, monto: rep.monto, tipo: 'recarga', fecha: new Date().toLocaleString() });
-                localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
-            }
-            dbReportes.splice(index, 1);
-            localStorage.setItem('panax_db_reportes', JSON.stringify(dbReportes));
-            alert('¡Pago móvil aprobado con éxito y acreditado al saldo del cliente!');
-            abrirPanelAdmin();
+            document.getElementById('adminOrdersTableBody').innerHTML = htmlOrders || '<tr><td colspan="5" class="p-4 text-center text-gray-500">Sin reportes pendientes.</td></tr>';
         }
     </script>
 </body>
