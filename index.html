@@ -476,20 +476,20 @@
             </div>
         </div>
 
-        <!-- 6. PANEL ADMIN CON GESTIÓN DE 10 CELDAS POR SERVICIO -->
+        <!-- 6. PANEL ADMIN CON BOTONES DE SUBIDA DIRECTA DE ARCHIVOS (FOTO/VIDEO) -->
         <div id="adminPanel" class="hidden flex-1 p-6 max-w-6xl mx-auto w-full space-y-6">
             <div class="flex justify-between items-center bg-gray-900 border border-gray-800 p-6 rounded-xl flex-wrap gap-4">
                 <div>
-                    <h2 class="text-2xl font-black text-green-400">🛡 Panel de Administración - Control de 10 Celdas por Servicio</h2>
+                    <h2 class="text-2xl font-black text-green-400">🛡 Panel de Administración - Subida de Multimedia &amp; 10 Celdas</h2>
                 </div>
                 <button onclick="cerrarSesion()" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white text-xs font-bold px-4 py-2 rounded">Cerrar Sesión Admin</button>
             </div>
 
-            <!-- INVENTARIO SEGMENTADO CON 10 CELDAS DESPLEGABLES POR SERVICIO -->
+            <!-- INVENTARIO SEGMENTADO CON SUBIDA DE ARCHIVOS Y 10 CELDAS -->
             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-6">
                 <div class="border-b border-gray-800 pb-3 flex justify-between items-center flex-wrap gap-2">
-                    <h3 class="text-sm font-bold uppercase text-cyan-400">⚙️ Servicios y sus 10 Celdas de Credenciales / Pantallas</h3>
-                    <span class="text-xs text-gray-400">Haz clic en "Desplegar 10 Celdas" en cualquier servicio para gestionar su stock individual.</span>
+                    <h3 class="text-sm font-bold uppercase text-cyan-400">⚙️ Servicios, Subida de Archivos Multimedia (Foto/Video) y sus 10 Celdas</h3>
+                    <span class="text-xs text-gray-400">Sube fotos o videos directamente desde tu teléfono o PC y guarda los cambios.</span>
                 </div>
                 <div id="adminServicesConfig" class="space-y-4"></div>
             </div>
@@ -517,22 +517,29 @@
 
     <!-- SCRIPT -->
     <script>
-        // Cada servicio ahora contiene una estructura 'celdasStock' con un array de 10 elementos por defecto
         let catalogoServicios = JSON.parse(localStorage.getItem('panax_db_servicios')) || [
             { 
                 id: 'srv1', categoria: '🎬 Streaming de Video', nombre: 'Cuenta Completa PanaXtreaming', desc: 'Acceso total con máxima estabilidad.', precio: 8, activo: true, badge: 'PanaXtreaming', badgeColor: 'bg-red-900 text-red-300', 
+                imagenUrl: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=500&auto=format&fit=crop&q=60', 
+                videoUrl: '',
                 celdasStock: Array(10).fill(0).map((_, i) => ({ usuario: `cuenta${i+1}@panax.com`, pass: `pass2026_${i+1}`, pin: `${1000+i}`, entrega: '2026-09-01', vencimiento: '2026-10-01', disponible: true }))
             },
             { 
                 id: 'srv2', categoria: '🎬 Streaming de Video', nombre: 'ST3TLLA TV Completa', desc: 'Programación en vivo en HD.', precio: 10, activo: true, badge: 'ST3TLLA TV', badgeColor: 'bg-red-900 text-red-300', 
+                imagenUrl: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500&auto=format&fit=crop&q=60', 
+                videoUrl: '',
                 celdasStock: Array(10).fill(0).map((_, i) => ({ usuario: `stella_user${i+1}@tv.net`, pass: `stella987_${i+1}`, pin: `${2000+i}`, entrega: '2026-09-01', vencimiento: '2026-10-01', disponible: true }))
             },
             { 
                 id: 'srv3', categoria: '🎬 Streaming de Video', nombre: 'Perfil Netflix 4K', desc: 'Pantalla individual de alta definición.', precio: 4, activo: true, badge: 'Netflix', badgeColor: 'bg-red-900 text-red-300', 
+                imagenUrl: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=500&auto=format&fit=crop&q=60', 
+                videoUrl: '',
                 celdasStock: Array(10).fill(0).map((_, i) => ({ usuario: `net_perfil${i+1}@gmail.com`, pass: `flixpass_${i+1}`, pin: `${3000+i}`, entrega: '2026-09-01', vencimiento: '2026-10-01', disponible: true }))
             },
             { 
                 id: 'srv4', categoria: '🎵 Música y Entretenimiento', nombre: 'Spotify Individual (1 Mes)', desc: 'Música sin anuncios.', precio: 3, activo: true, badge: 'Spotify', badgeColor: 'bg-green-900 text-green-300', 
+                imagenUrl: 'https://images.unsplash.com/photo-1614680376593-902f749f7ffc?w=500&auto=format&fit=crop&q=60', 
+                videoUrl: '',
                 celdasStock: Array(10).fill(0).map((_, i) => ({ usuario: `spotify_user${i+1}@music.com`, pass: `music_${i+1}`, pin: 'N/A', entrega: '2026-09-01', vencimiento: '2026-10-01', disponible: true }))
             }
         ];
@@ -690,8 +697,22 @@
                 categoriasMap[cat].forEach(srv => {
                     if (srv.activo) {
                         let inicialCuota = (srv.precio * 0.4).toFixed(2);
+
+                        // Renderizado de Imagen o Video subido desde el dispositivo
+                        let mediaHtml = '';
+                        if (srv.videoUrl && srv.videoUrl.trim() !== '') {
+                            mediaHtml = `<div class="mb-3 rounded-lg overflow-hidden bg-black aspect-video flex items-center justify-center">
+                                <video src="${srv.videoUrl}" controls class="w-full h-full object-cover"></video>
+                            </div>`;
+                        } else if (srv.imagenUrl && srv.imagenUrl.trim() !== '') {
+                            mediaHtml = `<div class="mb-3 rounded-lg overflow-hidden bg-black h-36 flex items-center justify-center">
+                                <img src="${srv.imagenUrl}" alt="${srv.nombre}" class="w-full h-full object-cover">
+                            </div>`;
+                        }
+
                         htmlCat += `<div class="bg-gray-900 border border-gray-800 rounded-xl p-5 flex flex-col justify-between">
                             <div>
+                                ${mediaHtml}
                                 <div class="flex justify-between items-center mb-1">
                                     <span class="text-xs ${srv.badgeColor || 'bg-red-900 text-red-300'} px-2 py-0.5 rounded font-bold">${srv.badge || 'PANA'}</span>
                                     <span class="text-[10px] bg-red-600/20 text-red-400 border border-red-600/30 px-2 py-0.5 rounded font-bold">¡Entrega Automática!</span>
@@ -798,7 +819,6 @@
                 if(!binanceId) { alert('Ingresa tu ID de Binance Pay.'); return; }
             }
 
-            // EXTRACCIÓN AUTOMÁTICA DE CREDENCIALES DESDE LA CELA DISPONIBLE DE LAS 10 CELDAS
             carrito.forEach(itemCarrito => {
                 let srvOriginal = catalogoServicios.find(s => s.id === itemCarrito.id);
                 let credencialesAsignadas = null;
@@ -813,7 +833,7 @@
                             entrega: celdaLibre.entrega,
                             vencimiento: celdaLibre.vencimiento
                         };
-                        celdaLibre.disponible = false; // Marcar celda como ocupada
+                        celdaLibre.disponible = false; 
                     } else {
                         credencialesAsignadas = {
                             usuario: cliente.email,
@@ -893,7 +913,6 @@
             cambiarSeccionCliente('resumen');
         }
 
-        // FUNCIÓN PARA ALTERNAR EL DESPLEGABLE DE LAS 10 CELDAS DE CADA SERVICIO
         function toggleDesplegableCeldas(srvIndex) {
             let contenedor = document.getElementById(`celdas_container_${srvIndex}`);
             if (contenedor.classList.contains('hidden')) {
@@ -903,32 +922,67 @@
             }
         }
 
-        // GUARDAR LOS CAMBIOS EDITADOS EN LAS 10 CELDAS DE UN SERVICIO
-        function guardarCeldasServicio(srvIndex) {
-            for (let i = 0; i < 10; i++) {
-                let usuario = document.getElementById(`srv_${srvIndex}_celda_${i}_usr`).value.trim();
-                let pass = document.getElementById(`srv_${srvIndex}_celda_${i}_pass`).value.trim();
-                let pin = document.getElementById(`srv_${srvIndex}_celda_${i}_pin`).value.trim();
-                let entrega = document.getElementById(`srv_${srvIndex}_celda_${i}_ent`).value.trim();
-                let vencimiento = document.getElementById(`srv_${srvIndex}_celda_${i}_ven`).value.trim();
+        // FUNCIÓN PARA PROCESAR LOS ARCHIVOS LOCALES (FOTOS O VIDEOS) SELECCIONADOS DESDE EL DISPOSITIVO
+        function guardarCeldasServicioConArchivos(srvIndex) {
+            let inputImg = document.getElementById(`srv_${srvIndex}_file_img`);
+            let inputVid = document.getElementById(`srv_${srvIndex}_file_vid`);
 
-                if (!catalogoServicios[srvIndex].celdasStock) {
-                    catalogoServicios[srvIndex].celdasStock = Array(10).fill(0).map(() => ({ usuario: '', pass: '', pin: '', entrega: '', vencimiento: '', disponible: true }));
+            let procesarCeldasYGuardar = function() {
+                for (let i = 0; i < 10; i++) {
+                    let usuario = document.getElementById(`srv_${srvIndex}_celda_${i}_usr`).value.trim();
+                    let pass = document.getElementById(`srv_${srvIndex}_celda_${i}_pass`).value.trim();
+                    let pin = document.getElementById(`srv_${srvIndex}_celda_${i}_pin`).value.trim();
+                    let entrega = document.getElementById(`srv_${srvIndex}_celda_${i}_ent`).value.trim();
+                    let vencimiento = document.getElementById(`srv_${srvIndex}_celda_${i}_ven`).value.trim();
+
+                    if (!catalogoServicios[srvIndex].celdasStock) {
+                        catalogoServicios[srvIndex].celdasStock = Array(10).fill(0).map(() => ({ usuario: '', pass: '', pin: '', entrega: '', vencimiento: '', disponible: true }));
+                    }
+
+                    catalogoServicios[srvIndex].celdasStock[i] = {
+                        usuario,
+                        pass,
+                        pin,
+                        entrega,
+                        vencimiento,
+                        disponible: catalogoServicios[srvIndex].celdasStock[i].disponible
+                    };
                 }
 
-                catalogoServicios[srvIndex].celdasStock[i] = {
-                    usuario,
-                    pass,
-                    pin,
-                    entrega,
-                    vencimiento,
-                    disponible: catalogoServicios[srvIndex].celdasStock[i].disponible
-                };
-            }
+                localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios));
+                alert('¡Multimedia de tu dispositivo y las 10 celdas guardadas correctamente!');
+                abrirPanelAdmin();
+            };
 
-            localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios));
-            alert('¡Las 10 celdas de credenciales y fechas se han guardado exitosamente!');
-            abrirPanelAdmin();
+            // Leer archivo de imagen si se seleccionó uno nuevo
+            if (inputImg.files && inputImg.files[0]) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    catalogoServicios[srvIndex].imagenUrl = e.target.result;
+                    catalogoServicios[srvIndex].videoUrl = ''; // Limpiamos video si pone foto
+                    
+                    if (inputVid.files && inputVid.files[0]) {
+                        let readerVid = new FileReader();
+                        readerVid.onload = function(ev) {
+                            catalogoServicios[srvIndex].videoUrl = ev.target.result;
+                            procesarCeldasYGuardar();
+                        };
+                        readerVid.readAsDataURL(inputVid.files[0]);
+                    } else {
+                        procesarCeldasYGuardar();
+                    }
+                };
+                reader.readAsDataURL(inputImg.files[0]);
+            } else if (inputVid.files && inputVid.files[0]) {
+                let readerVid = new FileReader();
+                readerVid.onload = function(ev) {
+                    catalogoServicios[srvIndex].videoUrl = ev.target.result;
+                    procesarCeldasYGuardar();
+                };
+                readerVid.readAsDataURL(inputVid.files[0]);
+            } else {
+                procesarCeldasYGuardar();
+            }
         }
 
         function abrirPanelAdmin() {
@@ -939,7 +993,6 @@
 
             let htmlServicesAdmin = '';
             catalogoServicios.forEach((srv, srvIndex) => {
-                // Asegurar que cada servicio tenga 10 celdas inicializadas
                 if (!srv.celdasStock || srv.celdasStock.length !== 10) {
                     srv.celdasStock = Array(10).fill(0).map((_, i) => ({
                         usuario: `usuario${i+1}@panax.com`,
@@ -979,17 +1032,31 @@
                                 <span class="text-xs text-green-400 font-bold">$${srv.precio} USD</span>
                             </div>
                             <div class="flex items-center gap-2">
-                                <button onclick="toggleDesplegableCeldas(${srvIndex})" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded text-xs font-bold transition shadow">📂 Desplegar 10 Celdas</button>
+                                <button onclick="toggleDesplegableCeldas(${srvIndex})" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded text-xs font-bold transition shadow">📂 Desplegar Configuración (Subir Archivo &amp; 10 Celdas)</button>
                                 <button onclick="catalogoServicios[${srvIndex}].activo = !catalogoServicios[${srvIndex}].activo; localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios)); abrirPanelAdmin();" class="px-3 py-1.5 rounded text-xs font-bold ${srv.activo ? 'bg-green-600 text-white' : 'bg-gray-800 text-gray-400'}">${srv.activo ? 'Activo' : 'Inactivo'}</button>
                             </div>
                         </div>
 
-                        <!-- CONTENEDOR DESPLEGABLE CON LAS 10 CELDAS -->
-                        <div id="celdas_container_${srvIndex}" class="hidden space-y-3 pt-3 border-t border-gray-800">
+                        <!-- CONTENEDOR DESPLEGABLE CON BOTONES DE ARCHIVO Y 10 CELDAS -->
+                        <div id="celdas_container_${srvIndex}" class="hidden space-y-4 pt-3 border-t border-gray-800">
+                            <div class="bg-black/40 border border-gray-800 p-3 rounded-lg space-y-3">
+                                <p class="text-[11px] text-cyan-400 font-bold">📁 Subir Imagen o Video desde tu Dispositivo o Teléfono:</p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                                    <div>
+                                        <label class="text-[10px] text-gray-400 block mb-1">Subir Imagen (Foto de galería):</label>
+                                        <input type="file" id="srv_${srvIndex}_file_img" accept="image/*" class="w-full bg-black border border-gray-700 p-2 rounded text-[11px] text-gray-300 file:mr-2 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:font-bold file:bg-red-600 file:text-white hover:file:bg-red-700">
+                                    </div>
+                                    <div>
+                                        <label class="text-[10px] text-gray-400 block mb-1">Subir Video (Video promocional):</label>
+                                        <input type="file" id="srv_${srvIndex}_file_vid" accept="video/*" class="w-full bg-black border border-gray-700 p-2 rounded text-[11px] text-gray-300 file:mr-2 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:font-bold file:bg-red-600 file:text-white hover:file:bg-red-700">
+                                    </div>
+                                </div>
+                            </div>
+
                             <p class="text-[11px] text-yellow-400 font-semibold">💡 Configura a continuación las 10 celdas independientes para este servicio digital:</p>
                             ${celdasHtml}
                             <div class="flex justify-end pt-2">
-                                <button onclick="guardarCeldasServicio(${srvIndex})" class="bg-green-600 hover:bg-green-700 text-white font-bold text-xs uppercase px-4 py-2 rounded transition shadow">💾 Guardar Cambios en estas 10 Celdas</button>
+                                <button onclick="guardarCeldasServicioConArchivos(${srvIndex})" class="bg-green-600 hover:bg-green-700 text-white font-bold text-xs uppercase px-4 py-2 rounded transition shadow">💾 Guardar Archivos y Celdas</button>
                             </div>
                         </div>
                     </div>
