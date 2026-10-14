@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PanaXtreaming - Catálogo y Servicios Digitales</title>
+    <title>PanaXtreaming - Control Total y Auditoría</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -104,7 +104,7 @@
                 <input type="email" id="login-email" placeholder="Correo registrado" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-4 text-white focus:border-red-600 outline-none">
                 <input type="password" id="login-pass" placeholder="Contraseña" class="w-full bg-black border border-gray-700 p-3 rounded text-sm mb-6 text-white focus:border-red-600 outline-none">
                 <button onclick="iniciarSesionCliente()" class="w-full bg-red-600 hover:bg-red-700 text-white p-3 rounded font-black text-sm uppercase transition shadow-lg">Entrar</button>
-                <p class="text-xs text-gray-400 mt-4">¿No tienes cuenta? <a href="https://docs.google.com/spreadsheets/d/1skYDQ-YPF8CSRewC329ZNbK_aVpeh8LgPRppGI6Zbxk/edit?usp=sharing/exec;" class="text-red-500 font-bold" onclick="mostrarPantalla('registerScreen')">Regístrate</a></p>
+                <p class="text-xs text-gray-400 mt-4">¿No tienes cuenta? <a href="javascript:void(0);" class="text-red-500 font-bold" onclick="mostrarPantalla('registerScreen')">Regístrate</a></p>
             </div>
         </div>
 
@@ -125,7 +125,8 @@
                     <p class="text-xs text-gray-500 uppercase tracking-wider font-bold mb-3">NAVEGACIÓN GENERAL</p>
                     <nav class="space-y-1.5">
                         <button onclick="cambiarSeccionCliente('resumen')" id="navResumen" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm"><span>🏠</span> <span>Resumen</span></button>
-                        <button onclick="cambiarSeccionCliente('catalogo')" id="navCatalogo" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm"><span>🛒</span> <span>Catálogo a Cuotas / Contado</span></button>
+                        <button onclick="cambiarSeccionCliente('catalogo')" id="navCatalogo" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm"><span>🛒</span> <span>Catálogo de Planes</span></button>
+                        <button onclick="cambiarSeccionCliente('descargas')" id="navDescargas" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm"><span>📥</span> <span>Descargas Apps Móviles</span></button>
                         <button onclick="cambiarSeccionCliente('transacciones')" id="navTransacciones" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-white text-black transition shadow-sm"><span>📄</span> <span>Historial &amp; Credenciales</span></button>
                     </nav>
                 </div>
@@ -157,7 +158,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="bg-gray-900 border border-gray-800 p-5 rounded-xl border-l-4 border-l-green-500">
                             <p class="text-xs text-gray-400 uppercase font-semibold">Saldo disponible</p>
-                            <h3 class="text-3xl font-black text-green-400 mt-2" id="clientActualSaldo">$50.00</h3>
+                            <h3 class="text-3xl font-black text-green-400 mt-2" id="clientActualSaldo">$0.00</h3>
                         </div>
                         <div class="bg-gray-900 border border-red-600/30 p-5 rounded-xl border-l-4 border-l-red-600 cursor-pointer hover:bg-gray-800/50 transition" onclick="cambiarSeccionCliente('clubNivel')">
                             <p class="text-xs text-red-500 uppercase font-bold flex items-center gap-1"><span>🎖️</span> Estatus PANA / Nivel</p>
@@ -204,16 +205,16 @@
                     </div>
                 </div>
 
-                <!-- Catálogo Dinámico con Carrito -->
+                <!-- Catálogo Dinámico con Videos -->
                 <div id="viewCatalogo" class="hidden space-y-6">
                     <div class="flex justify-between items-center bg-gray-900 border border-gray-800 p-6 rounded-xl flex-wrap gap-4">
                         <div>
-                            <h2 class="text-xl font-bold text-white">Catálogo de Servicios Digitales</h2>
-                            <p class="text-xs text-gray-400 mt-1">Selecciona servicios para pagar al contado o usando cuotas PANA.</p>
+                            <h2 class="text-xl font-bold text-white">📺 PanaXtreaming - Catálogo Oficial</h2>
+                            <p class="text-xs text-gray-400 mt-1">Explora los planes, reproduce videos demostrativos y adquiere por plataforma o WhatsApp.</p>
                         </div>
                         <div class="flex items-center gap-3">
                             <div class="bg-gray-800 border border-green-600 px-4 py-2 rounded-lg text-green-400 font-bold text-sm cursor-pointer" onclick="cambiarSeccionCliente('reportarPago')">
-                                <span id="catalogWalletBadge">Saldo: $50.00</span>
+                                <span id="catalogWalletBadge">Saldo: $0.00</span>
                             </div>
                             <button onclick="abrirCheckoutCarrito()" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs uppercase px-4 py-2.5 rounded-lg transition shadow flex items-center gap-2">
                                 🛒 Carrito (<span id="cartCount">0</span>)
@@ -221,6 +222,45 @@
                         </div>
                     </div>
                     <div id="catalogContainer" class="space-y-6"></div>
+                </div>
+
+                <!-- 📥 SECCIÓN: DESCARGAS DE APPS MÓVILES -->
+                <div id="viewDescargas" class="hidden space-y-6 max-w-4xl mx-auto">
+                    <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-6">
+                        <h2 class="text-xl font-bold text-white">📥 Descarga de Aplicaciones para Móviles y TV</h2>
+                        <p class="text-xs text-gray-400">Instala las aplicaciones oficiales de nuestros servicios directamente en tu dispositivo Android o Smart TV.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4" id="clientDownloadsContainer"></div>
+                    </div>
+                </div>
+
+                <!-- MODAL / VISTA DE DATOS PARA WHATSAPP -->
+                <div id="viewWhatsappModal" class="hidden space-y-6 max-w-md mx-auto bg-gray-900 border border-red-600/50 p-6 rounded-xl shadow-2xl">
+                    <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+                        <h3 class="text-sm font-bold uppercase text-white flex items-center gap-2">📱 Adquirir por WhatsApp</h3>
+                        <button onclick="cambiarSeccionCliente('catalogo')" class="text-gray-400 hover:text-white text-lg font-bold">✕</button>
+                    </div>
+                    <p class="text-xs text-gray-400">Estás solicitando: <strong id="waServiceName" class="text-red-400">Servicio</strong></p>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="text-[10px] text-gray-400 font-bold block mb-1">Nombre y Apellido:</label>
+                            <input type="text" id="waNombre" placeholder="Ej: Carlos Pérez" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                        </div>
+                        <div>
+                            <label class="text-[10px] text-gray-400 font-bold block mb-1">Cédula de Identidad:</label>
+                            <input type="text" id="waCedula" placeholder="Ej: V-12345678" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                        </div>
+                        <div>
+                            <label class="text-[10px] text-gray-400 font-bold block mb-1">Teléfono:</label>
+                            <input type="text" id="waTelefono" placeholder="Ej: 04262753916" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                        </div>
+                        <div>
+                            <label class="text-[10px] text-gray-400 font-bold block mb-1">Correo Electrónico:</label>
+                            <input type="email" id="waEmail" placeholder="Ej: correo@gmail.com" class="w-full bg-black border border-gray-700 p-2.5 rounded text-xs text-white outline-none focus:border-red-600">
+                        </div>
+                    </div>
+                    <button onclick="enviarPedidoWhatsapp()" class="w-full bg-green-600 hover:bg-green-700 text-white font-black text-xs uppercase p-3 rounded-lg transition shadow flex items-center justify-center gap-2">
+                        💬 Enviar Solicitud a WhatsApp
+                    </button>
                 </div>
 
                 <!-- CHECKOUT -->
@@ -261,42 +301,149 @@
             </div>
         </div>
 
-        <!-- 6. PANEL ADMIN -->
+        <!-- 6. PANEL ADMIN (AUDITORÍA AVANZADA, EXPORTACIÓN Y FILTROS) -->
         <div id="adminPanel" class="hidden flex-1 p-6 max-w-6xl mx-auto w-full space-y-6">
             <div class="flex justify-between items-center bg-gray-900 border border-gray-800 p-6 rounded-xl flex-wrap gap-4">
                 <h2 class="text-2xl font-black text-green-400">🛡 Panel de Administración</h2>
-                <button onclick="cerrarSesion()" class="bg-gray-800 text-white text-xs font-bold px-4 py-2 rounded">Cerrar Sesión</button>
+                <div class="flex gap-2">
+                    <button onclick="agregarNuevoServicioAdmin()" class="bg-green-600 hover:bg-green-700 text-white text-xs font-bold px-4 py-2 rounded">+ Nuevo Plan</button>
+                    <button onclick="cerrarSesion()" class="bg-gray-800 text-white text-xs font-bold px-4 py-2 rounded">Cerrar Sesión</button>
+                </div>
             </div>
+
+            <!-- SECCIÓN: ENLACES DE DESCARGA PARA APPS -->
+            <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-4">
+                <h3 class="text-sm font-bold uppercase text-cyan-400">📥 Enlaces de Descarga Apps Móviles</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="text-[10px] text-gray-400 block mb-1">Link PanaXtreaming:</label>
+                        <input type="text" id="link_pana" placeholder="https://..." class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white">
+                    </div>
+                    <div>
+                        <label class="text-[10px] text-gray-400 block mb-1">Link ST3TLLA TV:</label>
+                        <input type="text" id="link_stella" placeholder="https://..." class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white">
+                    </div>
+                    <div>
+                        <label class="text-[10px] text-gray-400 block mb-1">Link Flujo TV:</label>
+                        <input type="text" id="link_flujo" placeholder="https://..." class="w-full bg-black border border-gray-700 p-2 rounded text-xs text-white">
+                    </div>
+                </div>
+                <button onclick="guardarEnlacesDescarga()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-4 py-2 rounded">Guardar Enlaces</button>
+            </div>
+
+            <!-- SECCIÓN: CONTROL DE RECARGAS DE CLIENTES -->
+            <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-4">
+                <h3 class="text-sm font-bold uppercase text-yellow-400">💳 Control de Reportes de Recarga de Saldo</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="bg-black/50 text-gray-300 border-b border-gray-700">
+                                <th class="p-2.5">Cliente</th>
+                                <th class="p-2.5">Monto ($)</th>
+                                <th class="p-2.5">Referencia</th>
+                                <th class="p-2.5">Fecha</th>
+                                <th class="p-2.5 text-right">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminReportesList"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: HISTORIAL Y AUDITORÍA GENERAL CON FILTROS Y DESCARGA -->
+            <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-4">
+                <div class="flex justify-between items-center flex-wrap gap-4">
+                    <h3 class="text-sm font-bold uppercase text-purple-400">📊 Auditoría de Movimientos (Aprobados, Rechazados, Modificados)</h3>
+                    <div class="flex items-center gap-2 flex-wrap text-xs">
+                        <label class="text-gray-400">Desde:</label>
+                        <input type="date" id="filtroFechaDesde" class="bg-black border border-gray-700 p-1.5 rounded text-white" onchange="renderizarAuditoriaAdmin()">
+                        <label class="text-gray-400">Hasta:</label>
+                        <input type="date" id="filtroFechaHasta" class="bg-black border border-gray-700 p-1.5 rounded text-white" onchange="renderizarAuditoriaAdmin()">
+                        <button onclick="exportarMovimientosCSV()" class="bg-green-600 hover:bg-green-700 text-white font-bold px-3 py-1.5 rounded transition">📥 Exportar Movimientos</button>
+                    </div>
+                </div>
+                <!-- CONTENEDOR DESPLAZABLE (SCROLL INTERNO) -->
+                <div class="bg-black/40 border border-gray-800 rounded-lg p-2 max-h-72 overflow-y-auto custom-scrollbar">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="bg-black/60 text-gray-400 border-b border-gray-800 sticky top-0">
+                                <th class="p-2">Fecha y Hora</th>
+                                <th class="p-2">Cliente / Admin</th>
+                                <th class="p-2">Tipo de Movimiento</th>
+                                <th class="p-2">Detalles / Monto</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminAuditoriaList"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: REGISTRO Y MODIFICACIÓN DE CLIENTES Y SALDOS -->
+            <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-4">
+                <h3 class="text-sm font-bold uppercase text-green-400">👤 Gestión de Clientes y Saldos de Billetera</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="bg-black/50 text-gray-300 border-b border-gray-700">
+                                <th class="p-2.5">Correo</th>
+                                <th class="p-2.5">Cédula</th>
+                                <th class="p-2.5">Saldo Actual ($)</th>
+                                <th class="p-2.5 text-right">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminClientesList"></tbody>
+                    </table>
+                </div>
+            </div>
+
             <div class="bg-gray-900 border border-gray-800 p-6 rounded-xl space-y-6">
-                <h3 class="text-sm font-bold uppercase text-cyan-400">⚙ Gestión de Servicios y 10 Celdas</h3>
-                <div id="adminServicesConfig" class="space-y-4"></div>
+                <h3 class="text-sm font-bold uppercase text-cyan-400">⚙ Gestión de Planes, Videos Demostrativos y Celdas</h3>
+                <div id="adminServicesConfig" class="space-y-6"></div>
             </div>
         </div>
 
     </main>
 
-    <!-- SCRIPT CORREGIDO Y FUNCIONAL -->
+    <!-- SCRIPT COMPLETO CON AUDITORÍA, FILTROS Y EXPORTACIÓN -->
     <script>
         let catalogoServicios = JSON.parse(localStorage.getItem('panax_db_servicios')) || [
             { 
-                id: 'srv1', categoria: '🎬 Streaming de Video', nombre: 'Cuenta Completa PanaXtreaming', desc: 'Acceso total con máxima estabilidad.', precio: 8, activo: true, badge: 'PanaXtreaming', badgeColor: 'bg-red-900 text-red-300', 
-                imagenUrl: 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=500&auto=format&fit=crop&q=60', videoUrl: '',
-                celdasStock: Array(10).fill(0).map((_, i) => ({ usuario: `cuenta${i+1}@panax.com`, pass: `pass2026_${i+1}`, pin: `${1000+i}`, entrega: '2026-09-01', vencimiento: '2026-10-01', disponible: true }))
+                id: 'p1', categoria: 'PanaXtreaming', nombre: '1 pantalla - 1 dispositivo', desc: 'Acceso por 1 dispositivo en alta definición.', precio: 4.00, activo: true,
+                video: '',
+                celdasStock: Array(10).fill(0).map((_, i) => ({ usuario: `dispositivo${i+1}@panax.com`, pass: `pass_${i+1}`, pin: `${1000+i}`, disponible: true }))
             },
             { 
-                id: 'srv2', categoria: '🎬 Streaming de Video', nombre: 'ST3TLLA TV Completa', desc: 'Programación en vivo en HD.', precio: 10, activo: true, badge: 'ST3TLLA TV', badgeColor: 'bg-red-900 text-red-300', 
-                imagenUrl: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500&auto=format&fit=crop&q=60', videoUrl: '',
-                celdasStock: Array(10).fill(0).map((_, i) => ({ usuario: `stella_user${i+1}@tv.net`, pass: `stella987_${i+1}`, pin: `${2000+i}`, entrega: '2026-09-01', vencimiento: '2026-10-01', disponible: true }))
+                id: 'p2', categoria: 'PanaXtreaming', nombre: '1 pantalla - 1 mes', desc: 'Disfruta durante 30 días continuos.', precio: 3.00, activo: true,
+                video: '',
+                celdasStock: Array(10).fill(0).map((_, i) => ({ usuario: `pantalla_mes${i+1}@panax.com`, pass: `pass_${i+1}`, pin: `${1100+i}`, disponible: true }))
             }
         ];
 
         let dbClientes = JSON.parse(localStorage.getItem('panax_db_clientes')) || [];
         let dbReportes = JSON.parse(localStorage.getItem('panax_db_reportes')) || [];
+        let dbAuditoria = JSON.parse(localStorage.getItem('panax_db_auditoria')) || [];
+        let dbDescargas = JSON.parse(localStorage.getItem('panax_db_descargas')) || {
+            pana: 'https://play.google.com/store/apps',
+            stella: 'https://play.google.com/store/apps',
+            flujo: 'https://play.google.com/store/apps'
+        };
+
         let carrito = [];
+        let servicioSeleccionadoWa = '';
         let sesionActiva = localStorage.getItem('panax_sesion_activa') || null;
         let adminActivo = localStorage.getItem('panax_admin_activo') === 'true';
 
         window.onload = function() { actualizarEstadoUI(); };
+
+        function registrarAuditoria(tipo, detalle) {
+            dbAuditoria.push({
+                fecha: new Date().toISOString(),
+                fechaFormateada: new Date().toLocaleString(),
+                tipo: tipo,
+                detalle: detalle
+            });
+            localStorage.setItem('panax_db_auditoria', JSON.stringify(dbAuditoria));
+        }
 
         function ocultarTodo() {
             document.getElementById('homeHero').style.display = 'none';
@@ -337,6 +484,7 @@
             if(u === 'admin' && p === 'adming1234') {
                 adminActivo = true;
                 localStorage.setItem('panax_admin_activo', 'true');
+                registrarAuditoria('LOGIN ADMIN', 'Administrador ingresó al sistema.');
                 abrirPanelAdmin();
             } else {
                 alert('Credenciales de administrador incorrectas.');
@@ -357,8 +505,9 @@
             if(!email || !cedula || !pass) { alert('Completa todos los campos.'); return; }
             if(dbClientes.find(c => c.email === email)) { alert('El correo ya está registrado.'); mostrarPantalla('loginScreen'); return; }
 
-            dbClientes.push({ email, cedula, pass, saldo: 50.00, historial: [] });
+            dbClientes.push({ email, cedula, pass, saldo: 0.00, historial: [] });
             localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
+            registrarAuditoria('REGISTRO CLIENTE', `Nuevo cliente registrado: ${email}`);
             alert('¡Registro exitoso! Ya puedes iniciar sesión.');
             mostrarPantalla('loginScreen');
         }
@@ -392,16 +541,17 @@
             if(!cliente) { cerrarSesion(); return; }
 
             document.getElementById('clientEmailHeader').innerText = cliente.email;
-            document.getElementById('topSaldoUsd').innerText = `Saldo: $${(cliente.saldo || 50).toFixed(2)}`;
-            document.getElementById('clientActualSaldo').innerText = `$${(cliente.saldo || 50).toFixed(2)}`;
-            document.getElementById('catalogWalletBadge').innerText = `Saldo: $${(cliente.saldo || 50).toFixed(2)}`;
+            document.getElementById('topSaldoUsd').innerText = `Saldo: $${(cliente.saldo || 0).toFixed(2)}`;
+            document.getElementById('clientActualSaldo').innerText = `$${(cliente.saldo || 0).toFixed(2)}`;
+            document.getElementById('catalogWalletBadge').innerText = `Saldo: $${(cliente.saldo || 0).toFixed(2)}`;
             document.getElementById('perfilEmail').innerText = cliente.email;
+            document.getElementById('waEmail').value = cliente.email;
 
             let htmlHist = '';
             if(cliente.historial && cliente.historial.length > 0) {
                 cliente.historial.slice().reverse().forEach(item => {
-                    let badgeCredenciales = item.credenciales ? `<div class="mt-2 bg-black/60 p-2 rounded text-[11px] text-green-300 font-mono"><p><strong>Usuario:</strong> ${item.credenciales.usuario}</p><p><strong>Contraseña:</strong> ${item.credenciales.password}</p></div>` : '';
-                    htmlHist += `<div class="bg-black/40 border border-gray-800 p-3 rounded text-xs"><p class="font-bold text-white">${item.concepto}</p>${badgeCredenciales}</div>`;
+                    let badgeCredenciales = item.credenciales ? `<div class="mt-2 bg-black/60 p-2 rounded text-[11px] text-green-300 font-mono"><p><strong>Usuario:</strong> ${item.credenciales.usuario}</p><p><strong>Contraseña:</strong> ${item.credenciales.pass}</p></div>` : '';
+                    htmlHist += `<div class="bg-black/40 border border-gray-800 p-3 rounded text-xs"><p class="font-bold text-white">${item.concepto} - $${item.monto.toFixed(2)}</p>${badgeCredenciales}</div>`;
                 });
             } else {
                 htmlHist = '<p class="text-xs text-gray-500">No hay movimientos recientes.</p>';
@@ -410,6 +560,7 @@
             document.getElementById('fullTransactionsList').innerHTML = htmlHist;
 
             renderizarCatalogoCliente();
+            renderizarDescargasCliente();
             cambiarSeccionCliente('resumen');
         }
 
@@ -417,20 +568,70 @@
             let htmlCat = `<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">`;
             catalogoServicios.forEach(srv => {
                 if (srv.activo) {
-                    htmlCat += `<div class="bg-gray-900 border border-gray-800 rounded-xl p-5 flex flex-col justify-between">
+                    let stockDisp = srv.celdasStock ? srv.celdasStock.filter(c => c.disponible).length : 0;
+                    let videoVista = srv.video ? `<video src="${srv.video}" controls class="w-full h-36 object-cover rounded-lg mb-3"></video>` : `<div class="w-full h-24 bg-black/40 rounded-lg mb-3 flex items-center justify-center text-xs text-gray-500">Sin video demostrativo</div>`;
+
+                    htmlCat += `<div class="bg-gray-900 border border-gray-800 rounded-xl p-5 flex flex-col justify-between shadow-lg">
                         <div>
-                            <h4 class="font-bold text-lg text-white">${srv.nombre}</h4>
+                            ${videoVista}
+                            <span class="bg-red-600/20 text-red-400 font-bold text-[10px] px-2 py-0.5 rounded uppercase">PanaXtreaming</span>
+                            <h4 class="font-bold text-base text-white mt-2">${srv.nombre}</h4>
                             <p class="text-xs text-gray-400 my-2">${srv.desc}</p>
+                            <p class="text-[11px] text-cyan-400 font-mono mb-2">Disponibles: ${stockDisp}/10 celdas</p>
                         </div>
-                        <div>
-                            <p class="text-xl font-black text-white mb-3">$${srv.precio}</p>
-                            <button onclick='comprarDirecto("${srv.id}", "${srv.nombre}", ${srv.precio})' class="w-full bg-red-600 hover:bg-red-700 text-white font-black text-xs uppercase py-2.5 rounded transition">Comprar</button>
+                        <div class="space-y-2 mt-4 border-t border-gray-800 pt-3">
+                            <p class="text-2xl font-black text-green-400">$${srv.precio.toFixed(2)}</p>
+                            <button onclick='comprarDirecto("${srv.id}", "${srv.nombre}", ${srv.precio})' class="w-full bg-red-600 hover:bg-red-700 text-white font-black text-xs uppercase py-2.5 rounded transition shadow">Comprar en Plataforma</button>
+                            <button onclick='abrirModalWhatsapp("${srv.nombre}")' class="w-full bg-green-600 hover:bg-green-700 text-white font-black text-xs uppercase py-2.5 rounded transition flex items-center justify-center gap-1.5 shadow">💬 Adquirir por WhatsApp</button>
                         </div>
                     </div>`;
                 }
             });
             htmlCat += `</div>`;
             document.getElementById('catalogContainer').innerHTML = htmlCat;
+        }
+
+        function renderizarDescargasCliente() {
+            let container = document.getElementById('clientDownloadsContainer');
+            container.innerHTML = `
+                <div class="bg-black/40 border border-gray-800 p-4 rounded-xl flex flex-col justify-between text-center space-y-3">
+                    <h3 class="font-bold text-sm text-white">PanaXtreaming App</h3>
+                    <p class="text-xs text-gray-400">Disfruta de todo tu contenido en tu dispositivo móvil.</p>
+                    <a href="${dbDescargas.pana}" target="_blank" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold py-2 rounded">Descargar APK</a>
+                </div>
+                <div class="bg-black/40 border border-gray-800 p-4 rounded-xl flex flex-col justify-between text-center space-y-3">
+                    <h3 class="font-bold text-sm text-white">ST3TLLA TV App</h3>
+                    <p class="text-xs text-gray-400">Aplicación oficial para streaming y TV en vivo.</p>
+                    <a href="${dbDescargas.stella}" target="_blank" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold py-2 rounded">Descargar APK</a>
+                </div>
+                <div class="bg-black/40 border border-gray-800 p-4 rounded-xl flex flex-col justify-between text-center space-y-3">
+                    <h3 class="font-bold text-sm text-white">Flujo TV App</h3>
+                    <p class="text-xs text-gray-400">Canales, películas y series al alcance de tu mano.</p>
+                    <a href="${dbDescargas.flujo}" target="_blank" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold py-2 rounded">Descargar APK</a>
+                </div>
+            `;
+        }
+
+        function abrirModalWhatsapp(nombreServicio) {
+            servicioSeleccionadoWa = nombreServicio;
+            document.getElementById('waServiceName').innerText = nombreServicio;
+            cambiarSeccionCliente('whatsappModal');
+        }
+
+        function enviarPedidoWhatsapp() {
+            let nombre = document.getElementById('waNombre').value.trim();
+            let cedula = document.getElementById('waCedula').value.trim();
+            let telefono = document.getElementById('waTelefono').value.trim();
+            let email = document.getElementById('waEmail').value.trim();
+
+            if(!nombre || !cedula || !telefono || !email) {
+                alert('Por favor, completa todos los datos para continuar en WhatsApp.');
+                return;
+            }
+
+            let mensaje = `Hola, quiero adquirir el plan *${servicioSeleccionadoWa}* en PanaXtreaming.%0A%0A*Mis Datos:*%0A- Nombre y Apellido: ${nombre}%0A- Cédula: ${cedula}%0A- Teléfono: ${telefono}%0A- Correo: ${email}`;
+            let urlWhatsapp = `https://wa.me/584262753916?text=${mensaje}`;
+            window.open(urlWhatsapp, '_blank');
         }
 
         function comprarDirecto(id, nombre, precio) {
@@ -448,31 +649,51 @@
             let total = carrito.reduce((acc, i) => acc + i.precio, 0);
             document.getElementById('summaryTotal').innerText = `$${total.toFixed(2)}`;
             let htmlItems = '';
-            carrito.forEach(i => { htmlItems += `<p class="text-xs text-gray-300">${i.nombre} - $${i.precio}</p>`; });
+            carrito.forEach(i => { htmlItems += `<p class="text-xs text-gray-300">${i.nombre} - $${i.precio.toFixed(2)}</p>`; });
             document.getElementById('cartItemsSummaryList').innerHTML = htmlItems;
             cambiarSeccionCliente('checkout');
         }
 
         function procesarCompraAutomatizadaFinal() {
             let cliente = dbClientes.find(c => c.email === sesionActiva);
-            let total = carrito.reduce((acc, i) => acc + i.precio, 0);
-            if(cliente.saldo < total) { alert('Saldo insuficiente.'); return; }
-            cliente.saldo -= total;
-            cliente.historial.push({ concepto: 'Compra de servicio', monto: total, tipo: 'compra', fecha: new Date().toLocaleString() });
+            let itemCar = carrito[0];
+            let srv = catalogoServicios.find(s => s.id === itemCar.id);
+            
+            if(cliente.saldo < itemCar.precio) { alert('Saldo insuficiente en tu billetera.'); return; }
+            
+            let celdaAsignada = null;
+            if(srv && srv.celdasStock) {
+                celdaAsignada = srv.celdasStock.find(c => c.disponible);
+                if(celdaAsignada) {
+                    celdaAsignada.disponible = false;
+                    localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios));
+                }
+            }
+
+            cliente.saldo -= itemCar.precio;
+            cliente.historial.push({ 
+                concepto: 'Compra: ' + itemCar.nombre, 
+                monto: itemCar.precio, 
+                tipo: 'compra', 
+                fecha: new Date().toLocaleString(),
+                credenciales: celdaAsignada ? { usuario: celdaAsignada.usuario, pass: celdaAsignada.pass } : null
+            });
             localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
+            registrarAuditoria('COMPRA PLAN', `Cliente ${cliente.email} compró ${itemCar.nombre} por $${itemCar.precio}`);
             carrito = [];
             document.getElementById('cartCount').innerText = '0';
-            alert('¡Compra exitosa!');
+            alert('¡Compra procesada con éxito! Revisa tus credenciales en el historial.');
             abrirPanelCliente();
         }
 
         function cambiarSeccionCliente(seccion) {
-            ['viewResumen', 'viewClubNivel', 'viewCuotasPendientes', 'viewComerciosAliados', 'viewImpulsoReferidos', 'viewCatalogo', 'viewCheckout', 'viewTransacciones', 'viewReportarPago', 'viewMiPerfil'].forEach(id => {
+            ['viewResumen', 'viewClubNivel', 'viewCuotasPendientes', 'viewComerciosAliados', 'viewImpulsoReferidos', 'viewCatalogo', 'viewDescargas', 'viewWhatsappModal', 'viewCheckout', 'viewTransacciones', 'viewReportarPago', 'viewMiPerfil'].forEach(id => {
                 let el = document.getElementById(id);
                 if(el) el.classList.add('hidden');
             });
-            if(seccion === 'catalogo' || seccion === 'checkout') {
-                document.getElementById(seccion === 'checkout' ? 'viewCheckout' : 'viewCatalogo').classList.remove('hidden');
+            if(seccion === 'catalogo' || seccion === 'checkout' || seccion === 'whatsappModal' || seccion === 'descargas') {
+                let idVista = seccion === 'checkout' ? 'viewCheckout' : (seccion === 'whatsappModal' ? 'viewWhatsappModal' : (seccion === 'descargas' ? 'viewDescargas' : 'viewCatalogo'));
+                document.getElementById(idVista).classList.remove('hidden');
             } else {
                 let el = document.getElementById('view' + seccion.charAt(0).toUpperCase() + seccion.slice(1));
                 if(el) el.classList.remove('hidden');
@@ -483,17 +704,314 @@
             let monto = parseFloat(document.getElementById('reportMonto').value);
             let ref = document.getElementById('reportRef').value.trim();
             if(!monto || !ref) { alert('Completa los campos.'); return; }
-            dbReportes.push({ email: sesionActiva, monto, ref, fecha: new Date().toLocaleString() });
+            
+            dbReportes.push({ 
+                id: Date.now(),
+                email: sesionActiva, 
+                monto, 
+                ref, 
+                fecha: new Date().toLocaleString(),
+                estado: 'Pendiente'
+            });
             localStorage.setItem('panax_db_reportes', JSON.stringify(dbReportes));
-            alert('¡Reporte enviado!');
+            registrarAuditoria('REPORTE PAGO', `Cliente ${sesionActiva} reportó recarga por $${monto} (Ref: ${ref})`);
+            alert('¡Reporte de pago enviado con éxito al administrador!');
             cambiarSeccionCliente('resumen');
         }
 
+        // PANEL DE ADMINISTRACIÓN
         function abrirPanelAdmin() {
             ocultarTodo();
             document.getElementById('adminPanel').style.display = 'block';
             document.getElementById('btnSalirSesion').style.display = 'block';
             document.getElementById('topPublicBtns').style.display = 'none';
+
+            document.getElementById('link_pana').value = dbDescargas.pana;
+            document.getElementById('link_stella').value = dbDescargas.stella;
+            document.getElementById('link_flujo').value = dbDescargas.flujo;
+
+            renderizarReportesAdmin();
+            renderizarClientesAdmin();
+            renderizarAuditoriaAdmin();
+            renderizarPanelAdminServicios();
+        }
+
+        function guardarEnlacesDescarga() {
+            dbDescargas.pana = document.getElementById('link_pana').value.trim();
+            dbDescargas.stella = document.getElementById('link_stella').value.trim();
+            dbDescargas.flujo = document.getElementById('link_flujo').value.trim();
+            localStorage.setItem('panax_db_descargas', JSON.stringify(dbDescargas));
+            registrarAuditoria('ACTUALIZAR APPS', 'Administrador actualizó los enlaces de descarga.');
+            alert('¡Enlaces de descarga actualizados con éxito!');
+        }
+
+        function renderizarReportesAdmin() {
+            let tbody = document.getElementById('adminReportesList');
+            let html = '';
+            if(dbReportes.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="p-3 text-center text-gray-500">No hay reportes de recarga pendientes.</td></tr>`;
+                return;
+            }
+            dbReportes.slice().reverse().forEach((rep) => {
+                html += `
+                    <tr class="border-b border-gray-800 hover:bg-black/30">
+                        <td class="p-2.5 font-bold text-white">${rep.email}</td>
+                        <td class="p-2.5 text-green-400 font-black">$${rep.monto.toFixed(2)}</td>
+                        <td class="p-2.5 font-mono text-gray-300">Ref: ${rep.ref}</td>
+                        <td class="p-2.5 text-gray-400 text-[11px]">${rep.fecha}</td>
+                        <td class="p-2.5 text-right">
+                            <button onclick="aprobarRecargaAdmin(${rep.id})" class="bg-green-600 hover:bg-green-700 text-white font-bold text-[10px] px-2 py-1 rounded">Acreditar Saldo</button>
+                            <button onclick="rechazarRecargaAdmin(${rep.id})" class="bg-red-600 hover:bg-red-700 text-white font-bold text-[10px] px-2 py-1 rounded ml-1">Rechazar</button>
+                        </td>
+                    </tr>
+                `;
+            });
+            tbody.innerHTML = html;
+        }
+
+        function aprobarRecargaAdmin(idRep) {
+            let rep = dbReportes.find(r => r.id === idRep);
+            if(!rep) return;
+            let cliente = dbClientes.find(c => c.email === rep.email);
+            if(cliente) {
+                cliente.saldo = (cliente.saldo || 0) + rep.monto;
+                cliente.historial.push({ concepto: 'Recarga aprobada (Ref: ' + rep.ref + ')', monto: rep.monto, tipo: 'recarga', fecha: new Date().toLocaleString() });
+                localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
+            }
+            dbReportes = dbReportes.filter(r => r.id !== idRep);
+            localStorage.setItem('panax_db_reportes', JSON.stringify(dbReportes));
+            registrarAuditoria('APROBADO', `Recarga APROBADA de $${rep.monto} para ${rep.email} (Ref: ${rep.ref})`);
+            alert('¡Saldo acreditado exitosamente al cliente!');
+            renderizarReportesAdmin();
+            renderizarClientesAdmin();
+            renderizarAuditoriaAdmin();
+        }
+
+        function rechazarRecargaAdmin(idRep) {
+            let rep = dbReportes.find(r => r.id === idRep);
+            if(!rep) return;
+            dbReportes = dbReportes.filter(r => r.id !== idRep);
+            localStorage.setItem('panax_db_reportes', JSON.stringify(dbReportes));
+            registrarAuditoria('RECHAZADO', `Recarga RECHAZADA de $${rep.monto} para ${rep.email} (Ref: ${rep.ref})`);
+            alert('Reporte rechazado y removido.');
+            renderizarReportesAdmin();
+            renderizarAuditoriaAdmin();
+        }
+
+        function renderizarAuditoriaAdmin() {
+            let tbody = document.getElementById('adminAuditoriaList');
+            let fechaDesde = document.getElementById('filtroFechaDesde').value;
+            let fechaHasta = document.getElementById('filtroFechaHasta').value;
+
+            let filtrados = dbAuditoria.filter(item => {
+                let fechaItem = item.fecha.split('T')[0];
+                if(fechaDesde && fechaItem < fechaDesde) return false;
+                if(fechaHasta && fechaItem > fechaHasta) return false;
+                return true;
+            });
+
+            let html = '';
+            if(filtrados.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="p-3 text-center text-gray-500">No hay movimientos registrados en este rango de fechas.</td></tr>`;
+                return;
+            }
+
+            filtrados.slice().reverse().forEach(mov => {
+                let badgeColor = mov.tipo === 'APROBADO' ? 'text-green-400' : (mov.tipo === 'RECHAZADO' ? 'text-red-400' : (mov.tipo === 'MODIFICADO SALDO' ? 'text-yellow-400' : 'text-cyan-400'));
+                html += `
+                    <tr class="border-b border-gray-800 hover:bg-white/5">
+                        <td class="p-2 text-gray-400 text-[11px]">${mov.fechaFormateada}</td>
+                        <td class="p-2 font-bold text-white">Administrador / Sistema</td>
+                        <td class="p-2 font-bold ${badgeColor}">${mov.tipo}</td>
+                        <td class="p-2 text-gray-300">${mov.detalle}</td>
+                    </tr>
+                `;
+            });
+            tbody.innerHTML = html;
+        }
+
+        function exportarMovimientosCSV() {
+            let fechaDesde = document.getElementById('filtroFechaDesde').value;
+            let fechaHasta = document.getElementById('filtroFechaHasta').value;
+
+            let filtrados = dbAuditoria.filter(item => {
+                let fechaItem = item.fecha.split('T')[0];
+                if(fechaDesde && fechaItem < fechaDesde) return false;
+                if(fechaHasta && fechaItem > fechaHasta) return false;
+                return true;
+            });
+
+            if(filtrados.length === 0) { alert('No hay datos para exportar en este rango.'); return; }
+
+            let csvContent = "data:text/csv;charset=utf-8,Fecha,Tipo,Detalle\n";
+            filtrados.forEach(row => {
+                csvContent += `"${row.fechaFormateada}","${row.tipo}","${row.detalle}"\n`;
+            });
+
+            let encodedUri = encodeURI(csvContent);
+            let link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `auditoria_panaxtreaming_${fechaDesde || 'inicio'}_al_${fechaHasta || 'hoy'}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function renderizarClientesAdmin() {
+            let tbody = document.getElementById('adminClientesList');
+            let html = '';
+            if(dbClientes.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="p-3 text-center text-gray-500">No hay clientes registrados.</td></tr>`;
+                return;
+            }
+            dbClientes.forEach((cli, idx) => {
+                html += `
+                    <tr class="border-b border-gray-800 hover:bg-black/30">
+                        <td class="p-2.5 font-bold text-white">${cli.email}</td>
+                        <td class="p-2.5 text-gray-300 font-mono">${cli.cedula || 'N/A'}</td>
+                        <td class="p-2.5">
+                            <input type="number" step="0.01" id="admin_cli_saldo_${idx}" value="${cli.saldo || 0}" class="bg-black border border-gray-700 p-1 rounded text-xs text-green-400 font-black w-24">
+                        </td>
+                        <td class="p-2.5 text-right">
+                            <button onclick="guardarSaldoCliente(${idx})" class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-[10px] px-3 py-1.5 rounded">Modificar Saldo</button>
+                        </td>
+                    </tr>
+                `;
+            });
+            tbody.innerHTML = html;
+        }
+
+        function guardarSaldoCliente(idx) {
+            let nuevoSaldo = parseFloat(document.getElementById(`admin_cli_saldo_${idx}`).value);
+            if(isNaN(nuevoSaldo)) { alert('Ingresa un monto válido.'); return; }
+            let cli = dbClientes[idx];
+            let saldoAnterior = cli.saldo || 0;
+            cli.saldo = nuevoSaldo;
+            localStorage.setItem('panax_db_clientes', JSON.stringify(dbClientes));
+            registrarAuditoria('MODIFICADO SALDO', `Administrador modificó saldo del cliente ${cli.email} de $${saldoAnterior.toFixed(2)} a $${nuevoSaldo.toFixed(2)}`);
+            alert('¡Saldo del cliente modificado y registrado con éxito!');
+            renderizarClientesAdmin();
+            renderizarAuditoriaAdmin();
+        }
+
+        function renderizarPanelAdminServicios() {
+            let container = document.getElementById('adminServicesConfig');
+            let html = '';
+            catalogoServicios.forEach((srv, index) => {
+                let stockDisp = srv.celdasStock ? srv.celdasStock.filter(c => c.disponible).length : 0;
+                html += `
+                    <div class="bg-black/50 border border-gray-800 p-5 rounded-xl space-y-4">
+                        <div class="flex flex-col lg:flex-row items-center justify-between gap-4">
+                            <div class="flex-1 w-full space-y-2">
+                                <input type="text" id="admin_nombre_${index}" value="${srv.nombre}" class="w-full bg-gray-900 border border-gray-700 p-2 rounded text-xs text-white font-bold" placeholder="Nombre del plan">
+                                <input type="text" id="admin_desc_${index}" value="${srv.desc}" class="w-full bg-gray-900 border border-gray-700 p-2 rounded text-xs text-gray-300" placeholder="Descripción">
+                            </div>
+                            <div class="w-full sm:w-32">
+                                <label class="text-[10px] text-gray-400 block mb-1">Precio ($ USD):</label>
+                                <input type="number" step="0.01" id="admin_precio_${index}" value="${srv.precio}" class="w-full bg-gray-900 border border-gray-700 p-2 rounded text-xs text-green-400 font-black">
+                            </div>
+                            <div class="flex flex-col gap-2 w-full sm:w-48">
+                                <label class="text-[10px] text-gray-400">Video Demostrativo:</label>
+                                <input type="file" accept="video/*" onchange="cargarVideoLocal(event, ${index})" class="text-[10px] text-gray-300">
+                            </div>
+                            <div class="flex items-center gap-2 w-full lg:w-auto justify-end">
+                                <button onclick="guardarCambiosPlan(${index})" class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-3 py-2 rounded">Guardar</button>
+                                <button onclick="eliminarPlanAdmin(${index})" class="bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-3 py-2 rounded">Eliminar</button>
+                            </div>
+                        </div>
+                        <div class="border-t border-gray-800 pt-3">
+                            <p class="text-xs font-bold text-cyan-400 mb-2">📦 Celdas de Stock (Disponibles: ${stockDisp}/10)</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2">
+                `;
+                if(srv.celdasStock) {
+                    srv.celdasStock.forEach((celda, cIndex) => {
+                        let estadoCls = celda.disponible ? 'border-green-800/60 bg-green-950/20 text-green-300' : 'border-red-900/60 bg-red-950/20 text-red-400';
+                        html += `
+                            <div class="border ${estadoCls} p-2 rounded text-[10px] space-y-1">
+                                <p class="font-bold">Celda #${cIndex+1} (${celda.disponible ? 'Libre' : 'Ocupada'})</p>
+                                <input type="text" id="celda_u_${index}_${cIndex}" value="${celda.usuario}" class="w-full bg-black border border-gray-700 p-1 rounded text-[10px] text-white">
+                                <input type="text" id="celda_p_${index}_${cIndex}" value="${celda.pass}" class="w-full bg-black border border-gray-700 p-1 rounded text-[10px] text-white">
+                                <button onclick="actualizarCeldaStock(${index}, ${cIndex})" class="w-full bg-gray-800 hover:bg-gray-700 text-white py-0.5 rounded font-bold">Actualizar Celda</button>
+                            </div>
+                        `;
+                    });
+                }
+                html += `</div></div></div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function cargarVideoLocal(event, index) {
+            let file = event.target.files[0];
+            if(file) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    catalogoServicios[index].video = e.target.result;
+                    localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios));
+                    registrarAuditoria('CARGA VIDEO', `Administrador cargó video para el plan ${catalogoServicios[index].nombre}`);
+                    alert('¡Video demostrativo cargado con éxito!');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function guardarCambiosPlan(index) {
+            let nuevoNombre = document.getElementById(`admin_nombre_${index}`).value.trim();
+            let nuevaDesc = document.getElementById(`admin_desc_${index}`).value.trim();
+            let nuevoPrecio = parseFloat(document.getElementById(`admin_precio_${index}`).value);
+
+            if(!nuevoNombre || isNaN(nuevoPrecio)) { alert('Verifica los datos.'); return; }
+
+            catalogoServicios[index].nombre = nuevoNombre;
+            catalogoServicios[index].desc = nuevaDesc;
+            catalogoServicios[index].precio = nuevoPrecio;
+
+            localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios));
+            registrarAuditoria('EDITAR PLAN', `Administrador actualizó el plan ${nuevoNombre}`);
+            alert('¡Plan actualizado correctamente!');
+            renderizarPanelAdminServicios();
+        }
+
+        function actualizarCeldaStock(srvIndex, celdaIndex) {
+            let u = document.getElementById(`celda_u_${srvIndex}_${celdaIndex}`).value.trim();
+            let p = document.getElementById(`celda_p_${srvIndex}_${celdaIndex}`).value.trim();
+            
+            if(!catalogoServicios[srvIndex].celdasStock) {
+                catalogoServicios[srvIndex].celdasStock = Array(10).fill(0).map((_, i) => ({ usuario: `user${i}@panax.com`, pass: `pass_${i}`, disponible: true }));
+            }
+
+            catalogoServicios[srvIndex].celdasStock[celdaIndex].usuario = u;
+            catalogoServicios[srvIndex].celdasStock[celdaIndex].pass = p;
+            localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios));
+            registrarAuditoria('ACTUALIZAR STOCK', `Administrador actualizó celda #${celdaIndex+1} del plan ${catalogoServicios[srvIndex].nombre}`);
+            alert(`Celda #${celdaIndex+1} actualizada con éxito.`);
+            renderizarPanelAdminServicios();
+        }
+
+        function agregarNuevoServicioAdmin() {
+            catalogoServicios.push({
+                id: 'p_' + Date.now(),
+                categoria: 'PanaXtreaming',
+                nombre: 'Nuevo Plan PanaXtreaming',
+                desc: 'Descripción del nuevo plan.',
+                precio: 5.00,
+                activo: true,
+                video: '',
+                celdasStock: Array(10).fill(0).map((_, i) => ({ usuario: `nuevo_${i+1}@panax.com`, pass: `pass_${i+1}`, disponible: true }))
+            });
+            localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios));
+            registrarAuditoria('NUEVO PLAN', 'Administrador creó un nuevo plan.');
+            renderizarPanelAdminServicios();
+        }
+
+        function eliminarPlanAdmin(index) {
+            if(confirm('¿Seguro que deseas eliminar este plan?')) {
+                let nombreEliminado = catalogoServicios[index].nombre;
+                catalogoServicios.splice(index, 1);
+                localStorage.setItem('panax_db_servicios', JSON.stringify(catalogoServicios));
+                registrarAuditoria('ELIMINAR PLAN', `Administrador eliminó el plan ${nombreEliminado}`);
+                renderizarPanelAdminServicios();
+            }
         }
     </script>
 </body>
