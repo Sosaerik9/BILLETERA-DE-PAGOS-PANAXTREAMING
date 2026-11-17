@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PanaXtreaming - Control Total y Auditoría</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Usamos la librería universal compatible con la clave -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <style>
         body {
             background-color: #0b0f19;
@@ -402,9 +403,9 @@
 
     <!-- SCRIPT ÚNICO CONECTADO A SUPABASE -->
     <script>
-    const SUPABASE_URL = 'https://aphvgqnrnueeymglucmv.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFwaHZncWFucnVlZXltZ2x1Y212Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg1Mjg2NzIsImV4cCI6MjA1NDA4ODY3Mn0.kTqK7B55Y91wC8KvAU9WbsAgYLFZ-sSHMKGKNhTZ3hk';
-    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const SUPABASE_URL = 'https://aphvgqnrnueeymglucmv.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFwaHZncWFucnVlZXltZ2x1Y212Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzg1Mjg2NzIsImV4cCI6MjA1NDA4ODY3Mn0.kTqK7B55Y91wC8KvAU9WbsAgYLFZ-sSHMKGKNhTZ3hk';
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         let catalogoServicios = [];
         let dbClientes = [];
