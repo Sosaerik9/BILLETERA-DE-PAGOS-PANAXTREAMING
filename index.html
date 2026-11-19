@@ -404,7 +404,7 @@
     <!-- SCRIPT ÚNICO CONECTADO A SUPABASE -->
     <script>
         const SUPABASE_URL = 'https://aphvgqnrnueeymglucmv.supabase.co';
-        const SUPABASE_ANON_KEY = 'sb_publishable_cGG-nc1LX7td_gFqM4UlRg_GntblCM-';
+        const SUPABASE_ANON_KEY = 'sb_publishable_cGG-nc1LX7td_gFqM4UlRg_GntblCM';
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         let catalogoServicios = [];
@@ -417,6 +417,22 @@
         let servicioSeleccionadoWa = '';
         let sesionActiva = localStorage.getItem('panax_sesion_activa') || null;
         let adminActivo = localStorage.getItem('panax_admin_activo') === 'true';
+
+        async function registrarAuditoria(tipo, detalle) {
+            try {
+                let ahora = new Date();
+                let nuevoMov = {
+                    fecha: ahora.toISOString(),
+                    fecha_formateada: ahora.toLocaleString(),
+                    tipo: tipo,
+                    detalle: detalle
+                };
+                await supabaseClient.from('pana_auditoria').insert([nuevoMov]);
+                dbAuditoria.push(nuevoMov);
+            } catch (err) {
+                console.warn("No se pudo guardar auditoría:", err);
+            }
+        }
 
         window.onload = async function() {
             await cargarDatosSupabase();
@@ -571,7 +587,6 @@
                 return;
             }
 
-            // Intentar refrescar clientes desde Supabase si la lista está vacía o consultar directo
             try {
                 let response = await fetch(`${SUPABASE_URL}/rest/v1/pana_clientes?email=eq.${encodeURIComponent(email)}&select=*`, {
                     method: 'GET',
